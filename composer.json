@@ -18,5 +18,17 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Stethoscope\\": "src/Stethoscope/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Stethoscope\\StethoscopeServiceProvider"
+            ]
+        }
     }
 }
