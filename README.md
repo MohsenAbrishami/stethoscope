@@ -1,6 +1,6 @@
 # stethoscope
 
-# A modern backup solution for Laravel apps
+# A stethoscope for listening to your Laravel app server heartbeat
 
 This Laravel package allows you to monitor the infrastructure. You can check at any time what percentage of the processor and memory is used. You can also see the status of the internet connection and the web server.
 
