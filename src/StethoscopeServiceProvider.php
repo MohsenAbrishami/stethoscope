@@ -1,17 +1,22 @@
 <?php
 
-use Courier\Console\Commands\StethoscopeCommand;
+namespace MohsenAbrishami\Stethoscope;
+
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
  
-/**
- * Bootstrap any package services.
- *
- * @return void
- */
-public function boot()
+class StethoscopeServiceProvider extends BaseServiceProvider
 {
-    if ($this->app->runningInConsole()) {
-        $this->commands([
-            StethoscopeCommand::class,
-        ]);
+    /**
+     * Bootstrap any package services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                StethoscopeCommand::class,
+            ]);
+        }
     }
 }
