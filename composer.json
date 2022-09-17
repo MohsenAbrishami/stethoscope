@@ -1,0 +1,34 @@
+{
+    "name": "mohsenabrishami/stethoscope",
+    "description": "laravel server monitoring",
+    "keywords": [
+        "stethoscope",
+        "server monitoring",
+        "laravel"
+    ],
+    "homepage": "https://github.com/MohsenAbrishami/stethoscope",
+    "authors": [
+        {
+            "name": "Mohsen Abrishami",
+            "email": "mohsenabrishami.ma@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.4"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Stethoscope\\": "src/Stethoscope/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Stethoscope\\StethoscopeServiceProvider"
+            ]
+        }
+    }
+}
