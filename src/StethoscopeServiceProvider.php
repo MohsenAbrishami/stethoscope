@@ -3,6 +3,7 @@
 namespace MohsenAbrishami\Stethoscope;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use MohsenAbrishami\Stethoscope\Commands\StethoscopeCommand;
  
 class StethoscopeServiceProvider extends BaseServiceProvider
 {
