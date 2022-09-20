@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace MohsenAbrishami\Stethoscope\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
