@@ -21,13 +21,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Stethoscope\\": "src/Stethoscope/"
+            "MohsenAbrishami\\Stethoscope\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Stethoscope\\StethoscopeServiceProvider"
+                "MohsenAbrishami\\Stethoscope\\StethoscopeServiceProvider"
             ]
         }
     }
