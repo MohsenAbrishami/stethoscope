@@ -1,6 +1,10 @@
 # stethoscope
 
-# A stethoscope for listening to your Laravel app server heartbeat
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg?style=flat-square)](https://packagist.org/packages/mohsenabrishami/stethoscope)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![Total Downloads](https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg?style=flat-square)](https://packagist.org/packages/mohsenabrishami/stethoscope)
+
+## A stethoscope for listening to your Laravel app server heartbeat
 
 This Laravel package allows you to monitor the infrastructure. You can check at any time what percentage of the processor and memory is used. You can also see the status of the internet connection and the web server.
 
@@ -15,7 +19,7 @@ But the work of this package didn't stop there. you can set thresholds for CPU a
 
 ## Installation and usage
 
-This package requires PHP 7.4 and Laravel 8.0 or higher.
+This package requires PHP 8.0 and Laravel 8.0 or higher.
 You can install the package via composer:
 
 ``` bash
