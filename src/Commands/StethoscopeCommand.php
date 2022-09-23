@@ -58,6 +58,9 @@ class StethoscopeCommand extends Command
 
     protected function cpuMonitor($log)
     {
+        if (!config('stethoscope.monitoring_enable.cpu'))
+            return null;
+
         $cpuUsage = exec(" grep 'cpu ' /proc/stat | awk '{print ($2+$4)*100/($2+$4+$5)}' ");
 
         $message = date('H:i:s') . " ===> cpu uage:  $cpuUsage \n";
@@ -72,13 +75,16 @@ class StethoscopeCommand extends Command
 
     protected function memoryMonitor($log)
     {
+        if (!config('stethoscope.monitoring_enable.memory'))
+            return null;
+
         $memoryUsage = exec(" free | grep Mem | awk '{print $3/$2 * 100.0}' ");
 
         $message = date('H:i:s') . " ===> memory uage:  $memoryUsage \n";
 
         print_r($message);
 
-        if ($memoryUsage > config(('stethoscope.thereshold.cpu')))
+        if ($memoryUsage > config(('stethoscope.thereshold.memory')))
             $log .= $message;
 
         return $log;
@@ -86,6 +92,9 @@ class StethoscopeCommand extends Command
 
     protected function networkConnection($log)
     {
+        if (!config('stethoscope.monitoring_enable.network'))
+            return null;
+
         try {
             $networkConnction = Http::get('www.google.com')->successful();
         } catch (Exception $e) {
@@ -104,6 +113,9 @@ class StethoscopeCommand extends Command
 
     protected function webServerMonitor($log)
     {
+        if (!config('stethoscope.monitoring_enable.web_server'))
+            return null;
+
         $nginxStatus = exec('systemctl status nginx', $out, $exit_code);
 
         $message = date('H:i:s') . " ===> nginx status:  $nginxStatus \n";
