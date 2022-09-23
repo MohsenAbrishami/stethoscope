@@ -1,6 +1,17 @@
 <?php
 
 return [
+
+    /**
+     * Define what needs to be monitored
+     */
+    'monitoring_enable' => [
+        'cpu' => true,
+        'memory' => true,
+        'web_server' => true,
+        'network' => true
+    ],
+
     /**
      * Define storage driver for save logs
      */
@@ -19,8 +30,8 @@ return [
         'cpu' => 90,
 
         /**
-         * maximum RAM usage to percent
+         * maximum memory usage to percent
          */
-        'ram' => 80
+        'memory' => 80
     ]
 ];

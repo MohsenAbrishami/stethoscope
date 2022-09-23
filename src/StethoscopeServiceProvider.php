@@ -14,6 +14,10 @@ class StethoscopeServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../config/stethoscope.php' => config_path('stethoscope.php'),
+        ]);
+        
         if ($this->app->runningInConsole()) {
             $this->commands([
                 StethoscopeCommand::class,
