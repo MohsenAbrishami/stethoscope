@@ -1,4 +1,4 @@
-# stethoscope
+# Stethoscope
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg?style=flat-square)](https://packagist.org/packages/mohsenabrishami/stethoscope)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -24,6 +24,10 @@ You can install the package via composer:
 
 ``` bash
 composer require mohsenabrishami/stethoscope
+
+and
+
+php artisan vendor:publish --tag=stethoscope
 ```
 
 ## License
