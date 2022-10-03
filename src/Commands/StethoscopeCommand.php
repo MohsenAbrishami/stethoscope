@@ -4,16 +4,29 @@ namespace MohsenAbrishami\Stethoscope\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use MohsenAbrishami\Stethoscope\Services\Cpu;
+use MohsenAbrishami\Stethoscope\Services\Memory;
+use MohsenAbrishami\Stethoscope\Services\Network;
+use MohsenAbrishami\Stethoscope\Services\WebServer;
 
 class StethoscopeCommand extends Command
 {
     public $storage;
 
-    public function __construct()
+    public $cpu;
+    public $memory;
+    public $network;
+    public $webServer;
+
+    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer)
     {
         parent::__construct();
+
+        $this->cpu = $cpu;
+        $this->memory = $memory;
+        $this->network = $network;
+        $this->webServer = $webServer;
 
         $this->storage = Storage::disk(config('stethoscope.storage.driver'));
     }
@@ -47,10 +60,10 @@ class StethoscopeCommand extends Command
         if ($this->storage->exists($file))
             $log = $this->storage->get($file);
 
-        $log = $this->cpuMonitor($log);
-        $log = $this->memoryMonitor($log);
-        $log = $this->networkConnection($log);
-        $log = $this->webServerMonitor($log);
+        $log = $this->cpu->index($log);
+        $log = $this->memory->index($log);
+        $log = $this->network->index($log);
+        $log = $this->webServer->index($log);
 
         if ($log != '')
             $this->storage->put($file, $log);

@@ -2,13 +2,13 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
+use Exception;
+use Illuminate\Support\Facades\Http;
+
 class Network
 {
-    public function index()
+    public function index(string $log)
     {
-        if (!config('stethoscope.monitoring_enable.network'))
-            return null;
-
         try {
             $networkConnction = Http::get('www.google.com')->successful();
         } catch (Exception $e) {
@@ -19,7 +19,7 @@ class Network
 
         print_r($message);
 
-        if (!$networkConnction)
+        if (!$networkConnction && !config('stethoscope.monitoring_enable.network'))
             $log .= $message;
 
         return $log;

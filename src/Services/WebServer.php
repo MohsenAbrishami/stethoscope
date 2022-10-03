@@ -2,22 +2,17 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
-namespace 
-
 class WebServer
 {
-    public function index()
+    public function index(string $log)
     {
-        if (!config('stethoscope.monitoring_enable.web_server'))
-            return null;
-
         $nginxStatus = exec('systemctl status nginx', $out, $exit_code);
 
         $message = date('H:i:s') . " ===> nginx status:  $nginxStatus \n";
 
         print($message);
 
-        if (!$nginxStatus)
+        if (!$nginxStatus && !config('stethoscope.monitoring_enable.web_server'))
             $log .= $message;
 
         return $log;
