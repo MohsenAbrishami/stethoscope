@@ -2,7 +2,6 @@
 
 namespace MohsenAbrishami\Stethoscope\Commands;
 
-use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
@@ -12,13 +11,6 @@ use MohsenAbrishami\Stethoscope\Services\WebServer;
 
 class StethoscopeCommand extends Command
 {
-    public $storage;
-
-    public $cpu;
-    public $memory;
-    public $network;
-    public $webServer;
-
     public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer)
     {
         parent::__construct();

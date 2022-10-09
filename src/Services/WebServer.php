@@ -12,7 +12,7 @@ class WebServer
 
         print($message);
 
-        if (!$nginxStatus && !config('stethoscope.monitoring_enable.web_server'))
+        if (!$nginxStatus && config('stethoscope.monitoring_enable.web_server'))
             $log .= $message;
 
         return $log;

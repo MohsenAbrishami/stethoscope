@@ -12,7 +12,7 @@ class Memory
 
         print_r($message);
 
-        if ($memoryUsage > config(('stethoscope.thereshold.memory')) && !config('stethoscope.monitoring_enable.memory'))
+        if ($memoryUsage > config(('stethoscope.thereshold.memory')) && config('stethoscope.monitoring_enable.memory'))
             $log .= $message;
 
         return $log;

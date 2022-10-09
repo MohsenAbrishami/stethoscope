@@ -19,7 +19,7 @@ class Network
 
         print_r($message);
 
-        if (!$networkConnction && !config('stethoscope.monitoring_enable.network'))
+        if (!$networkConnction && config('stethoscope.monitoring_enable.network'))
             $log .= $message;
 
         return $log;

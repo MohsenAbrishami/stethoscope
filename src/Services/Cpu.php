@@ -12,7 +12,7 @@ class Cpu
 
         print_r($message);
 
-        if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && !config('stethoscope.monitoring_enable.cpu'))
+        if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
             $log .= $message;
 
         return $log;
