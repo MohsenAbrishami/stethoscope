@@ -24,9 +24,10 @@ You can install the package via composer:
 
 ``` bash
 composer require mohsenabrishami/stethoscope
+```
 
 and
-
+``` bash
 php artisan vendor:publish --tag=stethoscope
 ```
 
