@@ -16,7 +16,7 @@ class StethoscopeServiceProvider extends BaseServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/stethoscope.php' => config_path('stethoscope.php'),
-        ]);
+        ], 'stethoscope');
         
         if ($this->app->runningInConsole()) {
             $this->commands([
