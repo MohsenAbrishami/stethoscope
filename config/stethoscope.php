@@ -13,10 +13,11 @@ return [
     ],
 
     /**
-     * Define storage driver for save logs
+     * Define storage driver and path for save log file
      */
     'storage' => [
-        'driver' => 'local'
+        'driver' => 'local',
+        'path' => 'stethoscope/'
     ],
 
     /**
