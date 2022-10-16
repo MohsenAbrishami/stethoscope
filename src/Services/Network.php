@@ -5,9 +5,9 @@ namespace MohsenAbrishami\Stethoscope\Services;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
-class Network
+class Network implements ServiceInterface
 {
-    public function index(string $log)
+    public function monitor(string $log) :string
     {
         try {
             $networkConnction = Http::get('www.google.com')->successful();

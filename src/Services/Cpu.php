@@ -2,9 +2,9 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
-class Cpu
+class Cpu implements ServiceInterface
 {
-    public function index(string $log)
+    public function monitor(string $log) :string
     {
         $cpuUsage = exec(" grep 'cpu ' /proc/stat | awk '{print ($2+$4)*100/($2+$4+$5)}' ");
 

@@ -2,9 +2,9 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
-class WebServer
+class WebServer implements ServiceInterface
 {
-    public function index(string $log)
+    public function monitor(string $log): string
     {
         $nginxStatus = exec('systemctl status nginx', $out, $exit_code);
 
