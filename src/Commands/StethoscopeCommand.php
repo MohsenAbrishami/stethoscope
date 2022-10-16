@@ -45,7 +45,7 @@ class StethoscopeCommand extends Command
      */
     public function handle()
     {
-        $file = now()->format('Y-m-d H-i-s');
+        $file = config('stethoscope.storage.path') . now()->format('Y-m-d H-i-s');
 
         $log = '';
 
