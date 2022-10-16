@@ -52,10 +52,10 @@ class StethoscopeCommand extends Command
         if ($this->storage->exists($file))
             $log = $this->storage->get($file);
 
-        $log = $this->cpu->index($log);
-        $log = $this->memory->index($log);
-        $log = $this->network->index($log);
-        $log = $this->webServer->index($log);
+        $log = $this->cpu->monitor($log);
+        $log = $this->memory->monitor($log);
+        $log = $this->network->monitor($log);
+        $log = $this->webServer->monitor($log);
 
         if ($log != '')
             $this->storage->put($file, $log);

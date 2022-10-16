@@ -2,9 +2,9 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
-class Memory
+class Memory implements ServiceInterface
 {
-    public function index(string $log)
+    public function monitor(string $log) :string
     {
         $memoryUsage = exec(" free | grep Mem | awk '{print $3/$2 * 100.0}' ");
 
