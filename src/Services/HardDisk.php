@@ -8,7 +8,7 @@ class HardDisk implements ServiceInterface
     {
         $diskFreeSpace = diskfreespace('/');
 
-        $message = date('H:i:s') . " ===> hard disk free space:  $diskFreeSpace \n";
+        $message = date('H:i:s') . " ===> hard disk free space:  $diskFreeSpace byte \n";
 
         print_r($message);
 
