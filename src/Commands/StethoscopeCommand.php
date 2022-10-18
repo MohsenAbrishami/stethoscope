@@ -5,13 +5,14 @@ namespace MohsenAbrishami\Stethoscope\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
+use MohsenAbrishami\Stethoscope\Services\HardDisk;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
 
 class StethoscopeCommand extends Command
 {
-    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer)
+    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, HardDisk $hardDisk)
     {
         parent::__construct();
 
@@ -19,6 +20,7 @@ class StethoscopeCommand extends Command
         $this->memory = $memory;
         $this->network = $network;
         $this->webServer = $webServer;
+        $this->hardDisk = $hardDisk;
 
         $this->storage = Storage::disk(config('stethoscope.storage.driver'));
     }
@@ -56,6 +58,7 @@ class StethoscopeCommand extends Command
         $log = $this->memory->monitor($log);
         $log = $this->network->monitor($log);
         $log = $this->webServer->monitor($log);
+        $log = $this->hardDisk->monitor($log);
 
         if ($log != '')
             $this->storage->put($file, $log);

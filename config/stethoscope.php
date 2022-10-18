@@ -9,7 +9,8 @@ return [
         'cpu' => true,
         'memory' => true,
         'web_server' => true,
-        'network' => true
+        'network' => true,
+        'hard_disk' => true
     ],
 
     /**
@@ -33,6 +34,11 @@ return [
         /**
          * maximum memory usage to percent
          */
-        'memory' => 80
+        'memory' => 80,
+
+        /**
+         * minimum hard disk space to byte
+         */
+        'hard_disk' => 5368709
     ]
 ];
