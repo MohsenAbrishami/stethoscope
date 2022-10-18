@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class Network implements ServiceInterface
 {
-    public function monitor(string $log) :string
+    public function monitor(string $log): string
     {
         try {
             $networkConnction = Http::get('www.google.com')->successful();

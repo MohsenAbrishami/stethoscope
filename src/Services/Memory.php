@@ -8,7 +8,7 @@ class Memory implements ServiceInterface
     {
         $memoryUsage = exec(" free | grep Mem | awk '{print $3/$2 * 100.0}' ");
 
-        $message = date('H:i:s') . ' ===> memory uage:  ' . number_format((float)$memoryUsage, 2, '.', '') . '% \n';
+        $message = date('H:i:s') . ' ===> memory uage:  ' . number_format((float)$memoryUsage, 2, '.', '') . "% \n";
 
         print_r($message);
 
