@@ -6,13 +6,13 @@ class WebServer implements ServiceInterface
 {
     public function monitor(string $log): string
     {
-        $nginxStatus = exec('systemctl status nginx', $out, $exit_code);
+        $nginxStatus = exec('systemctl is-active nginx');
 
-        $message = date('H:i:s') . " ===> nginx status:  $nginxStatus \n";
+        $message = date('H:i:s') . " ===> nginx status: $nginxStatus \n";
 
         print($message);
 
-        if (!$nginxStatus && config('stethoscope.monitoring_enable.web_server'))
+        if ($nginxStatus == 'inactive' && config('stethoscope.monitoring_enable.web_server'))
             $log .= $message;
 
         return $log;
