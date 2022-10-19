@@ -16,7 +16,7 @@ class Network implements ServiceInterface
             $networkConnction = 'not connected';
         }
 
-        $message = date('H:i:s') . ' ===> network connection status: ' . $networkConnction . "\n";
+        $message = date('H:i:s') . " ===> network connection status: $networkConnction \n";
 
         print_r($message);
 
