@@ -40,5 +40,10 @@ return [
          * minimum hard disk space to byte
          */
         'hard_disk' => 5368709
-    ]
+    ],
+
+    /**
+     * Here you can define the desired URL for network monitoring
+     */
+    'network_monitor_url' => 'https://www.google.com'
 ];

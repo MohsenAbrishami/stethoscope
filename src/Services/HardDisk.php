@@ -4,11 +4,12 @@ namespace MohsenAbrishami\Stethoscope\Services;
 
 class HardDisk implements ServiceInterface
 {
-    public function monitor(string $log) :string
+    public function monitor(string $log): string
     {
         $diskFreeSpace = diskfreespace('/');
 
-        $message = date('H:i:s') . " ===> hard disk free space:  $diskFreeSpace \n";
+        $message = date('H:i:s') . ' ===> hard disk free space:  ' . $diskFreeSpace . " Byte (" .
+            number_format($diskFreeSpace / 1024 / 1024 / 1024, 2, '.', '') .  " GB) \n";
 
         print_r($message);
 
