@@ -1,4 +1,4 @@
-# Stethoscope
+# Stethoscope <img src="art/stethoscope.png" style="width:25px">
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg?style=flat-square)](https://packagist.org/packages/mohsenabrishami/stethoscope)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
