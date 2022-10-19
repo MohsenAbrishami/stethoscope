@@ -10,12 +10,13 @@ class Network implements ServiceInterface
     public function monitor(string $log): string
     {
         try {
-            $networkConnction = Http::get('www.google.com')->successful();
+            Http::get(config('stethoscope.network-monitor-url'))->successful();
+            $networkConnction = 'connected';
         } catch (Exception $e) {
-            $networkConnction = 'false';
+            $networkConnction = 'not connected';
         }
 
-        $message = date('H:i:s') . " ===> network connection:  $networkConnction \n";
+        $message = date('H:i:s') . ' ===> network connection status: ' . $networkConnction . "\n";
 
         print_r($message);
 
