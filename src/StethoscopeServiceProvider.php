@@ -2,10 +2,10 @@
 
 namespace MohsenAbrishami\Stethoscope;
 
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\StethoscopeCommand;
- 
-class StethoscopeServiceProvider extends BaseServiceProvider
+
+class StethoscopeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any package services.
@@ -15,9 +15,9 @@ class StethoscopeServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/stethoscope.php' => config_path('stethoscope.php'),
+            __DIR__ . '/../config/stethoscope.php' => config_path('stethoscope.php'),
         ], 'stethoscope');
-        
+
         if ($this->app->runningInConsole()) {
             $this->commands([
                 StethoscopeCommand::class,
@@ -25,10 +25,16 @@ class StethoscopeServiceProvider extends BaseServiceProvider
         }
     }
 
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/../config/stethoscope.php', 'stethoscope'
-         );
+            __DIR__ . '/../config/stethoscope.php',
+            'stethoscope'
+        );
     }
 }

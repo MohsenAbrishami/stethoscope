@@ -14,7 +14,8 @@
         }
     ],
     "require": {
-        "php": "^8.0"
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.5"
     },
     "config": {
         "sort-packages": true
