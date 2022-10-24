@@ -17,7 +17,7 @@ class Network implements ServiceInterface
 
         $message = date('H:i:s') . ' ===> network connection status: ' . ($networkConnction ? 'connected' : 'not connected') . "\n";
 
-        print_r($message);
+        // print_r($message);
 
         if (!$networkConnction && config('stethoscope.monitoring_enable.network'))
             $log .= $message;

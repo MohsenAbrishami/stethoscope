@@ -10,7 +10,7 @@ class Memory implements ServiceInterface
 
         $message = date('H:i:s') . ' ===> memory uage: ' . number_format((float)$memoryUsage, 2, '.', '') . "% \n";
 
-        print_r($message);
+        // print_r($message);
 
         if ($memoryUsage > config(('stethoscope.thereshold.memory')) && config('stethoscope.monitoring_enable.memory'))
             $log .= $message;

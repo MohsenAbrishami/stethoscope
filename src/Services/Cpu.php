@@ -10,7 +10,7 @@ class Cpu implements ServiceInterface
 
         $message = date('H:i:s') . ' ===> cpu uage: ' . number_format((float)$cpuUsage, 2, '.', '') . "% \n";
 
-        print_r($message);
+        // print_r($message);
 
         if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
             $log .= $message;
