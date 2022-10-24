@@ -9,9 +9,12 @@ use MohsenAbrishami\Stethoscope\Services\HardDisk;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
+use MohsenAbrishami\Stethoscope\Traits\MessageCreatorTrait;
 
-class StethoscopeCommand extends Command
+class MonitorCommand extends Command
 {
+    use MessageCreatorTrait;
+
     public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, HardDisk $hardDisk)
     {
         parent::__construct();
@@ -31,7 +34,7 @@ class StethoscopeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stethoscope:listen';
+    protected $signature = 'stethoscope:monitor';
 
     /**
      * The console command description.
@@ -51,14 +54,26 @@ class StethoscopeCommand extends Command
 
         $log = '';
 
-        if ($this->storage->exists($file))
-            $log = $this->storage->get($file);
+        $cpuUsage = $this->cpu->check($log);
+        $memoryUsage = $this->memory->check($log);
+        $networkStatus = $this->network->check($log);
+        $webServerStatus = $this->webServer->check($log);
+        $hardDiskusage = $this->hardDisk->check($log);
 
-        $log = $this->cpu->monitor($log);
-        $log = $this->memory->monitor($log);
-        $log = $this->network->monitor($log);
-        $log = $this->webServer->monitor($log);
-        $log = $this->hardDisk->monitor($log);
+        if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
+            $log .= $this->cpuMessage($cpuUsage) . "\n";
+
+        if ($memoryUsage < config(('stethoscope.thereshold.hard_disk')) && config('stethoscope.monitoring_enable.hard_disk'))
+            $log .= $this->memoryMessage($memoryUsage) . "\n";
+
+        if (!$networkStatus && config('stethoscope.monitoring_enable.network'))
+            $log .= $this->networkMessage($networkStatus) . "\n";
+
+        if ($webServerStatus == 'inactive' && config('stethoscope.monitoring_enable.web_server'))
+            $log .= $this->webServerMessage($webServerStatus) . "\n";
+
+        if ($hardDiskusage < config(('stethoscope.thereshold.hard_disk')) && config('stethoscope.monitoring_enable.hard_disk'))
+            $log .= $this->hardDiskMessage($hardDiskusage) . "\n";
 
         if ($log != '')
             $this->storage->put($file, $log);

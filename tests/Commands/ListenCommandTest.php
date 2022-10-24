@@ -5,9 +5,9 @@ namespace Tests\Commands;
 use Tests\TestCase;
 
 /**
- * @covers \MohsenAbrishami\Stethosope\Commands\StethoscopeListenCommandTest
+ * @covers \MohsenAbrishami\Stethosope\Commands\ListenCommandTest
  */
-class StethoscopeListenCommandTest extends TestCase
+class ListenCommandTest extends TestCase
 {
     public function test_assert_success_stethoscope_listen_command()
     {

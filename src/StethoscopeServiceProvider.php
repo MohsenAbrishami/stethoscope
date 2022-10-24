@@ -3,7 +3,8 @@
 namespace MohsenAbrishami\Stethoscope;
 
 use Illuminate\Support\ServiceProvider;
-use MohsenAbrishami\Stethoscope\Commands\StethoscopeCommand;
+use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
+use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
 
 class StethoscopeServiceProvider extends ServiceProvider
 {
@@ -20,7 +21,8 @@ class StethoscopeServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                StethoscopeCommand::class,
+                ListenCommand::class,
+                MonitorCommand::class
             ]);
         }
     }

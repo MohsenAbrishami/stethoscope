@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class Network implements ServiceInterface
 {
-    public function monitor(string $log): string
+    public function check(): string
     {
         try {
             $networkConnction = Http::get(config('stethoscope.network_monitor_url'))->successful();
@@ -15,13 +15,6 @@ class Network implements ServiceInterface
             $networkConnction = false;
         }
 
-        $message = date('H:i:s') . ' ===> network connection status: ' . ($networkConnction ? 'connected' : 'not connected') . "\n";
-
-        // print_r($message);
-
-        if (!$networkConnction && config('stethoscope.monitoring_enable.network'))
-            $log .= $message;
-
-        return $log;
+        return $networkConnction;
     }
 }

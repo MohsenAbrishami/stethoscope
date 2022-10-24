@@ -8,9 +8,9 @@ return [
     'monitoring_enable' => [
         'cpu' => true,
         'memory' => true,
-        'web_server' => true,
+        'hard_disk' => true,
         'network' => true,
-        'hard_disk' => true
+        'web_server' => true,
     ],
 
     /**
