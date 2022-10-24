@@ -10,7 +10,7 @@ class WebServer implements ServiceInterface
 
         $message = date('H:i:s') . " ===> nginx status: $nginxStatus \n";
 
-        print($message);
+        // print($message);
 
         if ($nginxStatus == 'inactive' && config('stethoscope.monitoring_enable.web_server'))
             $log .= $message;

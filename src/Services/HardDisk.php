@@ -11,7 +11,7 @@ class HardDisk implements ServiceInterface
         $message = date('H:i:s') . ' ===> hard disk free space: ' . $diskFreeSpace . " Byte (" .
             number_format($diskFreeSpace / 1024 / 1024 / 1024, 2, '.', '') .  " GB) \n";
 
-        print_r($message);
+        // print_r($message);
 
         if ($diskFreeSpace < config(('stethoscope.thereshold.hard_disk')) && config('stethoscope.monitoring_enable.hard_disk'))
             $log .= $message;
