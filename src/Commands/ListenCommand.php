@@ -56,31 +56,31 @@ class ListenCommand extends Command
 
         if ($options->contains('cpu') || $isEmpty) {
             $this->info(
-                $this->cpuMessage($this->cpu->monitor())
+                $this->cpuMessage($this->cpu->check())
             );
         }
 
         if ($options->contains('memory')  || $isEmpty) {
             $this->info(
-                $this->memoryMessage($this->memory->monitor())
+                $this->memoryMessage($this->memory->check())
             );
         }
 
         if ($options->contains('network')  || $isEmpty) {
             $this->info(
-                $this->networkMessage($this->network->monitor())
+                $this->networkMessage($this->network->check())
             );
         }
 
         if ($options->contains('web-server')  || $isEmpty) {
             $this->info(
-                $this->webServerMessage($this->webServer->monitor())
+                $this->webServerMessage($this->webServer->check())
             );
         }
 
         if ($options->contains('hdd') || $isEmpty) {
             $this->info(
-                $this->hardDiskMessage($this->hardDisk->monitor())
+                $this->hardDiskMessage($this->hardDisk->check())
             );
         }
     }

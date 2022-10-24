@@ -54,11 +54,11 @@ class MonitorCommand extends Command
 
         $log = '';
 
-        $cpuUsage = $this->cpu->monitor($log);
-        $memoryUsage = $this->memory->monitor($log);
-        $networkStatus = $this->network->monitor($log);
-        $webServerStatus = $this->webServer->monitor($log);
-        $hardDiskusage = $this->hardDisk->monitor($log);
+        $cpuUsage = $this->cpu->check($log);
+        $memoryUsage = $this->memory->check($log);
+        $networkStatus = $this->network->check($log);
+        $webServerStatus = $this->webServer->check($log);
+        $hardDiskusage = $this->hardDisk->check($log);
 
         if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
             $log .= $this->cpuMessage($cpuUsage) . "\n";
