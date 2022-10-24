@@ -34,7 +34,7 @@ class ListenCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stethoscope:listen {monitor?*}';
+    protected $signature = 'stethoscope:listen {resources?*}';
 
     /**
      * The console command description.
@@ -50,35 +50,35 @@ class ListenCommand extends Command
      */
     public function handle()
     {
-        $options = collect($this->argument('monitor'));
+        $resources = collect($this->argument('resources'));
 
-        $isEmpty = $options->isEmpty();
+        $resourcesIsEmpty = $resources->isEmpty();
 
-        if ($options->contains('cpu') || $isEmpty) {
+        if ($resources->contains('cpu') || $resourcesIsEmpty) {
             $this->info(
                 $this->cpuMessage($this->cpu->check())
             );
         }
 
-        if ($options->contains('memory')  || $isEmpty) {
+        if ($resources->contains('memory')  || $resourcesIsEmpty) {
             $this->info(
                 $this->memoryMessage($this->memory->check())
             );
         }
 
-        if ($options->contains('network')  || $isEmpty) {
+        if ($resources->contains('network')  || $resourcesIsEmpty) {
             $this->info(
                 $this->networkMessage($this->network->check())
             );
         }
 
-        if ($options->contains('web-server')  || $isEmpty) {
+        if ($resources->contains('web-server')  || $resourcesIsEmpty) {
             $this->info(
                 $this->webServerMessage($this->webServer->check())
             );
         }
 
-        if ($options->contains('hdd') || $isEmpty) {
+        if ($resources->contains('hdd') || $resourcesIsEmpty) {
             $this->info(
                 $this->hardDiskMessage($this->hardDisk->check())
             );
