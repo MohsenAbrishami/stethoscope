@@ -6,7 +6,7 @@ trait MessageCreatorTrait
 {
     public function cpuMessage($cpuUsage)
     {
-        return date('H:i:s') . ' ===> cpu uage: ' . number_format((float)$cpuUsage, 2, '.', '');
+        return date('H:i:s') . ' ===> cpu usage: ' . number_format((float)$cpuUsage, 2, '.', '');
     }
 
     public function hardDiskMessage($hardDiskUsage)
@@ -17,7 +17,7 @@ trait MessageCreatorTrait
 
     public function memoryMessage($memoryUsage)
     {
-        return date('H:i:s') . ' ===> memory uage: ' . number_format((float)$memoryUsage, 2, '.', '');
+        return date('H:i:s') . ' ===> memory usage: ' . number_format((float)$memoryUsage, 2, '.', '');
     }
 
     public function networkMessage($networkStatus)
