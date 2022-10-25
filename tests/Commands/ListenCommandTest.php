@@ -9,9 +9,36 @@ use Tests\TestCase;
  */
 class ListenCommandTest extends TestCase
 {
-    public function test_assert_success_stethoscope_listen_command()
+    public function test_monitor_all_resources_when_run_listen_command_without_arguments()
     {
         $this->artisan('stethoscope:listen')
-            ->assertSuccessful();
+            ->assertSuccessful()
+            ->expectsOutputToContain('cpu usage')
+            ->expectsOutputToContain('memory usage')
+            ->expectsOutputToContain('hard disk free space')
+            ->expectsOutputToContain('network connection status')
+            ->expectsOutputToContain('nginx status');
+    }
+
+    public function test_monitor_all_resources_when_run_listen_command_with_all_arguments()
+    {
+        $this->artisan('stethoscope:listen cpu memory hdd network web-server')
+            ->assertSuccessful()
+            ->expectsOutputToContain('cpu usage')
+            ->expectsOutputToContain('memory usage')
+            ->expectsOutputToContain('hard disk free space')
+            ->expectsOutputToContain('network connection status')
+            ->expectsOutputToContain('nginx status');
+    }
+
+    public function only_monitor_cpu_memory_when_run_stethoscope_listen_command_with_cpu_memory_arguments()
+    {
+        $this->artisan('stethoscope:listen cpu memory')
+            ->assertSuccessful()
+            ->expectsOutputToContain('cpu usage')
+            ->expectsOutputToContain('memory usage')
+            ->doesntExpectOutputToContain('hard disk free space')
+            ->doesntExpectOutputToContain('network connection status')
+            ->doesntExpectOutputToContain('nginx status');
     }
 }
