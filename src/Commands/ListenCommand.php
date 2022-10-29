@@ -54,6 +54,10 @@ class ListenCommand extends Command
 
         $resourcesIsEmpty = $resources->isEmpty();
 
+        $this->line(
+            $this->timeMessage()
+        );
+
         if ($resources->contains('cpu') || $resourcesIsEmpty) {
             $this->info(
                 $this->cpuMessage($this->cpu->check())

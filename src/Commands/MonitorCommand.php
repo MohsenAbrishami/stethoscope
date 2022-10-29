@@ -50,15 +50,15 @@ class MonitorCommand extends Command
      */
     public function handle()
     {
-        $file = config('stethoscope.storage.path') . now()->format('Y-m-d H-i-s');
+        $file = config('stethoscope.storage.path') . now()->format('Y-m-d');
+
+        $cpuUsage = $this->cpu->check();
+        $memoryUsage = $this->memory->check();
+        $networkStatus = $this->network->check();
+        $webServerStatus = $this->webServer->check();
+        $hardDiskusage = $this->hardDisk->check();
 
         $log = '';
-
-        $cpuUsage = $this->cpu->check($log);
-        $memoryUsage = $this->memory->check($log);
-        $networkStatus = $this->network->check($log);
-        $webServerStatus = $this->webServer->check($log);
-        $hardDiskusage = $this->hardDisk->check($log);
 
         if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
             $log .= $this->cpuMessage($cpuUsage) . "\n";
@@ -75,7 +75,13 @@ class MonitorCommand extends Command
         if ($hardDiskusage < config(('stethoscope.thereshold.hard_disk')) && config('stethoscope.monitoring_enable.hard_disk'))
             $log .= $this->hardDiskMessage($hardDiskusage) . "\n";
 
-        if ($log != '')
+        if ($log != '') {
+            $log = $this->timeMessage() . "\n" . $log;
+
+            if ($this->storage->exists($file))
+                $log = $this->storage->get($file) . "\n \n" . $log;
+
             $this->storage->put($file, $log);
+        }
     }
 }
