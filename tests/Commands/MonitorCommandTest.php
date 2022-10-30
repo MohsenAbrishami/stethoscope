@@ -28,7 +28,7 @@ class MonitorCommandTest extends TestCase
         parent::setUp();
     }
 
-    public function test_assert_success_stethoscope_monitor_command()
+    public function test_should_be_record_log_when_resources_exceeded_threshold()
     {
         $this->mockService(Cpu::class, 99);
         $this->mockService(HardDisk::class, 100);
@@ -36,22 +36,68 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Network::class, false);
         $this->mockService(WebServer::class, 'inactive');
 
+        $this->deleteLogFile();
+
         $this->artisan('stethoscope:monitor')
             ->assertOk();
 
-        $file = config('stethoscope.storage.path') . now()->format('Y-m-d');
+        $this->readLogFile();
 
-        $this->log = Storage::get($file);
-
-        $this->checkTrue($this->cpuMessage(99));
-        $this->checkTrue($this->hardDiskMessage(100));
-        $this->checkTrue($this->memoryMessage(98));
-        $this->checkTrue(!$this->networkMessage(false));
-        $this->checkTrue($this->webServerMessage('inactive'));
+        $this->assertTrue(
+            $this->assertContent($this->cpuMessage(99))
+        );
+        $this->assertTrue(
+            $this->assertContent($this->hardDiskMessage(100))
+        );
+        $this->assertTrue(
+            $this->assertContent($this->memoryMessage(98))
+        );
+        $this->assertTrue(
+            $this->assertContent($this->networkMessage(false))
+        );
+        $this->assertTrue(
+            $this->assertContent($this->webServerMessage('inactive'))
+        );
     }
 
-    private function checkTrue($message)
+    public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
     {
-        $this->assertTrue(Str::contains($this->log, $message));
+        $this->mockService(Cpu::class, 80);
+        $this->mockService(HardDisk::class, 100000000);
+        $this->mockService(Memory::class, 70);
+        $this->mockService(Network::class, true);
+        $this->mockService(WebServer::class, 'active');
+
+        $this->deleteLogFile();
+
+        $this->artisan('stethoscope:monitor')
+            ->assertOk();
+
+        $this->readLogFile();
+
+        $this->assertFalse(
+            $this->assertContent(
+                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'nginx status']
+            )
+        );
+    }
+
+    private function deleteLogFile()
+    {
+        Storage::delete(
+            config('stethoscope.storage.path') . now()->format('Y-m-d')
+        );
+    }
+
+    private function readLogFile()
+    {
+        $this->log = Storage::get(
+            config('stethoscope.storage.path') . now()->format('Y-m-d')
+        );
+    }
+
+    private function assertContent($message)
+    {
+        return Str::contains($this->log, $message);
     }
 }
