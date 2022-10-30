@@ -2,6 +2,7 @@
 
 namespace Tests\Commands;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
@@ -38,8 +39,7 @@ class MonitorCommandTest extends TestCase
 
         $this->deleteLogFile();
 
-        $this->artisan('stethoscope:monitor')
-            ->assertOk();
+        $this->artisan('stethoscope:monitor')->assertOk();
 
         $this->readLogFile();
 
@@ -70,8 +70,34 @@ class MonitorCommandTest extends TestCase
 
         $this->deleteLogFile();
 
-        $this->artisan('stethoscope:monitor')
-            ->assertOk();
+        $this->artisan('stethoscope:monitor')->assertOk();
+
+        $this->readLogFile();
+
+        $this->assertFalse(
+            $this->assertContent(
+                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'nginx status']
+            )
+        );
+    }
+
+    public function test_should_be_not_record_log_when_monitoring_is_disabled()
+    {
+        $this->mockService(Cpu::class, 99);
+        $this->mockService(HardDisk::class, 100);
+        $this->mockService(Memory::class, 98);
+        $this->mockService(Network::class, false);
+        $this->mockService(WebServer::class, 'inactive');
+
+        Config::set('stethoscope.monitoring_enable.cpu', false);
+        Config::set('stethoscope.monitoring_enable.memory', false);
+        Config::set('stethoscope.monitoring_enable.hard_disk', false);
+        Config::set('stethoscope.monitoring_enable.network', false);
+        Config::set('stethoscope.monitoring_enable.web_server', false);
+
+        $this->deleteLogFile();
+
+        $this->artisan('stethoscope:monitor')->assertOk();
 
         $this->readLogFile();
 
