@@ -21,12 +21,14 @@ class MonitorCommandTest extends TestCase
     use MessageCreatorTrait;
 
     public $log;
+    public $filePath;
 
     public function setUp(): void
     {
-        $this->log;
-
         parent::setUp();
+
+        $this->log;
+        $this->filePath = config('stethoscope.storage.path') . now()->format('Y-m-d');
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()
@@ -37,7 +39,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Network::class, false);
         $this->mockService(WebServer::class, 'inactive');
 
-        $this->deleteLogFile();
+        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -68,7 +70,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Network::class, true);
         $this->mockService(WebServer::class, 'active');
 
-        $this->deleteLogFile();
+        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -95,7 +97,7 @@ class MonitorCommandTest extends TestCase
         Config::set('stethoscope.monitoring_enable.network', false);
         Config::set('stethoscope.monitoring_enable.web_server', false);
 
-        $this->deleteLogFile();
+        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -108,18 +110,14 @@ class MonitorCommandTest extends TestCase
         );
     }
 
-    private function deleteLogFile()
+    private function deleteOldLogFile()
     {
-        Storage::delete(
-            config('stethoscope.storage.path') . now()->format('Y-m-d')
-        );
+        Storage::delete($this->filePath);
     }
 
     private function readLogFile()
     {
-        $this->log = Storage::get(
-            config('stethoscope.storage.path') . now()->format('Y-m-d')
-        );
+        $this->log = Storage::get($this->filePath);
     }
 
     private function assertContent($message)
