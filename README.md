@@ -1,30 +1,56 @@
-# Stethoscope <img src="art/stethoscope.png" style="width:25px">
+<div align="center">
+    <p>
+        <h1><img src="art/stethoscope.png" style="width:30px"> Stethoscope<br/>For listening to your Laravel app server heartbeat</h1>
+    </p>
+</div>
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
 ![GitHub Actions](https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg)
 
-## A stethoscope for listening to your Laravel app server heartbeat
+<p align="center">
+    <a href="#features">Features</a> |
+    <a href="#installation">Installation</a> |
+    <a href="#usage">Usage</a> |
+    <a href="#configuration">Configuration</a> |
+    <a href="#credits">Credits</a> |
+    <a href="#license">License</a>
+</p>
 
-This Laravel package allows you to monitor the infrastructure. You can check at any time what percentage of the processor and memory is used, How much hard drive space is empty, and sees the internet connection and web server status.
+This Laravel package allows you to monitor the infrastructure.
 
-Once installed, monitoring your server is very easy. Just issue this artisan command:
+With this package, You can check your server health at any time.
 
-``` bash
-php artisan stethoscope:listen
-```
+## Features
+<hr />
 
-But the work of this package didn't stop there. you can set thresholds for CPU and memory consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
+- monitor cpu usage percentage
 
-``` bash
-php artisan stethoscope:monitor
-```
+- monitor memory usage percentage
+
+- monitor hard disk free space
+
+- check network connection status
+
+- check nginx status
+
+- record log when exceeding the consumption CPU, memory, and hard disk of thresholds 
+
+- record log when the network connection fails or Nginx deactivated
+
 
 Do you need more options? you can make an issue or contributes to the package
 
+## Get Started
+<hr />
 
-## Installation and usage
+### Requirements
+- **PHP 8.0+**
+- **Laravel 8+**
+- **Debian Based Linux**
+
+### Installation
 
 This package requires PHP 8.0 and Laravel 8.0 or higher.
 You can install the package via composer:
@@ -39,10 +65,29 @@ and then run:
 php artisan vendor:publish --tag=stethoscope
 ```
 
+## Usage
+<hr />
+
+Once installed, monitoring your server is very easy. Just issue this artisan command:
+
+``` bash
+php artisan stethoscope:listen
+```
+
+But the work of this package didn't stop there. you can set thresholds for CPU and memory consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
+
+``` bash
+php artisan stethoscope:monitor
+```
+
+## Configuration
+<hr />
+
 ## Credits
+<hr />
 
 - [Mohsen Abrishami](https://github.com/mohsenabrishami)
 
 ## License
-
+<hr />
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
