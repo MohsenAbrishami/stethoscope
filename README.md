@@ -4,11 +4,6 @@
     </p>
 </div>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
-![GitHub Actions](https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg)
-
 <p align="center">
     <a href="#features">Features</a> |
     <a href="#installation">Installation</a> |
@@ -16,6 +11,21 @@
     <a href="#configuration">Configuration</a> |
     <a href="#credits">Credits</a> |
     <a href="#license">License</a>
+</p>
+
+<p align="center">
+    <a href="https://github.com/MohsenAbrishami/stethoscope">
+        <img src="https://img.shields.io/packagist/v/mohsenabrishami/stethoscope" alt="Packagist">
+    </a>
+    <a href="https://github.com/MohsenAbrishami/stethoscope">
+        <img src="https://img.shields.io/github/license/mohsenabrishami/stethoscope">
+    </a>
+    <a href="https://github.com/MohsenAbrishami/stethoscope">
+        <img src="https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg">
+    </a>
+    <a href="https://github.com/MohsenAbrishami/stethoscope">
+        <img src="https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg">
+    </a>
 </p>
 
 This Laravel package allows you to monitor the infrastructure.
