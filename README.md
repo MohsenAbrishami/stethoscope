@@ -23,7 +23,6 @@ This Laravel package allows you to monitor the infrastructure.
 With this package, You can check your server health at any time.
 
 ## Features
-<hr />
 
 - monitor cpu usage percentage
 
@@ -43,7 +42,6 @@ With this package, You can check your server health at any time.
 Do you need more options? you can make an issue or contributes to the package
 
 ## Get Started
-<hr />
 
 ### Requirements
 - **PHP 8.0+**
@@ -66,7 +64,6 @@ php artisan vendor:publish --tag=stethoscope
 ```
 
 ## Usage
-<hr />
 
 Once installed, monitoring your server is very easy. Just issue this artisan command:
 
@@ -81,13 +78,11 @@ php artisan stethoscope:monitor
 ```
 
 ## Configuration
-<hr />
 
 ## Credits
-<hr />
 
 - [Mohsen Abrishami](https://github.com/mohsenabrishami)
 
 ## License
-<hr />
+
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
