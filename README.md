@@ -1,6 +1,6 @@
 <div align="center">
     <p>
-        <h1><img src="art/stethoscope.png" style="width:30px"> Stethoscope<br/>For listening to your Laravel app server heartbeat</h1>
+        <h1><img src="art/stethoscope.png" style="width:30px"> Stethoscope <br/>For listening to your Laravel app server heartbeat</h1>
     </p>
 </div>
 
@@ -14,17 +14,17 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/MohsenAbrishami/stethoscope">
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
         <img src="https://img.shields.io/packagist/v/mohsenabrishami/stethoscope" alt="Packagist">
     </a>
-    <a href="https://github.com/MohsenAbrishami/stethoscope">
-        <img src="https://img.shields.io/github/license/mohsenabrishami/stethoscope">
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://img.shields.io/github/license/mohsenabrishami/stethoscope" alt="license">
     </a>
-    <a href="https://github.com/MohsenAbrishami/stethoscope">
-        <img src="https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg">
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg" alt="downloads total">
     </a>
-    <a href="https://github.com/MohsenAbrishami/stethoscope">
-        <img src="https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg">
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg" alt="tests">
     </a>
 </p>
 
@@ -88,6 +88,7 @@ php artisan stethoscope:monitor
 ```
 
 ## Configuration
+
 
 ## Credits
 

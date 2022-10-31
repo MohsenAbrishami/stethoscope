@@ -2,9 +2,15 @@
 
 return [
 
-    /**
-     * Define what needs to be monitored
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | monitoring enable
+    |--------------------------------------------------------------------------
+    | Here you can Define which resources should be monitored.
+    | Set true if you want a resource to be monitored, otherwise false.
+    |
+    */
+
     'monitoring_enable' => [
         'cpu' => true,
         'memory' => true,
@@ -13,37 +19,46 @@ return [
         'web_server' => true,
     ],
 
-    /**
-     * Define storage driver and path for save log file
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Log Storage
+    |--------------------------------------------------------------------------
+    | Define storage driver and path for save log file.
+    |
+    */
+
     'storage' => [
         'driver' => 'local',
-        'path' => 'stethoscope/'
+        'path' => 'stethoscope/',
     ],
 
-    /**
-     *  If resource consumption exceeds these thresholds, a log will be created
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Theresholds
+    |--------------------------------------------------------------------------
+    | If resource consumption exceeds these thresholds, a log will be created.
+    | You may define maximum CPU and memory usage by percent.
+    | You may define minimum hard disk space by byte.
+    */
+
     'thereshold' => [
 
-        /**
-         * maximum CPU usage to percent
-         */
         'cpu' => 90,
 
-        /**
-         * maximum memory usage to percent
-         */
         'memory' => 80,
 
-        /**
-         * minimum hard disk space to byte
-         */
-        'hard_disk' => 5368709
+        'hard_disk' => 5368709,
+
     ],
 
-    /**
-     * Here you can define the desired URL for network monitoring
-     */
-    'network_monitor_url' => 'https://www.google.com'
+    /*
+    |--------------------------------------------------------------------------
+    | Network Monitor URL
+    |--------------------------------------------------------------------------
+    | Here you can define the desired URL for network monitoring.
+    |
+    */
+
+    'network_monitor_url' => 'https://www.google.com',
+
 ];
