@@ -4,14 +4,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | monitoring enable
+    | Monitorable Resources
     |--------------------------------------------------------------------------
     | Here you can Define which resources should be monitored.
     | Set true if you want a resource to be monitored, otherwise false.
     |
     */
 
-    'monitoring_enable' => [
+    'monitorable_resources' => [
         'cpu' => true,
         'memory' => true,
         'hard_disk' => true,
@@ -21,13 +21,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Log Storage
+    | Log File Storage
     |--------------------------------------------------------------------------
     | Define storage driver and path for save log file.
     |
     */
 
-    'storage' => [
+    'log_file_storage' => [
         'driver' => 'local',
         'path' => 'stethoscope/',
     ],
@@ -41,7 +41,7 @@ return [
     | You may define minimum hard disk space by byte.
     */
 
-    'thereshold' => [
+    'theresholds' => [
 
         'cpu' => 90,
 
