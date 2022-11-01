@@ -28,7 +28,7 @@ class MonitorCommandTest extends TestCase
         parent::setUp();
 
         $this->log;
-        $this->filePath = config('stethoscope.storage.path') . now()->format('Y-m-d');
+        $this->filePath = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()
@@ -91,11 +91,11 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Network::class, false);
         $this->mockService(WebServer::class, 'inactive');
 
-        Config::set('stethoscope.monitoring_enable.cpu', false);
-        Config::set('stethoscope.monitoring_enable.memory', false);
-        Config::set('stethoscope.monitoring_enable.hard_disk', false);
-        Config::set('stethoscope.monitoring_enable.network', false);
-        Config::set('stethoscope.monitoring_enable.web_server', false);
+        Config::set('stethoscope.monitorable_resources.cpu', false);
+        Config::set('stethoscope.monitorable_resources.memory', false);
+        Config::set('stethoscope.monitorable_resources.hard_disk', false);
+        Config::set('stethoscope.monitorable_resources.network', false);
+        Config::set('stethoscope.monitorable_resources.web_server', false);
 
         $this->deleteOldLogFile();
 

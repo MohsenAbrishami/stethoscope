@@ -1,13 +1,79 @@
-# Stethoscope <img src="art/stethoscope.png" style="width:25px">
+<div align="center">
+    <p>
+        <h1><img src="art/stethoscope.png" style="width:30px"> Stethoscope <br/>For listening to your Laravel app server heartbeat</h1>
+    </p>
+</div>
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Total Downloads](https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg)](https://packagist.org/packages/mohsenabrishami/stethoscope)
-![GitHub Actions](https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg)
+<p align="center">
+    <a href="#features">Features</a> |
+    <a href="#installation">Installation</a> |
+    <a href="#usage">Usage</a> |
+    <a href="#configuration">Configuration</a> |
+    <a href="#credits">Credits</a> |
+    <a href="#license">License</a>
+</p>
 
-## A stethoscope for listening to your Laravel app server heartbeat
+<p align="center">
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://img.shields.io/packagist/v/mohsenabrishami/stethoscope" alt="Packagist">
+    </a>
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://img.shields.io/github/license/mohsenabrishami/stethoscope" alt="license">
+    </a>
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://img.shields.io/packagist/dt/mohsenabrishami/stethoscope.svg" alt="downloads total">
+    </a>
+    <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
+        <img src="https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg" alt="tests">
+    </a>
+</p>
 
-This Laravel package allows you to monitor the infrastructure. You can check at any time what percentage of the processor and memory is used, How much hard drive space is empty, and sees the internet connection and web server status.
+This Laravel package allows you to monitor the infrastructure.
+
+With this package, You can check your server health at any time.
+
+## Features
+
+- monitor cpu usage percentage
+
+- monitor memory usage percentage
+
+- monitor hard disk free space
+
+- check network connection status
+
+- check nginx status
+
+- record log when exceeding the consumption CPU, memory, and hard disk of thresholds 
+
+- record log when the network connection fails or Nginx deactivated
+
+
+Do you need more options? you can make an issue or contributes to the package
+
+## Get Started
+
+### Requirements
+- **PHP 8.0+**
+- **Laravel 8+**
+- **Debian Based Linux**
+
+### Installation
+
+This package requires PHP 8.0 and Laravel 8.0 or higher.
+You can install the package via composer:
+
+``` bash
+composer require mohsenabrishami/stethoscope
+```
+
+and then run:
+
+``` bash
+php artisan vendor:publish --tag=stethoscope
+```
+
+## Usage
 
 Once installed, monitoring your server is very easy. Just issue this artisan command:
 
@@ -21,22 +87,81 @@ But the work of this package didn't stop there. you can set thresholds for CPU a
 php artisan stethoscope:monitor
 ```
 
-Do you need more options? you can make an issue or contributes to the package
+## Configuration
 
+You can easily customize this package in the config/stethoscope.php.
 
-## Installation and usage
+In this file, You can configure the following:
 
-This package requires PHP 8.0 and Laravel 8.0 or higher.
-You can install the package via composer:
+- resources that should be monitored
 
-``` bash
-composer require mohsenabrishami/stethoscope
-```
+- storage driver and path to saving log files.
 
-and then run:
+- Thresholds Of resources.
 
-``` bash
-php artisan vendor:publish --tag=stethoscope
+- Custom network URL for network connection monitor
+
+See the configuration below:
+
+```php
+    /*
+    |--------------------------------------------------------------------------
+    | Monitorable Resources
+    |--------------------------------------------------------------------------
+    | Here you can Define which resources should be monitored.
+    | Set true if you want a resource to be monitored, otherwise false.
+    |
+    */
+
+    'monitorable_resources' => [
+        'cpu' => true,
+        'memory' => true,
+        'hard_disk' => true,
+        'network' => true,
+        'web_server' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Log File Storage
+    |--------------------------------------------------------------------------
+    | Define storage driver and path for save log file.
+    |
+    */
+
+    'log_file_storage' => [
+        'driver' => 'local',
+        'path' => 'stethoscope/',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Theresholds
+    |--------------------------------------------------------------------------
+    | If resource consumption exceeds these thresholds, a log will be created.
+    | You may define maximum CPU and memory usage by percent.
+    | You may define minimum hard disk space by byte.
+    */
+
+    'theresholds' => [
+
+        'cpu' => 90,
+
+        'memory' => 80,
+
+        'hard_disk' => 5368709,
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Network Monitor URL
+    |--------------------------------------------------------------------------
+    | Here you can define the desired URL for network monitoring.
+    |
+    */
+
+    'network_monitor_url' => 'https://www.google.com',
 ```
 
 ## Credits

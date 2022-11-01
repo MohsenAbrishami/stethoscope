@@ -25,7 +25,7 @@ class MonitorCommand extends Command
         $this->webServer = $webServer;
         $this->hardDisk = $hardDisk;
 
-        $this->storage = Storage::disk(config('stethoscope.storage.driver'));
+        $this->storage = Storage::disk(config('stethoscope.log_file_storage.driver'));
     }
 
 
@@ -50,7 +50,7 @@ class MonitorCommand extends Command
      */
     public function handle()
     {
-        $file = config('stethoscope.storage.path') . now()->format('Y-m-d');
+        $file = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
 
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
@@ -60,19 +60,19 @@ class MonitorCommand extends Command
 
         $log = '';
 
-        if ($cpuUsage > config(('stethoscope.thereshold.cpu')) && config('stethoscope.monitoring_enable.cpu'))
+        if ($cpuUsage > config(('stethoscope.theresholds.cpu')) && config('stethoscope.monitorable_resources.cpu'))
             $log .= $this->cpuMessage($cpuUsage) . "\n";
 
-        if ($memoryUsage > config(('stethoscope.thereshold.memory')) && config('stethoscope.monitoring_enable.memory'))
+        if ($memoryUsage > config(('stethoscope.theresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
             $log .= $this->memoryMessage($memoryUsage) . "\n";
 
-        if (!$networkStatus && config('stethoscope.monitoring_enable.network'))
+        if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
             $log .= $this->networkMessage($networkStatus) . "\n";
 
-        if ($webServerStatus == 'inactive' && config('stethoscope.monitoring_enable.web_server'))
+        if ($webServerStatus == 'inactive' && config('stethoscope.monitorable_resources.web_server'))
             $log .= $this->webServerMessage($webServerStatus) . "\n";
 
-        if ($hardDiskFreeSpace < config(('stethoscope.thereshold.hard_disk')) && config('stethoscope.monitoring_enable.hard_disk'))
+        if ($hardDiskFreeSpace < config(('stethoscope.theresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
             $log .= $this->hardDiskMessage($hardDiskFreeSpace) . "\n";
 
         if ($log != '') {
