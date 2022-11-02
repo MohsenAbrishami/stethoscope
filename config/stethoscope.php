@@ -34,20 +34,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Theresholds
+    | Thresholds
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
     | You may define minimum hard disk space by byte.
     */
 
-    'theresholds' => [
+    'thresholds' => [
 
-        'cpu' => 90,
+        'cpu' => env('CPU_MONITOR_THRESHOLD', 90),
 
-        'memory' => 80,
+        'memory' => env('MEMORY_MONITOR_THRESHOLD', 80),
 
-        'hard_disk' => 5368709,
+        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 5368709),
 
     ],
 
@@ -59,6 +59,6 @@ return [
     |
     */
 
-    'network_monitor_url' => 'https://www.google.com',
+    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 
 ];

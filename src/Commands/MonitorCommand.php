@@ -60,10 +60,10 @@ class MonitorCommand extends Command
 
         $log = '';
 
-        if ($cpuUsage > config(('stethoscope.theresholds.cpu')) && config('stethoscope.monitorable_resources.cpu'))
+        if ($cpuUsage > config(('stethoscope.thresholds.cpu')) && config('stethoscope.monitorable_resources.cpu'))
             $log .= $this->cpuMessage($cpuUsage) . "\n";
 
-        if ($memoryUsage > config(('stethoscope.theresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
+        if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
             $log .= $this->memoryMessage($memoryUsage) . "\n";
 
         if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
@@ -72,7 +72,7 @@ class MonitorCommand extends Command
         if ($webServerStatus == 'inactive' && config('stethoscope.monitorable_resources.web_server'))
             $log .= $this->webServerMessage($webServerStatus) . "\n";
 
-        if ($hardDiskFreeSpace < config(('stethoscope.theresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
+        if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
             $log .= $this->hardDiskMessage($hardDiskFreeSpace) . "\n";
 
         if ($log != '') {
