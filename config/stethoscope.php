@@ -43,11 +43,11 @@ return [
 
     'theresholds' => [
 
-        'cpu' => 90,
+        'cpu' => env('CPU_MONITOR_TRESHOLD', 90),
 
-        'memory' => 80,
+        'memory' => env('MEMORY_MONITOR_TRESHOLD', 80),
 
-        'hard_disk' => 5368709,
+        'hard_disk' => env('HARD_DISK_MONITOR_TRESHOLD', 5368709),
 
     ],
 
@@ -59,6 +59,6 @@ return [
     |
     */
 
-    'network_monitor_url' => 'https://www.google.com',
+    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 
 ];
