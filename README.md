@@ -136,20 +136,20 @@ See the configuration below:
 
     /*
     |--------------------------------------------------------------------------
-    | Theresholds
+    | Thresholds
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
     | You may define minimum hard disk space by byte.
     */
 
-    'theresholds' => [
+    'thresholds' => [
 
-        'cpu' => env('CPU_MONITOR_TRESHOLD', 90),
+        'cpu' => env('CPU_MONITOR_THRESHOLD', 90),
 
-        'memory' => env('MEMORY_MONITOR_TRESHOLD', 80),
+        'memory' => env('MEMORY_MONITOR_THRESHOLD', 80),
 
-        'hard_disk' => env('HARD_DISK_MONITOR_TRESHOLD', 5368709),
+        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 5368709),
 
     ],
 
