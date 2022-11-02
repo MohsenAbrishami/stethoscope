@@ -9,6 +9,7 @@
     <a href="#installation">Installation</a> |
     <a href="#usage">Usage</a> |
     <a href="#configuration">Configuration</a> |
+    <a href="#contributing">Contributing</a> |
     <a href="#credits">Credits</a> |
     <a href="#license">License</a>
 </p>
@@ -163,6 +164,10 @@ See the configuration below:
 
     'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 ```
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
