@@ -23,8 +23,8 @@ jobs:
           - name: ubuntu
             host: ubuntu-latest
 
-          - name: debian,
-            host: debian-latest
+          - name: macos,
+            host: macos-12
 
         php: [8.0, 8.1, 8.2]
 
