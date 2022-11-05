@@ -14,12 +14,19 @@ permissions:
 
 jobs:
   tests:
-    runs-on: [ubuntu-latest, debian-latest]
+    runs-on: ${{ matrix.os.host }}
 
     strategy:
       fail-fast: true
       matrix:
-        php: ['8.0', 8.1, 8.2]
+        os:
+          - name: ubuntu
+            host: ubuntu-latest
+
+          - name: debian,
+            host: debian-latest
+
+        php: [8.0, 8.1, 8.2]
 
     name: PHP ${{ matrix.php }}
 
