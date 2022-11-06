@@ -9,6 +9,7 @@
     <a href="#installation">Installation</a> |
     <a href="#usage">Usage</a> |
     <a href="#configuration">Configuration</a> |
+    <a href="#changelog">Changelog</a> |
     <a href="#contributing">Contributing</a> |
     <a href="#credits">Credits</a> |
     <a href="#license">License</a>
@@ -164,6 +165,10 @@ See the configuration below:
 
     'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 ```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
