@@ -2,11 +2,6 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
-## 0.3.0
-
-- Support Mac OS
-- Get thresholds and network monitor URL from env 
-
 ## 0.2.0
 
 - Add monitor command for record logs
