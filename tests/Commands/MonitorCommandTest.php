@@ -37,7 +37,9 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
         $this->mockService(Network::class, false);
-        $this->mockService(WebServer::class, 'inactive');
+        $this->mockService(WebServer::class, [
+            ['nginx' => 'inactive']
+        ]);
 
         $this->deleteOldLogFile();
 
@@ -58,7 +60,11 @@ class MonitorCommandTest extends TestCase
             $this->assertContent($this->networkMessage(false))
         );
         $this->assertTrue(
-            $this->assertContent($this->webServerMessage('inactive'))
+            $this->assertContent(
+                $this->webServerMessage([
+                    ['nginx' => 'inactive']
+                ])
+            )
         );
     }
 
@@ -68,7 +74,9 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100000000);
         $this->mockService(Memory::class, 70);
         $this->mockService(Network::class, true);
-        $this->mockService(WebServer::class, 'active');
+        $this->mockService(WebServer::class, [
+            ['nginx' => 'active']
+        ]);
 
         $this->deleteOldLogFile();
 
@@ -89,7 +97,9 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
         $this->mockService(Network::class, false);
-        $this->mockService(WebServer::class, 'inactive');
+        $this->mockService(WebServer::class, [
+            ['nginx' => 'inactive']
+        ]);
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
         Config::set('stethoscope.monitorable_resources.memory', false);

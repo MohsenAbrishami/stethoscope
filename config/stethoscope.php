@@ -21,6 +21,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Web servers
+    |--------------------------------------------------------------------------
+    | Here you can Define which resources should be monitored.
+    | Set true if you want a resource to be monitored, otherwise false.
+    |
+    */
+
+    'installed_web_servers' => [
+        'nginx' => true,
+        'apache2' => true
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Log File Storage
     |--------------------------------------------------------------------------
     | Define storage driver and path for save log file.

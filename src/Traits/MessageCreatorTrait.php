@@ -67,6 +67,16 @@ trait MessageCreatorTrait
      */
     public function webServerMessage($webServerStatus)
     {
-        return 'nginx status ===> ' . $webServerStatus;
+        $message = '';
+
+        foreach ($webServerStatus as $webServer) {
+            if (isset($webServer['nginx']))
+                $message .= 'nginx status ===> ' . $webServer['nginx'];
+
+            if (isset($webServer['apache']))
+                $message .= 'apache status ===> ' . $webServer['apache'];
+        }
+
+        return $message;
     }
 }
