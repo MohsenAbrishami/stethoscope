@@ -69,13 +69,11 @@ trait MessageCreatorTrait
     {
         $message = '';
 
-        foreach ($webServerStatus as $webServer) {
-            if (isset($webServer['nginx']))
-                $message .= 'nginx status ===> ' . $webServer['nginx'];
+        if ($webServerStatus['nginx'] == 'inactive')
+            $message .= 'nginx status ===> ' . $webServerStatus['nginx'];
 
-            if (isset($webServer['apache']))
-                $message .= 'apache status ===> ' . $webServer['apache'];
-        }
+        if ($webServerStatus['apache'] == 'inactive')
+            $message .= 'apache status ===> ' . $webServerStatus['apache'];
 
         return $message;
     }

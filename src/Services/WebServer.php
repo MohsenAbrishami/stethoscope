@@ -8,28 +8,22 @@ class WebServer implements ServiceInterface
 
     public function check(): array
     {
-        if (config('stethoscope.installed_web_servers.nginx'))
-            $this->checkNginx();
+        $this->checkNginx();
 
-        if (config('stethoscope.installed_web_servers.apache2'))
-            $this->checkApache();
+        $this->checkApache();
 
         return $this->webServerStatuses;
     }
 
     protected function checkNginx()
     {
-        array_push(
-            $this->webServerStatuses,
-            ['nginx' => exec('systemctl is-active nginx')]
-        );
+        $this->webServerStatuses['nginx'] = config('stethoscope.installed_web_servers.nginx') ?
+            exec('systemctl is-active nginx') : null;
     }
 
     protected function checkApache()
     {
-        array_push(
-            $this->webServerStatuses,
-            ['apache' => exec('systemctl is-active apache2.service')]
-        );
+        $this->webServerStatuses['apache'] = config('stethoscope.installed_web_servers.apache2') ?
+            exec('systemctl is-active apache2.service') : null;
     }
 }
