@@ -69,10 +69,12 @@ class MonitorCommand extends Command
         if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
             $log .= $this->networkMessage($networkStatus) . "\n";
 
-        if (($webServerStatuses['nginx'] == 'inactive' || $webServerStatuses['apache'] == 'inactive') &&
-            config('stethoscope.monitorable_resources.web_server')
-        ) {
-            $log .= $this->webServerMessage($webServerStatuses) . "\n";
+        if (($webServerStatuses['nginx'] != 'active' && config('stethoscope.monitorable_resources.web_server'))) {
+            $log .= $this->webServerMessage('nginx', $webServerStatuses['nginx']) . "\n";
+        }
+
+        if (($webServerStatuses['apache'] != 'active' && config('stethoscope.monitorable_resources.web_server'))) {
+            $log .= $this->webServerMessage('apache', $webServerStatuses['apache']) . "\n";
         }
 
         if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
