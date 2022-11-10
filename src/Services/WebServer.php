@@ -17,13 +17,13 @@ class WebServer implements ServiceInterface
 
     protected function checkNginx()
     {
-        $this->webServerStatuses['nginx'] = config('stethoscope.installed_web_servers.nginx') ?
+        $this->webServerStatuses['nginx'] = config('stethoscope.available_web_servers.nginx') ?
             exec('systemctl is-active nginx') : null;
     }
 
     protected function checkApache()
     {
-        $this->webServerStatuses['apache'] = config('stethoscope.installed_web_servers.apache2') ?
+        $this->webServerStatuses['apache'] = config('stethoscope.available_web_servers.apache2') ?
             exec('systemctl is-active apache2.service') : null;
     }
 }

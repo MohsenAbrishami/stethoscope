@@ -21,14 +21,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Web servers
+    | Available Web servers
     |--------------------------------------------------------------------------
-    | Here you can Define which resources should be monitored.
-    | Set true if you want a resource to be monitored, otherwise false.
+    | here you can define what web server or web servers are available on your server.
+    | set true if the web server is in use, otherwise false
     |
     */
 
-    'installed_web_servers' => [
+    'available_web_servers' => [
         'nginx' => true,
         'apache2' => true
     ],

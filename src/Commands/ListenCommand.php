@@ -78,13 +78,13 @@ class ListenCommand extends Command
 
         $webServers = $this->webServer->check();
 
-        if (config('stethoscope.installed_web_servers.nginx')) {
+        if (config('stethoscope.available_web_servers.nginx')) {
             $this->info(
                 $this->webServerMessage('nginx', $webServers['nginx'])
             );
         }
 
-        if (config('stethoscope.installed_web_servers.apache')) {
+        if (config('stethoscope.available_web_servers.apache')) {
             $this->info(
                 $this->webServerMessage('apache', $webServers['apache'])
             );
