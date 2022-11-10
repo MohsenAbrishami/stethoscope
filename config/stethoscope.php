@@ -21,6 +21,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Available Web servers
+    |--------------------------------------------------------------------------
+    | here you can define what web server or web servers are available on your server.
+    | set true if the web server is in use, otherwise false
+    |
+    */
+
+    'available_web_servers' => [
+        'nginx' => true,
+        'apache2' => true
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Log File Storage
     |--------------------------------------------------------------------------
     | Define storage driver and path for save log file.

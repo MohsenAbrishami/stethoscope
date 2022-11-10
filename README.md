@@ -28,6 +28,9 @@
     <a href="https://packagist.org/packages/mohsenabrishami/stethoscope">
         <img src="https://github.com/mohsenabrishami/stethoscope/workflows/Tests/badge.svg" alt="tests">
     </a>
+    <a href="https://scrutinizer-ci.com/g/MohsenAbrishami/stethoscope">
+        <img src="https://img.shields.io/scrutinizer/g/MohsenAbrishami/stethoscope.svg" alt="tests">
+    </a>
 </p>
 
 This Laravel package allows you to monitor the infrastructure.

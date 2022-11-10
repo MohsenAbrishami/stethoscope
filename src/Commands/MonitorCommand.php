@@ -55,7 +55,7 @@ class MonitorCommand extends Command
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
         $networkStatus = $this->network->check();
-        $webServerStatus = $this->webServer->check();
+        $webServerStatuses = $this->webServer->check();
         $hardDiskFreeSpace = $this->hardDisk->check();
 
         $log = '';
@@ -69,8 +69,13 @@ class MonitorCommand extends Command
         if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
             $log .= $this->networkMessage($networkStatus) . "\n";
 
-        if ($webServerStatus == 'inactive' && config('stethoscope.monitorable_resources.web_server'))
-            $log .= $this->webServerMessage($webServerStatus) . "\n";
+        if (($webServerStatuses['nginx'] != 'active' && config('stethoscope.monitorable_resources.web_server'))) {
+            $log .= $this->webServerMessage('nginx', $webServerStatuses['nginx']) . "\n";
+        }
+
+        if (($webServerStatuses['apache'] != 'active' && config('stethoscope.monitorable_resources.web_server'))) {
+            $log .= $this->webServerMessage('apache', $webServerStatuses['apache']) . "\n";
+        }
 
         if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
             $log .= $this->hardDiskMessage($hardDiskFreeSpace) . "\n";

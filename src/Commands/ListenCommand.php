@@ -76,9 +76,17 @@ class ListenCommand extends Command
             );
         }
 
-        if ($resources->contains('web-server')  || $resourcesIsEmpty) {
+        $webServers = $this->webServer->check();
+
+        if (config('stethoscope.available_web_servers.nginx')) {
             $this->info(
-                $this->webServerMessage($this->webServer->check())
+                $this->webServerMessage('nginx', $webServers['nginx'])
+            );
+        }
+
+        if (config('stethoscope.available_web_servers.apache')) {
+            $this->info(
+                $this->webServerMessage('apache', $webServers['apache'])
             );
         }
 
