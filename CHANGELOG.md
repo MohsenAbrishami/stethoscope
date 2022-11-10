@@ -2,6 +2,11 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
+## 0.3.0
+
+- Support apache2 web server https://github.com/MohsenAbrishami/stethoscope/pull/50
+- Get thresholds and network monitor URL from env https://github.com/MohsenAbrishami/stethoscope/pull/40
+
 ## 0.2.0
 
 - Add monitor command for record logs
