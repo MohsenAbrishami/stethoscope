@@ -9,6 +9,7 @@
     <a href="#installation">Installation</a> |
     <a href="#usage">Usage</a> |
     <a href="#configuration">Configuration</a> |
+    <a href="#testing">Testing</a> |
     <a href="#changelog">Changelog</a> |
     <a href="#contributing">Contributing</a> |
     <a href="#credits">Credits</a> |
@@ -128,6 +129,20 @@ See the configuration below:
 
     /*
     |--------------------------------------------------------------------------
+    | Available Web servers
+    |--------------------------------------------------------------------------
+    | Here you can define what web server or web servers are available on your server.
+    | set true if the web server is in use, otherwise false
+    |
+    */
+
+    'available_web_servers' => [
+        'nginx' => true,
+        'apache2' => true
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Log File Storage
     |--------------------------------------------------------------------------
     | Define storage driver and path for save log file.
@@ -169,6 +184,12 @@ See the configuration below:
     'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 ```
 
+## Testing
+Run the tests with:
+
+```php
+composer test
+```
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

@@ -23,7 +23,7 @@ return [
     |--------------------------------------------------------------------------
     | Available Web servers
     |--------------------------------------------------------------------------
-    | here you can define what web server or web servers are available on your server.
+    | Here you can define what web server or web servers are available on your server.
     | set true if the web server is in use, otherwise false
     |
     */
