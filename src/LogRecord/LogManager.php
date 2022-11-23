@@ -16,7 +16,7 @@ class LogManager extends Manager
      */
     public function getDefaultDriver()
     {
-        return config('stethoscope.drivers.log');
+        return config('stethoscope.drivers.log_record');
     }
 
     /**

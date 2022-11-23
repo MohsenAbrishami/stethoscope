@@ -75,8 +75,15 @@ return [
 
     'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Log Record Driver
+    |--------------------------------------------------------------------------
+    |
+    */
+
     'drivers' => [
-        'log' => 'file'
+        'log_record' => env('STETHOSCOPE_LOG_FILE'  ,'file')
     ]
 
 ];
