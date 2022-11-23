@@ -1,7 +1,11 @@
 <?php
 
+namespace MohsenAbrishami\Stethoscope\LogRecord;
+
 use Illuminate\Support\Manager;
 use MohsenAbrishami\Stethoscope\LogRecord\Contracts\LogRecordInterface;
+use MohsenAbrishami\Stethoscope\LogRecord\Drivers\DataBaseDriver;
+use MohsenAbrishami\Stethoscope\LogRecord\Drivers\FileDriver;
 
 class LogManager extends Manager
 {
@@ -14,13 +18,24 @@ class LogManager extends Manager
     {
         return config('stethoscope.drivers.log');
     }
+
     /**
      * Get an instance of the log driver.
      *
      * @return LogRecordInterface
      */
-    public function createLogDriver(): LogRecordInterface
+    public function createFileDriver(): LogRecordInterface
     {
-        return new LogRecordInterface();
+        return new FileDriver();
+    }
+
+    /**
+     * Get an instance of the log driver.
+     *
+     * @return LogRecordInterface
+     */
+    public function createDataBaseDriver(): LogRecordInterface
+    {
+        return new DataBaseDriver();
     }
 }

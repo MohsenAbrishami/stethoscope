@@ -31,7 +31,7 @@ class ListenCommandTest extends TestCase
             ->expectsOutputToContain('nginx status');
     }
 
-    public function only_monitor_cpu_memory_when_run_stethoscope_listen_command_with_cpu_memory_arguments()
+    public function test_only_monitor_cpu_memory_when_run_stethoscope_listen_command_with_cpu_memory_arguments()
     {
         $this->artisan('stethoscope:listen cpu memory')
             ->assertOk()

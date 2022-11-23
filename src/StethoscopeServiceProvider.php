@@ -5,6 +5,7 @@ namespace MohsenAbrishami\Stethoscope;
 use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
 use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
+use MohsenAbrishami\Stethoscope\LogRecord\LogManager;
 
 class StethoscopeServiceProvider extends ServiceProvider
 {
@@ -33,7 +34,11 @@ class StethoscopeServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
+    {        
+        $this->app->singleton('record', function ($app) {
+            return new LogManager($app);
+        });
+
         $this->mergeConfigFrom(
             __DIR__ . '/../config/stethoscope.php',
             'stethoscope'
