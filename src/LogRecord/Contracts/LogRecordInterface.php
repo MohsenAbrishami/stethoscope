@@ -4,5 +4,5 @@ namespace MohsenAbrishami\Stethoscope\LogRecord\Contracts;
 
 interface LogRecordInterface
 {
-    public function record();
+    public function record($cpuUsage, $memoryUsage, $networkStatus, $webServerStatuses, $hardDiskFreeSpace);
 }

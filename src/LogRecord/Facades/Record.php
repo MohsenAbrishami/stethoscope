@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static LogRecordInterface getDefaultDriver()
  * @method static LogRecordInterface driver(string $name)
  * @method static LogManager extend(string $driver, \Closure $callback)
- * @method static mixed record()
+ * @method static mixed record(integer $cpuUsage, integer $memoryUsage, boolean $networkStatus, boolean $webServerStatuses, boolean $hardDiskFreeSpace)
  */
 class Record extends Facade
 {
