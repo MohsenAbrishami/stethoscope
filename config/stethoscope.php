@@ -75,4 +75,16 @@ return [
 
     'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Log Record Driver
+    |--------------------------------------------------------------------------
+    | set `database` for save logs in database and `file` for record logs in file
+    |
+    */
+
+    'drivers' => [
+        'log_record' => env('STETHOSCOPE_LOG_FILE'  ,'file')
+    ]
+
 ];
