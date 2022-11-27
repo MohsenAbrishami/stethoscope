@@ -79,6 +79,7 @@ return [
     |--------------------------------------------------------------------------
     | Log Record Driver
     |--------------------------------------------------------------------------
+    | set `database` for save logs in database and `file` for record logs in file
     |
     */
 

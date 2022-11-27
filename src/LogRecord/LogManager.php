@@ -4,7 +4,7 @@ namespace MohsenAbrishami\Stethoscope\LogRecord;
 
 use Illuminate\Support\Manager;
 use MohsenAbrishami\Stethoscope\LogRecord\Contracts\LogRecordInterface;
-use MohsenAbrishami\Stethoscope\LogRecord\Drivers\DataBaseDriver;
+use MohsenAbrishami\Stethoscope\LogRecord\Drivers\DatabaseDriver;
 use MohsenAbrishami\Stethoscope\LogRecord\Drivers\FileDriver;
 
 class LogManager extends Manager
@@ -34,8 +34,8 @@ class LogManager extends Manager
      *
      * @return LogRecordInterface
      */
-    public function createDataBaseDriver(): LogRecordInterface
+    public function createDatabaseDriver(): LogRecordInterface
     {
-        return new DataBaseDriver();
+        return new DatabaseDriver();
     }
 }
