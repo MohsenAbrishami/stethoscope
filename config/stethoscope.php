@@ -28,10 +28,7 @@ return [
     |
     */
 
-    'available_web_servers' => [
-        'nginx' => true,
-        'apache2' => true
-    ],
+    'available_web_servers' => 'nginx',
 
     /*
     |--------------------------------------------------------------------------

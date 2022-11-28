@@ -65,13 +65,8 @@ class MonitorCommand extends Command
         if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
             $resourceReports['hardDisk'] = $hardDiskFreeSpace;
 
-        if (config('stethoscope.monitorable_resources.web_server')) {
-            if ($webServerStatuses['nginx'] != 'active')
-                $resourceReports['nginx'] = $webServerStatuses['nginx'];
-
-            if ($webServerStatuses['apache'] != 'active')
-                $resourceReports['apache'] = $webServerStatuses['apache'];
-        }
+        if (config('stethoscope.monitorable_resources.web_server'))
+            $resourceReports['webServer'] = $webServerStatuses;
 
         Record::record($resourceReports);
     }
