@@ -17,7 +17,7 @@ class ListenCommandTest extends TestCase
             ->expectsOutputToContain('memory usage')
             ->expectsOutputToContain('hard disk free space')
             ->expectsOutputToContain('network connection status')
-            ->expectsOutputToContain('nginx status');
+            ->expectsOutputToContain('web server status');
     }
 
     public function test_monitor_all_resources_when_run_listen_command_with_all_arguments()
@@ -28,10 +28,10 @@ class ListenCommandTest extends TestCase
             ->expectsOutputToContain('memory usage')
             ->expectsOutputToContain('hard disk free space')
             ->expectsOutputToContain('network connection status')
-            ->expectsOutputToContain('nginx status');
+            ->expectsOutputToContain('web server status');
     }
 
-    public function only_monitor_cpu_memory_when_run_stethoscope_listen_command_with_cpu_memory_arguments()
+    public function test_only_monitor_cpu_memory_when_run_stethoscope_listen_command_with_cpu_memory_arguments()
     {
         $this->artisan('stethoscope:listen cpu memory')
             ->assertOk()
@@ -39,6 +39,6 @@ class ListenCommandTest extends TestCase
             ->expectsOutputToContain('memory usage')
             ->doesntExpectOutputToContain('hard disk free space')
             ->doesntExpectOutputToContain('network connection status')
-            ->doesntExpectOutputToContain('nginx status');
+            ->doesntExpectOutputToContain('web server status');
     }
 }
