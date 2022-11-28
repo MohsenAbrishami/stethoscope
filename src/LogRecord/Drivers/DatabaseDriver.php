@@ -6,7 +6,7 @@ use MohsenAbrishami\Stethoscope\LogRecord\Contracts\LogRecordInterface;
 
 class DatabaseDriver implements LogRecordInterface
 {
-    public function record($cpuUsage, $memoryUsage, $networkStatus, $webServerStatuses, $hardDiskFreeSpace)
+    public function record($resourceReports)
     {
     }
 }
