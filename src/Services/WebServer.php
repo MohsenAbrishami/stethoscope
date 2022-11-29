@@ -8,9 +8,9 @@ class WebServer implements ServiceInterface
 
     public function check(): string
     {
-        if (config('stethoscope.available_web_servers') == 'nginx')
+        if (config('stethoscope.web_server_name') == 'nginx')
             $this->checkNginx();
-        elseif (config('stethoscope.available_web_servers') == 'apache')
+        elseif (config('stethoscope.web_server_name') == 'apache')
             $this->checkApache();
 
         return $this->webServerStatuses;
