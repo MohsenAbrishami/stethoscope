@@ -5,7 +5,6 @@ namespace MohsenAbrishami\Stethoscope\LogRecord\Drivers;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\LogRecord\Contracts\LogRecordInterface;
 use MohsenAbrishami\Stethoscope\Traits\MessageCreatorTrait;
-use Illuminate\Support\Str;
 
 class FileDriver implements LogRecordInterface
 {
@@ -19,11 +18,11 @@ class FileDriver implements LogRecordInterface
 
         $log = '';
 
-        foreach ($resourceReports as $resource => $resourceReport) {            
+        foreach ($resourceReports as $resource => $report) {
             $method = $resource . 'Message';
 
             if (method_exists($this, $method)) {
-                $log .= $this->$method($resourceReport) . "\n";
+                $log .= $this->$method($report) . "\n";
             }
         }
 
