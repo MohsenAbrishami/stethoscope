@@ -37,7 +37,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
         $this->mockService(Network::class, false);
-        $this->mockService(WebServer::class, ['nginx' => 'inactive', 'apache' => 'inactive']);
+        $this->mockService(WebServer::class, 'inactive');
 
         $this->deleteOldLogFile();
 
@@ -49,8 +49,7 @@ class MonitorCommandTest extends TestCase
         $this->assertTrue($this->assertContent($this->hardDiskMessage(100)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
         $this->assertTrue($this->assertContent($this->networkMessage(false)));
-        $this->assertTrue($this->assertContent($this->webServerMessage('nginx', 'inactive')));
-        $this->assertTrue($this->assertContent($this->webServerMessage('apache', 'inactive')));
+        $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
     }
 
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
@@ -59,7 +58,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100000000);
         $this->mockService(Memory::class, 70);
         $this->mockService(Network::class, true);
-        $this->mockService(WebServer::class, ['nginx' => 'active', 'apache' => 'active']);
+        $this->mockService(WebServer::class, 'active');
 
         $this->deleteOldLogFile();
 
@@ -69,7 +68,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'nginx status']
+                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }
@@ -80,7 +79,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
         $this->mockService(Network::class, false);
-        $this->mockService(WebServer::class, ['nginx' => 'inactive', 'apache' => 'inactive']);
+        $this->mockService(WebServer::class, 'inactive');
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
         Config::set('stethoscope.monitorable_resources.memory', false);
@@ -96,7 +95,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'nginx status']
+                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }

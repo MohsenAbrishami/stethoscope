@@ -4,9 +4,9 @@ namespace MohsenAbrishami\Stethoscope\Services;
 
 class WebServer implements ServiceInterface
 {
-    public $webServerStatuses = [];
+    public $webServerStatuses = null;
 
-    public function check(): array
+    public function check(): string
     {
         if (config('stethoscope.web_server_name') == 'nginx')
             $this->checkNginx();
@@ -18,13 +18,11 @@ class WebServer implements ServiceInterface
 
     protected function checkNginx()
     {
-        $this->webServerStatuses['nginx'] = config('stethoscope.available_web_servers.nginx') ?
-            exec('systemctl is-active nginx') : null;
+        $this->webServerStatuses = exec('systemctl is-active nginx');
     }
 
     protected function checkApache()
     {
-        $this->webServerStatuses['apache'] = config('stethoscope.available_web_servers.apache2') ?
-            exec('systemctl is-active apache2.service') : null;
+        $this->webServerStatuses = exec('systemctl is-active apache2.service');
     }
 }

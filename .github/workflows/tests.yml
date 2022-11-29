@@ -23,9 +23,6 @@ jobs:
           - name: ubuntu
             host: ubuntu-latest
 
-          - name: macos,
-            host: macos-12
-
         php: [8.0, 8.1]
 
     name: PHP ${{ matrix.php }} OS ${{ matrix.os.host }}

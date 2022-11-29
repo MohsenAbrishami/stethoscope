@@ -65,8 +65,8 @@ trait MessageCreatorTrait
      * @param string
      * @return string
      */
-    public function webServerMessage($webServer, $webServerStatus)
+    public function webServerMessage($webServerStatus)
     {
-        return $webServer . ' status ===> ' . $webServerStatus;
+        return 'web server status ===> ' . $webServerStatus;
     }
 }

@@ -45,12 +45,29 @@ class MonitorCommand extends Command
      */
     public function handle()
     {
+        $resourceReports = [];
+
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
         $networkStatus = $this->network->check();
-        $webServerStatuses = $this->webServer->check();
         $hardDiskFreeSpace = $this->hardDisk->check();
+        $webServerStatuses = $this->webServer->check();
 
-        Record::record($cpuUsage, $memoryUsage, $networkStatus, $webServerStatuses, $hardDiskFreeSpace);
+        if (config('stethoscope.monitorable_resources.cpu') && $cpuUsage > config(('stethoscope.thresholds.cpu')))
+            $resourceReports['cpu'] = $cpuUsage;
+
+        if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
+            $resourceReports['memory'] = $memoryUsage;
+
+        if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
+            $resourceReports['network'] = $networkStatus;
+
+        if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
+            $resourceReports['hardDisk'] = $hardDiskFreeSpace;
+
+        if ($webServerStatuses != 'active' && config('stethoscope.monitorable_resources.web_server'))
+            $resourceReports['webServer'] = $webServerStatuses;
+
+        Record::record($resourceReports);
     }
 }
