@@ -21,17 +21,14 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Available Web servers
+    | Web Server Name
     |--------------------------------------------------------------------------
-    | Here you can define what web server or web servers are available on your server.
-    | set true if the web server is in use, otherwise false
+    | Here you can define what web server installed on your server.
+    | Set `nginx` or `apache`
     |
     */
 
-    'available_web_servers' => [
-        'nginx' => true,
-        'apache2' => true
-    ],
+    'web_server_name' => 'nginx',
 
     /*
     |--------------------------------------------------------------------------
@@ -79,12 +76,12 @@ return [
     |--------------------------------------------------------------------------
     | Log Record Driver
     |--------------------------------------------------------------------------
-    | set `database` for save logs in database and `file` for record logs in file
+    | Set `database` for save logs in database and `file` for record logs in file
     |
     */
 
     'drivers' => [
         'log_record' => env('STETHOSCOPE_LOG_FILE'  ,'file')
-    ]
+    ],
 
 ];
