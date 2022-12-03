@@ -26,6 +26,8 @@ class StethoscopeServiceProvider extends ServiceProvider
                 MonitorCommand::class
             ]);
         }
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     /**
@@ -34,7 +36,7 @@ class StethoscopeServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {        
+    {
         $this->app->singleton('record', function ($app) {
             return new LogManager($app);
         });
