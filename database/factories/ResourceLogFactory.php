@@ -1,6 +1,6 @@
 <?php
 
-namespace database\factories;
+namespace MohsenAbrishami\Stethoscope\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use MohsenAbrishami\Stethoscope\Models\ResourceLog;
