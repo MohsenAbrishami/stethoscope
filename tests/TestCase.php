@@ -20,11 +20,4 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             $mock->shouldReceive('check')->once()->andReturn($mockValue);
         });
     }
-
-    public function getEnvironmentSetUp($app)
-    {
-        $resourceLogMigration = include_once __DIR__ . '/../database/migrations/2022_12_03_070906_create_resource_logs_table.php';
-
-        $resourceLogMigration->up();
-    }
 }
