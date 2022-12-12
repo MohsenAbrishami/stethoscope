@@ -29,6 +29,8 @@ class MonitorCommandTest extends TestCase
 
         $this->log;
         $this->filePath = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
+
+        $this->deleteOldLogFile();
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()
@@ -38,8 +40,6 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Memory::class, 98);
         $this->mockService(Network::class, false);
         $this->mockService(WebServer::class, 'inactive');
-
-        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -52,6 +52,21 @@ class MonitorCommandTest extends TestCase
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
     }
 
+    public function test_should_be_record_database_when_resources_exceeded_threshold()
+    {
+        $this->mockService(Cpu::class, 99);
+        $this->mockService(HardDisk::class, 100);
+        $this->mockService(Memory::class, 98);
+        $this->mockService(Network::class, false);
+        $this->mockService(WebServer::class, 'inactive');
+
+        Config::set('stethoscope.drivers.log_record', 'database');
+
+        $this->artisan('stethoscope:monitor')->assertOk();
+
+        $this->assertDatabaseHas('resource_logs', ['log' => 99]);
+    }
+
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
     {
         $this->mockService(Cpu::class, 80);
@@ -59,8 +74,6 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Memory::class, 70);
         $this->mockService(Network::class, true);
         $this->mockService(WebServer::class, 'active');
-
-        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -86,8 +99,6 @@ class MonitorCommandTest extends TestCase
         Config::set('stethoscope.monitorable_resources.hard_disk', false);
         Config::set('stethoscope.monitorable_resources.network', false);
         Config::set('stethoscope.monitorable_resources.web_server', false);
-
-        $this->deleteOldLogFile();
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
