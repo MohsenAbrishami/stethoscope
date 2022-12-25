@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('resource_logs', function (Blueprint $table) {
             $table->id();
+            $table->char('resource', 20);
             $table->string('log');
-            $table->integer('resource_type');
             $table->timestamps();
         });
     }
