@@ -4,14 +4,15 @@ All notable changes to `stethoscope` will be documented in this file.
 
 ## 0.4.0
 
-- Building driver-based component to support record log both in file and database https://github.com/MohsenAbrishami/stethoscope/pull/55/files, https://github.com/MohsenAbrishami/stethoscope/pull/57/files
+- Building driver-based component to support record log both in file and database 
+([#55](https://github.com/MohsenAbrishami/stethoscope/pull/55), [#57](https://github.com/MohsenAbrishami/stethoscope/pull/57))
 
-- Add Database Driver to record log https://github.com/MohsenAbrishami/stethoscope/pull/60/files
+- Add Database Driver to record log ([#60](https://github.com/MohsenAbrishami/stethoscope/pull/60))
 
 ## 0.3.0
 
-- Support apache2 web server https://github.com/MohsenAbrishami/stethoscope/pull/50
-- Get thresholds and network monitor URL from env https://github.com/MohsenAbrishami/stethoscope/pull/40
+- Support apache2 web server ([#50](https://github.com/MohsenAbrishami/stethoscope/pull/50))
+- Get thresholds and network monitor URL from env ([#40](https://github.com/MohsenAbrishami/stethoscope/pull/40))
 
 ## 0.2.0
 
