@@ -2,6 +2,12 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
+## 0.4.0
+
+- Building driver-based component to support record log both in file and database https://github.com/MohsenAbrishami/stethoscope/pull/55/files, https://github.com/MohsenAbrishami/stethoscope/pull/57/files
+
+- Add Database Driver to record log https://github.com/MohsenAbrishami/stethoscope/pull/60/files
+
 ## 0.3.0
 
 - Support apache2 web server https://github.com/MohsenAbrishami/stethoscope/pull/50
