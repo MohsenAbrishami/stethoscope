@@ -79,6 +79,13 @@ and then run:
 php artisan vendor:publish --tag=stethoscope
 ```
 
+Stethoscope allows you to record reports both in a file and in a database. 
+If you set the database driver in the config file, you must run migrate command:
+
+``` bash
+php artisan migrate
+```
+
 ## Usage
 
 Once installed, monitoring your server is very easy. Just issue this artisan command:
