@@ -12,7 +12,7 @@ class Network implements ServiceInterface
         try {
             $networkConnction = Http::get(config('stethoscope.network_monitor_url'))->successful();
         } catch (Exception $e) {
-            $networkConnction = false;
+            $networkConnction = 'false';
         }
 
         return $networkConnction;

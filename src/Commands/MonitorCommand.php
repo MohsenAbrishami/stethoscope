@@ -59,7 +59,7 @@ class MonitorCommand extends Command
         if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
             $resourceReports['memory'] = $memoryUsage;
 
-        if (!$networkStatus && config('stethoscope.monitorable_resources.network'))
+        if ($networkStatus == 'false' && config('stethoscope.monitorable_resources.network'))
             $resourceReports['network'] = $networkStatus;
 
         if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
