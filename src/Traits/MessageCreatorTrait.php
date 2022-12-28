@@ -56,7 +56,7 @@ trait MessageCreatorTrait
      */
     public function networkMessage($networkStatus)
     {
-        return 'network connection status ===> ' . ($networkStatus ? 'connected' : 'not connected');
+        return 'network connection status ===> ' . ($networkStatus == 'false' ? 'not connected' : 'connected');
     }
 
     /**

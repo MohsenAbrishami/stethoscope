@@ -38,7 +38,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Cpu::class, 99);
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, false);
+        $this->mockService(Network::class, 'false');
         $this->mockService(WebServer::class, 'inactive');
 
         $this->artisan('stethoscope:monitor')->assertOk();
@@ -48,7 +48,7 @@ class MonitorCommandTest extends TestCase
         $this->assertTrue($this->assertContent($this->cpuMessage(99)));
         $this->assertTrue($this->assertContent($this->hardDiskMessage(100)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
-        $this->assertTrue($this->assertContent($this->networkMessage(false)));
+        $this->assertTrue($this->assertContent($this->networkMessage('false')));
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
     }
 
@@ -57,14 +57,17 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Cpu::class, 99);
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, false);
+        $this->mockService(Network::class, 'false');
         $this->mockService(WebServer::class, 'inactive');
 
         Config::set('stethoscope.drivers.log_record', 'database');
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
-        $this->assertDatabaseHas('resource_logs', ['log' => 99]);
+        $this->assertDatabaseHas('resource_logs', [
+            'log' => 99,
+            'log' => 'false'
+        ]);
     }
 
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
@@ -91,7 +94,7 @@ class MonitorCommandTest extends TestCase
         $this->mockService(Cpu::class, 99);
         $this->mockService(HardDisk::class, 100);
         $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, false);
+        $this->mockService(Network::class, 'false');
         $this->mockService(WebServer::class, 'inactive');
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
