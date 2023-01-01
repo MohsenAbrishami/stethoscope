@@ -3,6 +3,7 @@
 namespace MohsenAbrishami\Stethoscope\Commands;
 
 use Illuminate\Console\Command;
+use MohsenAbrishami\Stethoscope\Events\TroubleOccurred;
 use MohsenAbrishami\Stethoscope\LogRecord\Facades\Record;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
@@ -69,5 +70,7 @@ class MonitorCommand extends Command
             $resourceReports['webServer'] = $webServerStatuses;
 
         Record::record($resourceReports);
+
+        TroubleOccurred::dispatch($resourceReports);
     }
 }

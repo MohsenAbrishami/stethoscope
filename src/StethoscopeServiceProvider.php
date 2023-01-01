@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
 use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
 use MohsenAbrishami\Stethoscope\LogRecord\LogManager;
+use MohsenAbrishami\Stethoscope\Providers\EventServiceProvider;
 
 class StethoscopeServiceProvider extends ServiceProvider
 {
@@ -45,5 +46,7 @@ class StethoscopeServiceProvider extends ServiceProvider
             __DIR__ . '/../config/stethoscope.php',
             'stethoscope'
         );
+
+        $this->app->register(EventServiceProvider::class);
     }
 }
