@@ -2,15 +2,13 @@
 
 namespace MohsenAbrishami\Stethoscope\Listeners;
 
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Mail;
+use MohsenAbrishami\Stethoscope\Mail\LogReportMail;
 
 class SendResourceLogNotification
 {
     public function handle($resourceReports)
     {
-        // (new MailMessage())
-        //     ->from(config('stethoscope.notifications.mail.from.address'), config('stethoscope.notifications.mail.from.name'))
-        //     ->subject(trans('backup::notifications.backup_successful_subject'))
-        //     ->line('');
+        Mail::to('stethoscope.notifications.mail.to')->send(new LogReportMail($resourceReports));
     }
 }
