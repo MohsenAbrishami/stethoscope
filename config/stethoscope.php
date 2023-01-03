@@ -81,7 +81,18 @@ return [
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER'  ,'file')
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file')
+    ],
+
+    /*
+    |
+    | You can get notified when specific events occur. you should set an email to get notifications here.
+    |
+    */
+    'notifications' => [
+        'mail' => [
+            'to' => '',
+        ],
     ],
 
 ];

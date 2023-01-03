@@ -7,9 +7,9 @@ use MohsenAbrishami\Stethoscope\Models\ResourceLog;
 
 class DatabaseDriver implements LogRecordInterface
 {
-    public function record($resourceReports)
+    public function record($resourceLogs)
     {
-        foreach ($resourceReports as $resource => $log) {
+        foreach ($resourceLogs as $resource => $log) {
             ResourceLog::insert([
                 'resource' => $resource,
                 'log' => $log

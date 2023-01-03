@@ -4,5 +4,5 @@ namespace MohsenAbrishami\Stethoscope\LogRecord\Contracts;
 
 interface LogRecordInterface
 {
-    public function record($resourceReports);
+    public function record($resourceLogs);
 }
