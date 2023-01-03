@@ -9,6 +9,6 @@ class SendResourceLogNotification
 {
     public function handle($resourceReports)
     {
-        Mail::to('stethoscope.notifications.mail.to')->send(new LogReportMail($resourceReports));
+        Mail::to(config('stethoscope.notifications.mail.to'))->send(new LogReportMail($resourceReports));
     }
 }

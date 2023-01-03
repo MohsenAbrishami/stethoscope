@@ -3,6 +3,7 @@
 namespace Tests\Features;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
@@ -31,6 +32,8 @@ class MonitorCommandTest extends TestCase
         $this->filePath = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
 
         $this->deleteOldLogFile();
+
+        Mail::fake();
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()

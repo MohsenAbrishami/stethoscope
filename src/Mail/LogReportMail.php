@@ -5,7 +5,6 @@ namespace MohsenAbrishami\Stethoscope\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use MohsenAbrishami\Stethoscope\Models\ResourceLog;
 
 class LogReportMail extends Mailable
 {
@@ -13,13 +12,13 @@ class LogReportMail extends Mailable
 
     public $resourceLog;
 
-    public function __construct(ResourceLog $resourceLog)
+    public function __construct($resourceLog)
     {
         $this->resourceLog = $resourceLog;
     }
 
     public function build()
     {
-        return $this->view('blogpackage::emails.ResourceLog');
+        return $this->view('mohsenabrishami::emails.ResourceLog');
     }
 }

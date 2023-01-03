@@ -86,17 +86,12 @@ return [
 
     /*
     |
-    | You can get notified when specific events occur. Out of the box you can use 'mail' and 'slack'. 
+    | You can get notified when specific events occur. you should set an email to get notifications here.
     |
     */
     'notifications' => [
         'mail' => [
-            'to' => 'test@gmail.com',
-
-            'from' => [
-                'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-                'name' => env('MAIL_FROM_NAME', 'Example'),
-            ],
+            'to' => '',
         ],
     ],
 
