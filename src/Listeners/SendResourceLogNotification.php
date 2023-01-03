@@ -7,8 +7,8 @@ use MohsenAbrishami\Stethoscope\Mail\LogReportMail;
 
 class SendResourceLogNotification
 {
-    public function handle($resourceReports)
+    public function handle($resourceLogs)
     {
-        Mail::to(config('stethoscope.notifications.mail.to'))->send(new LogReportMail($resourceReports));
+        Mail::to(config('stethoscope.notifications.mail.to'))->send(new LogReportMail($resourceLogs));
     }
 }

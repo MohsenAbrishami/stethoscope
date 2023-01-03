@@ -10,7 +10,7 @@ class FileDriver implements LogRecordInterface
 {
     use MessageCreatorTrait;
 
-    public function record($resourceReports)
+    public function record($resourceLogs)
     {
         $file = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
 
@@ -18,7 +18,7 @@ class FileDriver implements LogRecordInterface
 
         $log = '';
 
-        foreach ($resourceReports as $resource => $report) {
+        foreach ($resourceLogs as $resource => $report) {
             $method = $resource . 'Message';
 
             if (method_exists($this, $method)) {

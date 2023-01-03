@@ -10,15 +10,17 @@ class LogReportMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $resourceLog;
+    public $resourceLogs;
 
-    public function __construct($resourceLog)
+    public function __construct($resourceLogs)
     {
-        $this->resourceLog = $resourceLog;
+        $this->resourceLogs = $resourceLogs->resourceLogs;
     }
 
     public function build()
     {
-        return $this->view('mohsenabrishami::emails.ResourceLog');
+        return $this->view('mohsenabrishami::emails.ResourceLog', [
+            'resourceLogs' => $this->resourceLogs
+        ]);
     }
 }
