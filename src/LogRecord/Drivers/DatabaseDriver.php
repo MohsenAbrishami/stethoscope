@@ -10,7 +10,7 @@ class DatabaseDriver implements LogRecordInterface
     public function record($resourceLogs)
     {
         foreach ($resourceLogs as $resource => $log) {
-            ResourceLog::insert([
+            ResourceLog::create([
                 'resource' => $resource,
                 'log' => $log
             ]);

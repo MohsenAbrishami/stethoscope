@@ -10,6 +10,8 @@ class ResourceLog extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected static function newFactory()
     {
         return ResourceLogFactory::new();
