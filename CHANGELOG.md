@@ -2,6 +2,9 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
+## 0.5.0
+- Send a notification email when trouble occurred in the server ([#65](https://github.com/MohsenAbrishami/stethoscope/pull/65))
+
 ## 0.4.0
 
 - Building driver-based component to support record log both in file and database 
