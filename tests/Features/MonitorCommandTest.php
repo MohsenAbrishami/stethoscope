@@ -31,18 +31,17 @@ class MonitorCommandTest extends TestCase
         $this->log;
         $this->filePath = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
 
-        $this->deleteOldLogFile();
+        Storage::delete($this->filePath);
 
         Mail::fake();
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()
     {
-        $this->mockService(Cpu::class, 99);
-        $this->mockService(HardDisk::class, 100);
-        $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, 'false');
-        $this->mockService(WebServer::class, 'inactive');
+        $this->mockServices([
+            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Network::class => 'false', WebServer::class => 'inactive'
+        ]);
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -55,13 +54,12 @@ class MonitorCommandTest extends TestCase
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
     }
 
-    public function test_should_be_record_database_when_resources_exceeded_threshold()
+    public function test_should_be_inserted_log_in_database_to_database_driver()
     {
-        $this->mockService(Cpu::class, 99);
-        $this->mockService(HardDisk::class, 100);
-        $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, 'false');
-        $this->mockService(WebServer::class, 'inactive');
+        $this->mockServices([
+            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Network::class => 'false', WebServer::class => 'inactive'
+        ]);
 
         Config::set('stethoscope.drivers.log_record', 'database');
 
@@ -75,11 +73,10 @@ class MonitorCommandTest extends TestCase
 
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
     {
-        $this->mockService(Cpu::class, 80);
-        $this->mockService(HardDisk::class, 100000000);
-        $this->mockService(Memory::class, 70);
-        $this->mockService(Network::class, true);
-        $this->mockService(WebServer::class, 'active');
+        $this->mockServices([
+            Cpu::class => 80, HardDisk::class => 100000000, Memory::class => 70,
+            Network::class => true, WebServer::class => 'active'
+        ]);
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
@@ -94,11 +91,10 @@ class MonitorCommandTest extends TestCase
 
     public function test_should_be_not_record_log_when_monitoring_is_disabled()
     {
-        $this->mockService(Cpu::class, 99);
-        $this->mockService(HardDisk::class, 100);
-        $this->mockService(Memory::class, 98);
-        $this->mockService(Network::class, 'false');
-        $this->mockService(WebServer::class, 'inactive');
+        $this->mockServices([
+            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Network::class => 'false', WebServer::class => 'inactive'
+        ]);
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
         Config::set('stethoscope.monitorable_resources.memory', false);
@@ -115,11 +111,6 @@ class MonitorCommandTest extends TestCase
                 ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
-    }
-
-    private function deleteOldLogFile()
-    {
-        Storage::delete($this->filePath);
     }
 
     private function readLogFile()
