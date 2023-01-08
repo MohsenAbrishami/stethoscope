@@ -17,10 +17,12 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
-    protected function mockService($service, $mockValue)
+    protected function mockServices($services)
     {
-        $this->mock($service, function (MockInterface $mock) use ($mockValue) {
-            $mock->shouldReceive('check')->once()->andReturn($mockValue);
-        });
+        foreach ($services as $service => $mockValue) {
+            $this->mock($service, function (MockInterface $mock) use ($mockValue) {
+                $mock->shouldReceive('check')->once()->andReturn($mockValue);
+            });
+        }
     }
 }
