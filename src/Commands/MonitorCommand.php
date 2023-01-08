@@ -71,6 +71,7 @@ class MonitorCommand extends Command
 
         Record::record($resourceReports);
 
-        TroubleOccurred::dispatch($resourceReports);
+        if (!empty($resourceReports))
+            TroubleOccurred::dispatch($resourceReports);
     }
 }
