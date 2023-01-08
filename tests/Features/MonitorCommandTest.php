@@ -65,10 +65,7 @@ class MonitorCommandTest extends TestCase
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
-        $this->assertDatabaseHas('resource_logs', [
-            'log' => 99,
-            'log' => 'false'
-        ]);
+        $this->assertDatabaseHas('resource_logs', ['log' => 99, 'log' => 'false']);
     }
 
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
