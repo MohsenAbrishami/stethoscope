@@ -94,11 +94,14 @@ Once installed, monitoring your server is very easy. Just issue this artisan com
 php artisan stethoscope:listen
 ```
 
-But the work of this package didn't stop there. you can set thresholds for CPU and memory consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
+But the work of this package didn't stop there. you can set thresholds for CPU, memory and hard disk consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
 
 ``` bash
 php artisan stethoscope:monitor
 ```
+
+You can monitor your server constantly with the run this command by a cron job.
+You may want to be notified if there is a problem in the server. For this, it is enough to set your email admin in the config file.
 
 ## Configuration
 
@@ -106,13 +109,15 @@ You can easily customize this package in the config/stethoscope.php.
 
 In this file, You can configure the following:
 
-- resources that should be monitored
+- resources that should be monitored.
 
 - storage driver and path to saving log files.
 
 - Thresholds Of resources.
 
-- Custom network URL for network connection monitor
+- Custom network URL for network connection monitor.
+
+- Set emails address to send notification emails.
 
 See the configuration below:
 
