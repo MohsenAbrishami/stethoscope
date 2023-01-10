@@ -2,6 +2,11 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
+## 0.6.0
+- Improve email view ([#72](https://github.com/MohsenAbrishami/stethoscope/pull/72))
+- Fix bug send null email notification ([#71](https://github.com/MohsenAbrishami/stethoscope/pull/71))
+- Refactor Tests ([#69](https://github.com/MohsenAbrishami/stethoscope/pull/69))
+
 ## 0.5.0
 - Send a notification email when trouble occurred in the server ([#65](https://github.com/MohsenAbrishami/stethoscope/pull/65))
 
