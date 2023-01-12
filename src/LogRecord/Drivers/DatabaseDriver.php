@@ -16,4 +16,9 @@ class DatabaseDriver implements LogRecordInterface
             ]);
         }
     }
+
+    public function clean()
+    {
+        //
+    }
 }

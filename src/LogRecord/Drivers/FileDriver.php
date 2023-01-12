@@ -35,4 +35,9 @@ class FileDriver implements LogRecordInterface
             $this->storage->put($file, $log);
         }
     }
+
+    public function clean()
+    {
+        //
+    }
 }

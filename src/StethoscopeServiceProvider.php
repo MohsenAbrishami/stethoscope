@@ -5,6 +5,7 @@ namespace MohsenAbrishami\Stethoscope;
 use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
 use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
+use MohsenAbrishami\Stethoscope\Commands\CleanupCommand;
 use MohsenAbrishami\Stethoscope\LogRecord\LogManager;
 use MohsenAbrishami\Stethoscope\Providers\EventServiceProvider;
 
@@ -24,7 +25,8 @@ class StethoscopeServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ListenCommand::class,
-                MonitorCommand::class
+                MonitorCommand::class,
+                CleanupCommand::class
             ]);
         }
 
