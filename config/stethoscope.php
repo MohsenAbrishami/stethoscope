@@ -81,7 +81,7 @@ return [
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file')
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'database')
     ],
 
     /*
@@ -95,4 +95,11 @@ return [
         ],
     ],
 
+    /*
+    |
+    | Here you define the number of days for which resource logs must be kept.
+    | Older resource logs will be removed.
+    |
+    */
+    'cleanup_resource_logs' => 7
 ];
