@@ -91,7 +91,7 @@ return [
     */
     'notifications' => [
         'mail' => [
-            'to' => '',
+            'to' => null,
         ],
     ],
 
