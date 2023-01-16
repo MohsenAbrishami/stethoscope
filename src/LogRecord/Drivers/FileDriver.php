@@ -38,6 +38,6 @@ class FileDriver implements LogRecordInterface
 
     public function clean()
     {
-        //
+        $this->storage->deleteDirectory(config('stethoscope.log_file_storage.path'));
     }
 }
