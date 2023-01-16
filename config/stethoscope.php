@@ -81,7 +81,7 @@ return [
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'database')
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file')
     ],
 
     /*
