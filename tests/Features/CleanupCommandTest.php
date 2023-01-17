@@ -30,7 +30,7 @@ class CleanupCommandTest extends TestCase
         $this->assertDatabaseHas('resource_logs', ['id' => $newLogId]);
     }
 
-    public function test_delete_old_resource_log_files()
+    public function test_delete_old_resource_log_files_from_storage()
     {
         Storage::disk(config('stethoscope.log_file_storage.driver'))
             ->put(config('stethoscope.log_file_storage.path') . date('Y-m-d'), '');
