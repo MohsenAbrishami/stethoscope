@@ -87,11 +87,11 @@ return [
     /*
     |
     | You can get notified when specific events occur. you should set an email to get notifications here.
-    |
+    | If you don't need to send an email notification, set null.
     */
     'notifications' => [
         'mail' => [
-            'to' => '',
+            'to' => null,
         ],
     ],
 
