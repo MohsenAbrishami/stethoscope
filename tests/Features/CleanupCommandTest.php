@@ -32,19 +32,13 @@ class CleanupCommandTest extends TestCase
 
     public function test_delete_old_resource_log_files()
     {
-        $oldLog = ResourceLog::factory()->create([
-            'created_at' => $this->faker->dateTimeBetween('-15 days', '-7 days')
-        ]);
+        Storage::disk(config('stethoscope.log_file_storage.driver'))
+            ->put(config('stethoscope.log_file_storage.path') . date('Y-m-d'), '');
 
-        $newLog = ResourceLog::factory()->create([
-            'created_at' => $this->faker->dateTimeBetween('-7 days')
-        ]);
+        Storage::assertExists(config('stethoscope.log_file_storage.path') . date('Y-m-d'));
 
         $this->artisan('stethoscope:clean')->assertOk();
 
-        $path = config('stethoscope.log_file_storage.path');
-
-        Storage::assertMissing($path . $oldLog->created_at->toDateString());
-        Storage::assertExists($path . $newLog->created_at->toDateString());
+        Storage::assertMissing(config('stethoscope.log_file_storage.path') . date('Y-m-d'));
     }
 }
