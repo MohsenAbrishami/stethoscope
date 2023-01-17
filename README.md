@@ -103,6 +103,12 @@ php artisan stethoscope:monitor
 You can monitor your server constantly with the run this command by a cron job.
 You may want to be notified if there is a problem in the server. For this, it is enough to set your email admin in the config file.
 
+If you are worried about the increase in logs, use the following command. This command deletes old logs based on the number of days you defined in the config file.
+
+``` bash
+php artisan stethoscope:clean
+```
+
 ## Configuration
 
 You can easily customize this package in the config/stethoscope.php.
