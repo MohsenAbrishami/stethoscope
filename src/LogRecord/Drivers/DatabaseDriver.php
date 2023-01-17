@@ -16,4 +16,10 @@ class DatabaseDriver implements LogRecordInterface
             ]);
         }
     }
+
+    public function clean()
+    {
+        ResourceLog::where('created_at', '<', now()->subDays(config('stethoscope.cleanup_resource_logs')))
+            ->delete();
+    }
 }

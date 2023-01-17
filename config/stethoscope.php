@@ -95,4 +95,11 @@ return [
         ],
     ],
 
+    /*
+    |
+    | Here you define the number of days for which resource logs must be kept.
+    | Older resource logs will be removed.
+    |
+    */
+    'cleanup_resource_logs' => 7
 ];

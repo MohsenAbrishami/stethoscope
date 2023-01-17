@@ -10,11 +10,16 @@ class FileDriver implements LogRecordInterface
 {
     use MessageCreatorTrait;
 
+    public $storage;
+
+    public function __construct()
+    {
+        $this->storage = Storage::disk(config('stethoscope.log_file_storage.driver'));
+    }
+
     public function record($resourceLogs)
     {
         $file = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
-
-        $this->storage = Storage::disk(config('stethoscope.log_file_storage.driver'));
 
         $log = '';
 
@@ -34,5 +39,10 @@ class FileDriver implements LogRecordInterface
 
             $this->storage->put($file, $log);
         }
+    }
+
+    public function clean()
+    {
+        $this->storage->deleteDirectory(config('stethoscope.log_file_storage.path'));
     }
 }
