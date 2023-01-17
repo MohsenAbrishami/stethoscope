@@ -3,8 +3,8 @@
 All notable changes to `stethoscope` will be documented in this file.
 
 ## 1.1.0
-- Create command to clean resource logs ([#74](https://github.com/MohsenAbrishami/stethoscope/pull/74))
-- Fix bug send an email when email address is null ([#76](https://github.com/MohsenAbrishami/stethoscope/pull/76))
+- Create a command to clean resource logs ([#74](https://github.com/MohsenAbrishami/stethoscope/pull/74))
+- Fix bug send an email when the email address is null ([#76](https://github.com/MohsenAbrishami/stethoscope/pull/76))
 
 ## 1.0.0
 - Improve email view ([#72](https://github.com/MohsenAbrishami/stethoscope/pull/72))
