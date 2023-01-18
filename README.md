@@ -62,7 +62,7 @@ Do you need more options? you can make an issue or contributes to the package
 ### Requirements
 - **PHP 8.0+**
 - **Laravel 8+**
-- **Debian Based Linux**
+- **Linux Operating System (Debian, Ubuntu, mint, ...)**
 
 ### Installation
 
@@ -115,17 +115,23 @@ You can easily customize this package in the config/stethoscope.php.
 
 In this file, You can configure the following:
 
-- resources that should be monitored.
+- Resources that should be monitored. We can monitor the CPU, memory, hard disk, network connection, and web server status.
 
-- storage driver and path to saving log files.
+- Web server that is installed on your server. We support Nginx and apache.
 
-- Thresholds Of resources.
+- Storage driver and path to saving log files.
+
+- Resources Thresholds. Include maximum CPU and memory usage and minimum hard disk space.
 
 - Custom network URL for network connection monitor.
 
-- Set emails address to send notification emails.
+- Driver to save resource logs (support file storage and database).
 
-See the configuration below:
+- Emails address to send notification emails when your server has problems.
+
+- Number of days for which resource logs must be kept.
+
+By default, the configuration looks like this:
 
 ```php
     /*
@@ -215,11 +221,21 @@ See the configuration below:
     | You can get notified when specific events occur. you should set an email to get notifications here.
     |
     */
+
     'notifications' => [
         'mail' => [
-            'to' => '',
+            'to' => null,
         ],
     ],
+
+    /*
+    |
+    | Here you define the number of days for which resource logs must be kept.
+    | Older resource logs will be removed.
+    |
+    */
+
+    'cleanup_resource_logs' => 7
 ```
 
 ## Testing
