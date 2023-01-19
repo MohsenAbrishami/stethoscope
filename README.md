@@ -94,7 +94,11 @@ Once installed, see your server health details with a command:
 php artisan stethoscope:listen
 ```
 
-<img align="center" src="art/listen_command_output.png"><br />
+The output will be like this:
+
+<div align="center">
+    <img src="art/listen_command_output.png"><br />
+</div>
 
 But the work of this package didn't stop there. you can set thresholds for CPU, memory and hard disk consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
 
