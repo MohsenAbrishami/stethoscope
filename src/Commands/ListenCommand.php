@@ -78,7 +78,7 @@ class ListenCommand extends Command
 
         if ($resources->contains('web-server')  || $resourcesIsEmpty) {
             $this->info(
-                $this->webServerMessage('web server status', $this->webServer->check())
+                $this->webServerMessage($this->webServer->check())
             );
         }
 
