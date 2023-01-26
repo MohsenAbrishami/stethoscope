@@ -40,19 +40,21 @@ With this package, You can check your server health at any time.
 
 ## Features
 
-- monitor cpu usage percentage
+- Monitoring CPU usage percentage
 
-- monitor memory usage percentage
+- Monitoring memory usage percentage
 
-- monitor hard disk free space
+- Monitoring hard disk free space
 
-- check network connection status
+- Checking the network connection status
 
-- check nginx status
+- Checking web Server status (Nginx/Apache)
 
-- record log when exceeding the consumption CPU, memory, and hard disk of thresholds 
+- Recording log when CPU, memory, and hard disk usage exceeds the specified threshold
 
-- record log when the network connection fails or Nginx deactivated
+- Recording log when the network connection fails or the web server deactivated
+
+- Sending email when a problem occurs in the CPU, memory, hard disk, web server, and network of server
 
 
 Do you need more options? you can make an issue or contributes to the package
