@@ -2,6 +2,9 @@
 
 All notable changes to `stethoscope` will be documented in this file.
 
+## 1.1.1
+- Fix bug display of web server status
+
 ## 1.1.0
 - Create a command to clean resource logs ([#74](https://github.com/MohsenAbrishami/stethoscope/pull/74))
 - Fix bug send an email when the email address is null ([#76](https://github.com/MohsenAbrishami/stethoscope/pull/76))
