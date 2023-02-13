@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use MohsenAbrishami\Stethoscope\Http\Controllers\StatusController;
 
-Route::get('/get', [StatusController::class, 'index']);
+Route::get('/statuses', [StatusController::class, 'index']);
