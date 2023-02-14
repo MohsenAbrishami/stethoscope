@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class MonitorCurrentTest extends TestCase
 {
-    function test_get_statuses()
+    function test_monitor_current_state_server()
     {
         $this->get('monitor/current')
             ->assertOk()
