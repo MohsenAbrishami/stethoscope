@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Features;
+namespace Tests\Features\APIs;
 
 use Tests\TestCase;
 
-class StatusTest extends TestCase
+class MonitorCurrentTest extends TestCase
 {
     function test_get_statuses()
     {
-        $this->get('/statuses')
+        $this->get('monitor/current')
             ->assertOk()
             ->assertJsonStructure(['cpu', 'memory', 'network', 'web_server', 'hard_disk']);
     }

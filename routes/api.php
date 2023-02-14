@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use MohsenAbrishami\Stethoscope\Http\Controllers\StatusController;
+use MohsenAbrishami\Stethoscope\Http\Controllers\MonitorController;
 
-Route::get('/statuses', [StatusController::class, 'index']);
+Route::get('monitor/current', [MonitorController::class, 'current']);
