@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Features;
+namespace Tests\Features\Commands;
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;

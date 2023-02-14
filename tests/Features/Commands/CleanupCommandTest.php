@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Features;
+namespace Test\Features\Commands;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Config;
