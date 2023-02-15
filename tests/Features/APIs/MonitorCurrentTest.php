@@ -16,8 +16,18 @@ class MonitorCurrentTest extends TestCase
 
     public function test_get_resource_logs_history()
     {
-        ResourceLog::factory()->create();
+        $yesterday = now()->subDay(1)->format('Y-m-d');
 
-        $this->get('monitor/history')->assertOk();
+        $yesterdayLog = ResourceLog::factory([
+            'created_at' => $yesterday,
+            'updated_at' => $yesterday
+        ])->create();
+
+        $todayLog = ResourceLog::factory()->create();
+
+        $this->get("monitor/history/$yesterday/$yesterday")
+            ->assertOk()
+            ->assertJsonFragment($yesterdayLog->toArray())
+            ->assertJsonMissing($todayLog->toArray());
     }
 }
