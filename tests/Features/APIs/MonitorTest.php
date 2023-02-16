@@ -14,7 +14,7 @@ class MonitorTest extends TestCase
             ->assertJsonStructure(['cpu', 'memory', 'network', 'web_server', 'hard_disk']);
     }
 
-    public function test_get_resource_log_histories()
+    public function test_get_resources_log_history()
     {
         $yesterday = now()->subDay(1)->format('Y-m-d');
 
