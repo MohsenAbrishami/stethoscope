@@ -27,7 +27,13 @@ class FileDriver implements LogRecordInterface
             $method = $resource . 'Message';
 
             if (method_exists($this, $method)) {
-                $log .= $this->$method($report) . "\n";
+                if ($resource == 'hardDisk') {
+                    foreach ($report as $name => $usage) {
+                        $log .= $this->$method($name, $usage) . "\n";
+                    }
+                } else {
+                    $log .= $this->$method($report) . "\n";
+                }
             }
         }
 

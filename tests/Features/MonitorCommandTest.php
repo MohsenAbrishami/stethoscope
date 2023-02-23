@@ -36,6 +36,33 @@ class MonitorCommandTest extends TestCase
         Mail::fake();
     }
 
+    public function test_should_be_record_log_when_resources_exceeded_threshold_any_disk()
+    {
+        Config::set('stethoscope.hard_disks', [
+            'root' => [
+                'path' => '/',
+                'threshold' => 101,
+            ],
+            'test_disk' => [
+                'path' => '/',
+                'threshold' => 101,
+            ]
+        ]);
+        $this->mockServices([
+            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Network::class => 'false', WebServer::class => 'inactive'
+        ]);
+
+        $this->artisan('stethoscope:monitor')->assertOk();
+
+        $this->readLogFile();
+        $this->assertTrue($this->assertContent($this->cpuMessage(99)));
+        $this->assertTrue($this->assertContent($this->hardDiskMessage("root",100)));
+        $this->assertTrue($this->assertContent($this->hardDiskMessage("test_disk",100)));
+        $this->assertTrue($this->assertContent($this->memoryMessage(98)));
+        $this->assertTrue($this->assertContent($this->networkMessage('false')));
+        $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
+    }
     public function test_should_be_record_log_when_resources_exceeded_threshold()
     {
         $this->mockServices([
@@ -46,9 +73,8 @@ class MonitorCommandTest extends TestCase
         $this->artisan('stethoscope:monitor')->assertOk();
 
         $this->readLogFile();
-
         $this->assertTrue($this->assertContent($this->cpuMessage(99)));
-        $this->assertTrue($this->assertContent($this->hardDiskMessage(100)));
+        $this->assertTrue($this->assertContent($this->hardDiskMessage("root",100)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
         $this->assertTrue($this->assertContent($this->networkMessage('false')));
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
@@ -81,7 +107,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'hard disk root free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }
@@ -105,7 +131,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'hard disk root free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }

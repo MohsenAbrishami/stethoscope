@@ -26,14 +26,15 @@ trait MessageCreatorTrait
     }
 
     /**
-     * Generate hard disk free space message
-     * 
+     * Generate hard disk usage message
+     *
+     * @param string
      * @param integer
      * @return string
      */
-    public function hardDiskMessage($hardDiskUsage)
+    public function hardDiskMessage(string $name, string $hardDiskUsage)
     {
-        return "hard disk free space ===> $hardDiskUsage Byte (" .
+        return "hard disk {$name} free space ===> $hardDiskUsage Byte (" .
             number_format($hardDiskUsage / 1024 / 1024 / 1024, 2, '.', '') .  ' GB)';
     }
 

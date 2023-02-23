@@ -51,23 +51,30 @@ class MonitorCommand extends Command
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
         $networkStatus = $this->network->check();
-        $hardDiskFreeSpace = $this->hardDisk->check();
+        foreach(config("stethoscope.hard_disks") as $name => ["path" => $path, "threshold" => $threshold]){
+            $hardDiskFreeSpace = $this->hardDisk->check($path);
+            if ($hardDiskFreeSpace < $threshold && config('stethoscope.monitorable_resources.hard_disk')){
+                $resourceReports['hardDisk'][$name] = $hardDiskFreeSpace;
+            }
+        }
+
         $webServerStatuses = $this->webServer->check();
 
-        if (config('stethoscope.monitorable_resources.cpu') && $cpuUsage > config(('stethoscope.thresholds.cpu')))
+        if (config('stethoscope.monitorable_resources.cpu') && $cpuUsage > config(('stethoscope.thresholds.cpu'))){
             $resourceReports['cpu'] = $cpuUsage;
+        }
 
-        if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory'))
+        if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory')){
             $resourceReports['memory'] = $memoryUsage;
+        }
 
-        if ($networkStatus == 'false' && config('stethoscope.monitorable_resources.network'))
+        if ($networkStatus == 'false' && config('stethoscope.monitorable_resources.network')){
             $resourceReports['network'] = $networkStatus;
+        }
 
-        if ($hardDiskFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk'))
-            $resourceReports['hardDisk'] = $hardDiskFreeSpace;
-
-        if ($webServerStatuses != 'active' && config('stethoscope.monitorable_resources.web_server'))
+        if ($webServerStatuses != 'active' && config('stethoscope.monitorable_resources.web_server')){
             $resourceReports['webServer'] = $webServerStatuses;
+        }
 
         Record::record($resourceReports);
 

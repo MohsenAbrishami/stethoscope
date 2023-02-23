@@ -44,7 +44,7 @@ With this package, You can check your server health at any time.
 
 - Monitoring memory usage percentage
 
-- Monitoring hard disk free space
+- Monitoring hard disk root free space
 
 - Checking the network connection status
 
@@ -139,6 +139,7 @@ In this file, You can configure the following:
 
 - Number of days for which resource logs must be kept.
 
+- List hard disks that should be tracked.
 By default, the configuration looks like this:
 
 ```php
@@ -243,7 +244,19 @@ By default, the configuration looks like this:
     |
     */
 
-    'cleanup_resource_logs' => 7
+    'cleanup_resource_logs' => 7,
+    
+    /*
+    |
+    | Here you define list hard disks.
+    |
+    */
+    'hard_disks' => [
+        'root' => [
+            'path' => '/',
+            'threshold' => env('HARD_DISK_MONITOR_THRESHOLD', 5368709),
+        ],
+    ],
 ```
 
 ## Testing

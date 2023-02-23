@@ -83,9 +83,11 @@ class ListenCommand extends Command
         }
 
         if ($resources->contains('hdd') || $resourcesIsEmpty) {
-            $this->info(
-                $this->hardDiskMessage($this->hardDisk->check())
-            );
+            foreach(config("stethoscope.hard_disks") as $name => ["path" => $path, "threshold" => $threshold]){
+                $this->info(
+                    $this->hardDiskMessage($name, $this->hardDisk->check($path))
+                );
+            }
         }
     }
 }

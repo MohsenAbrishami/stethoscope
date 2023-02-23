@@ -101,5 +101,17 @@ return [
     | Older resource logs will be removed.
     |
     */
-    'cleanup_resource_logs' => 7
+    'cleanup_resource_logs' => 7,
+
+    /*
+    |
+    | Here you define list hard disks.
+    |
+    */
+    'hard_disks' => [
+        'root' => [
+            'path' => '/',
+            'threshold' => env('HARD_DISK_MONITOR_THRESHOLD', 5368709),
+        ],
+    ],
 ];
