@@ -2,6 +2,7 @@
 
 namespace MohsenAbrishami\Stethoscope\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use MohsenAbrishami\Stethoscope\Models\ResourceLog;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
@@ -24,9 +25,12 @@ class MonitorController extends Controller
 
     public function history($from, $to)
     {
-        $resourceLogs = ResourceLog::where('created_at', '>=', $from . ' 00:00:00')
-            ->where('created_at', '<=', $to . ' 23:59:59')->get();
+        $resourceLogs = ResourceLog::select('date', DB::raw('count(date)'))->orderBy('date')
+            ->from(
+                ResourceLog::where('created_at', '>=' ,$from)->select(DB::raw('date(created_at) as date')),
+                'count'
+            )->groupBy('date')->get();
 
-        return response()->json([$resourceLogs]);
+        return response()->json($resourceLogs);
     }
 }
