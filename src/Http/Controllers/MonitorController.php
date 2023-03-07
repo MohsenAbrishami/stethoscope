@@ -27,7 +27,9 @@ class MonitorController extends Controller
     {
         $resourceLogs = ResourceLog::select('date', DB::raw('count(date)'))->orderBy('date')
             ->from(
-                ResourceLog::where('created_at', '>=' ,$from)->select(DB::raw('date(created_at) as date')),
+                ResourceLog::whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to)
+                    ->select(DB::raw('date(created_at) as date')),
                 'count'
             )->groupBy('date')->get();
 

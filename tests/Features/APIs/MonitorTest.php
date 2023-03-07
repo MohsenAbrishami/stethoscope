@@ -18,16 +18,13 @@ class MonitorTest extends TestCase
     {
         $yesterday = now()->subDay(1)->format('Y-m-d');
 
-        $yesterdayLog = ResourceLog::factory([
-            'created_at' => $yesterday,
-            'updated_at' => $yesterday
-        ])->create();
+        ResourceLog::factory(5, ['created_at' => $yesterday, 'updated_at' => $yesterday])->create();
 
-        $todayLog = ResourceLog::factory()->create();
+        ResourceLog::factory()->create();
 
         $this->get("monitor/history/$yesterday/$yesterday")
             ->assertOk()
-            ->assertJsonFragment($yesterdayLog->toArray())
-            ->assertJsonMissing($todayLog->toArray());
+            ->assertJsonFragment(['date' => $yesterday, 'count(date)' => 5])
+            ->assertJsonMissing(['date' => now()]);
     }
 }
