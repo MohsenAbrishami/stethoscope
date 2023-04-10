@@ -17,17 +17,20 @@ class MonitorTest extends TestCase
     public function test_get_resources_log_history()
     {
         $yesterday = now()->subDay(1)->format('Y-m-d');
+        $today = now();
 
-        $yesterdayLog = ResourceLog::factory([
+        ResourceLog::factory(5, [
+            'resource' => 'cpu',
             'created_at' => $yesterday,
             'updated_at' => $yesterday
         ])->create();
 
-        $todayLog = ResourceLog::factory()->create();
+        ResourceLog::factory([
+            'resource' => 'cpu'
+        ])->create();
 
-        $this->get("monitor/history/$yesterday/$yesterday")
+        $this->get("monitor/history/$yesterday/$today")
             ->assertOk()
-            ->assertJsonFragment($yesterdayLog->toArray())
-            ->assertJsonMissing($todayLog->toArray());
+            ->assertJsonFragment(['cpu' => [5, 1]]);
     }
 }
