@@ -54,5 +54,10 @@ class StethoscopeServiceProvider extends ServiceProvider
         );
 
         $this->app->register(EventServiceProvider::class);
+
+        $this->publishes([
+            __DIR__.'/../dist/app.js' => public_path('vendor/my-package/js/app.js'),
+          ], 'public');
+          
     }
 }
