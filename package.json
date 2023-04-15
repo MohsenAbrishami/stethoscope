@@ -1,4 +1,7 @@
 {
+  "name": "stethoscope",
+  "version": "1.1.2",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,6 +11,8 @@
     "vite": "^4.2.1"
   },
   "dependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "laravel-vite-plugin": "^0.7.4",
     "vue": "^3.2.47"
   }
 }

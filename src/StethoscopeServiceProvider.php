@@ -32,10 +32,10 @@ class StethoscopeServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'mohsenabrishami');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'mohsenabrishami');
     }
 
     /**
@@ -57,8 +57,7 @@ class StethoscopeServiceProvider extends ServiceProvider
         $this->app->register(EventServiceProvider::class);
 
         $this->publishes([
-            __DIR__.'/../dist/app.js' => public_path('vendor/my-package/js/app.js'),
-          ], 'public');
-          
+            __DIR__ . '/../dist/main.js' => public_path('vendor/mohsenabrishami/js/main.js'),
+        ], 'public');
     }
 }
