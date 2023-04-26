@@ -48,6 +48,8 @@ class StethoscopeServiceProvider extends ServiceProvider
                 __DIR__ . '/../public/build' => public_path('build'),
             ], 'stethoscope-publish-view');
 
+            $this->app['router']->aliasMiddleware('check.access.to.monitoring.panel', \MohsenAbrishami\Stethoscope\Http\Middleware\CheckAccessToMonitoringPanel::class);
+
             $this->commands([
                 ListenCommand::class,
                 MonitorCommand::class,
