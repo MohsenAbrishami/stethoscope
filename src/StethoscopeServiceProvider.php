@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
 use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
 use MohsenAbrishami\Stethoscope\Commands\CleanupCommand;
+use MohsenAbrishami\Stethoscope\Http\Middleware\CheckAccessToMonitoringPanel;
 use MohsenAbrishami\Stethoscope\LogRecord\LogManager;
 use MohsenAbrishami\Stethoscope\Providers\EventServiceProvider;
 
@@ -48,8 +49,6 @@ class StethoscopeServiceProvider extends ServiceProvider
                 __DIR__ . '/../public/build' => public_path('build'),
             ], 'stethoscope-publish-view');
 
-            $this->app['router']->aliasMiddleware('check.access.to.monitoring.panel', \MohsenAbrishami\Stethoscope\Http\Middleware\CheckAccessToMonitoringPanel::class);
-
             $this->commands([
                 ListenCommand::class,
                 MonitorCommand::class,
@@ -63,5 +62,7 @@ class StethoscopeServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'mohsenabrishami');
+
+        $this->app['router']->aliasMiddleware('check.access.to.monitoring.panel', CheckAccessToMonitoringPanel::class);
     }
 }
