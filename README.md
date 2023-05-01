@@ -34,6 +34,8 @@
     </a>
 </p>
 
+![monitoring-panel](/art/monitoring_panel.png)
+
 This Laravel package allows you to monitor the infrastructure.
 
 With this package, You can check your server health at any time.
