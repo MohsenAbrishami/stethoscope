@@ -6,35 +6,12 @@ use Illuminate\Support\ServiceProvider;
 use MohsenAbrishami\Stethoscope\Commands\ListenCommand;
 use MohsenAbrishami\Stethoscope\Commands\MonitorCommand;
 use MohsenAbrishami\Stethoscope\Commands\CleanupCommand;
+use MohsenAbrishami\Stethoscope\Http\Middleware\CheckAccessToMonitoringPanel;
 use MohsenAbrishami\Stethoscope\LogRecord\LogManager;
 use MohsenAbrishami\Stethoscope\Providers\EventServiceProvider;
 
 class StethoscopeServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any package services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->publishes([
-            __DIR__ . '/../config/stethoscope.php' => config_path('stethoscope.php'),
-        ], 'stethoscope');
-
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                ListenCommand::class,
-                MonitorCommand::class,
-                CleanupCommand::class
-            ]);
-        }
-
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'mohsenabrishami');
-    }
-
     /**
      * Register any application services.
      *
@@ -52,5 +29,40 @@ class StethoscopeServiceProvider extends ServiceProvider
         );
 
         $this->app->register(EventServiceProvider::class);
+    }
+
+    /**
+     * Bootstrap any package services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            // publishing the config 
+            $this->publishes([
+                __DIR__ . '/../config/stethoscope.php' => config_path('stethoscope.php'),
+            ], 'stethoscope-publish-config');
+
+            // publishing the build files
+            $this->publishes([
+                __DIR__ . '/../public/build' => public_path('build'),
+            ], 'stethoscope-publish-view');
+
+            $this->commands([
+                ListenCommand::class,
+                MonitorCommand::class,
+                CleanupCommand::class
+            ]);
+        }
+
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'mohsenabrishami');
+
+        $this->app['router']->aliasMiddleware('check.access.to.monitoring.panel', CheckAccessToMonitoringPanel::class);
     }
 }

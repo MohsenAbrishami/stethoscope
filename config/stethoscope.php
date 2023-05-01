@@ -101,5 +101,11 @@ return [
     | Older resource logs will be removed.
     |
     */
-    'cleanup_resource_logs' => 7
+    'cleanup_resource_logs' => 7,
+
+    /*
+    | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
+    */
+    'monitoring_panel_status' => false,
+    'monitoring_panel_key' => env('monitoring_panel_key')
 ];

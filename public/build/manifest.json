@@ -1,0 +1,57 @@
+{
+  "resources/js/public/cpu-icon.png": {
+    "file": "assets/cpu-icon-ce156027.png",
+    "src": "resources/js/public/cpu-icon.png"
+  },
+  "resources/js/public/harddisk-icon.png": {
+    "file": "assets/harddisk-icon-dd466c74.png",
+    "src": "resources/js/public/harddisk-icon.png"
+  },
+  "resources/js/public/network-icon.png": {
+    "file": "assets/network-icon-2d93c6d1.png",
+    "src": "resources/js/public/network-icon.png"
+  },
+  "resources/js/public/ram-icon.png": {
+    "file": "assets/ram-icon-22127ef7.png",
+    "src": "resources/js/public/ram-icon.png"
+  },
+  "resources/js/public/refresh.png": {
+    "file": "assets/refresh-39b38e9c.png",
+    "src": "resources/js/public/refresh.png"
+  },
+  "resources/js/public/stethoscope.png": {
+    "file": "assets/stethoscope-14ba22f9.png",
+    "src": "resources/js/public/stethoscope.png"
+  },
+  "resources/js/public/web-server-icon.png": {
+    "file": "assets/web-server-icon-f41998bb.png",
+    "src": "resources/js/public/web-server-icon.png"
+  },
+  "resources/js/src/main.css": {
+    "file": "assets/main-9ece603d.css",
+    "src": "resources/js/src/main.css"
+  },
+  "resources/js/src/main.js": {
+    "assets": [
+      "assets/stethoscope-14ba22f9.png",
+      "assets/refresh-39b38e9c.png",
+      "assets/cpu-icon-ce156027.png",
+      "assets/ram-icon-22127ef7.png",
+      "assets/harddisk-icon-dd466c74.png",
+      "assets/web-server-icon-f41998bb.png",
+      "assets/network-icon-2d93c6d1.png"
+    ],
+    "css": [
+      "assets/main-9ece603d.css",
+      "assets/style-4683a843.css"
+    ],
+    "file": "assets/main-c0e3f0c5.js",
+    "isEntry": true,
+    "src": "resources/js/src/main.js"
+  },
+  "resources/js/src/style.css": {
+    "file": "assets/style-4683a843.css",
+    "isEntry": true,
+    "src": "resources/js/src/style.css"
+  }
+}
