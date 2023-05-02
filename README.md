@@ -80,7 +80,7 @@ composer require mohsenabrishami/stethoscope
 and then run:
 
 ``` bash
-php artisan vendor:publish --tag=stethoscope
+php artisan vendor:publish --tag=stethoscope-publish-config
 ```
 
 Stethoscope allows you to record reports both in a file and in a database. 
