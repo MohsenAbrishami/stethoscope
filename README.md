@@ -8,6 +8,7 @@
     <a href="#features">Features</a> |
     <a href="#installation">Installation</a> |
     <a href="#usage">Usage</a> |
+    <a href="#dashboard">Dashboard</a> |
     <a href="#configuration">Configuration</a> |
     <a href="#testing">Testing</a> |
     <a href="#changelog">Changelog</a> |
@@ -33,8 +34,6 @@
         <img src="https://img.shields.io/scrutinizer/g/MohsenAbrishami/stethoscope.svg" alt="tests">
     </a>
 </p>
-
-![monitoring-panel](/art/monitoring_panel.png)
 
 This Laravel package allows you to monitor the infrastructure.
 
@@ -119,6 +118,22 @@ If you are worried about the increase in logs, use the following command. This c
 php artisan stethoscope:clean
 ```
 
+## Dashboard
+Stethoscope provides a dashboard where you can easily see the current status of the server at any time. Also, in this dashboard, you can see a history of the times when resource consumption exceeded the limit or when the network and web server were disabled.
+
+![monitoring-panel](/art/monitoring_panel.png)
+
+Remember that the monitoring dashboard is disabled by default. To activate, you must set monitoring_panel_status to true in config file. Also, the log storage driver must be a database, not a file.
+
+You can put a key to access the admin panel. If you define a key, you can access the dashboard only when you enter the key in the address.
+
+```php
+/*
+| Here, you can specify whether the monitoring panel is enabled and the key required to access it.
+*/
+'monitoring_panel_status' => false,
+'monitoring_panel_key' => env('monitoring_panel_key')
+```
 ## Configuration
 
 You can easily customize this package in the config/stethoscope.php.
