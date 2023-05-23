@@ -12,9 +12,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.cpu }}</span>
                     <img
-                        class="inline-block float-right"
+                        class="inline-block float-right w-12"
                         src="../../public/cpu-icon.png"
-                        width="50px"
                     >
                 </div>
             </div>
@@ -23,9 +22,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.memory }}</span>
                     <img
-                        class="inline-block float-right"
+                        class="inline-block float-right w-12"
                         src="../../public/ram-icon.png"
-                        width="50px"
                     >
                 </div>
             </div>
@@ -34,9 +32,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.hardDisk }}</span>
                     <img
-                        class="inline-block float-right"
+                        class="inline-block float-right w-12"
                         src="../../public/harddisk-icon.png"
-                        width="50px"
                     >
                 </div>
             </div>
@@ -45,9 +42,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.webServer }}</span>
                     <img
-                        class="inline-block float-right"
+                        class="inline-block float-right w-12"
                         src="../../public/web-server-icon.png"
-                        width="50px"
                     >
                 </div>
             </div>
@@ -56,9 +52,8 @@
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
                     <img
-                        class="inline-block float-right"
+                        class="inline-block float-right w-12"
                         src="../../public/network-icon.png"
-                        width="50px"
                     >
                 </div>
             </div>
