@@ -40,8 +40,8 @@ class LogReportNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Notification Subject')
-            ->view('email_template', [
+            ->subject('Stethoscope Alert')
+            ->view('mohsenabrishami::emails.ResourceLog', [
                 'resourceLogs' => $this->resourceLogs
             ]);
     }
