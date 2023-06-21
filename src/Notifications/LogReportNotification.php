@@ -28,7 +28,9 @@ class LogReportNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        $notificationChannels = config('stethoscope.notifications.notifications.' . static::class);
+
+        return array_filter($notificationChannels);
     }
 
     /**
