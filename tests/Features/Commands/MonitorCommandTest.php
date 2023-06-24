@@ -3,7 +3,7 @@
 namespace Tests\Features\Commands;
 
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
@@ -33,7 +33,7 @@ class MonitorCommandTest extends TestCase
 
         Storage::delete($this->filePath);
 
-        Mail::fake();
+        Notification::fake();
     }
 
     public function test_should_be_record_log_when_resources_exceeded_threshold()

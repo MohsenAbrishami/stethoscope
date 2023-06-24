@@ -12,4 +12,9 @@ class Notifiable
     {
         return config('stethoscope.notifications.mail.to');
     }
+
+    public function getKey(): int
+    {
+        return 1;
+    }
 }
