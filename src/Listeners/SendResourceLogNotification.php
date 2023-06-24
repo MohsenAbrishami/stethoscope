@@ -2,14 +2,25 @@
 
 namespace MohsenAbrishami\Stethoscope\Listeners;
 
-use Illuminate\Support\Facades\Mail;
-use MohsenAbrishami\Stethoscope\Mail\LogReportMail;
-
 class SendResourceLogNotification
 {
     public function handle($resourceLogs)
     {
-        if(!is_null(config('stethoscope.notifications.mail.to')))
-            Mail::to(config('stethoscope.notifications.mail.to'))->send(new LogReportMail($resourceLogs));
+        if (!is_null(config('stethoscope.notifications.notifiable'))) {
+            $notifiable = app(config('stethoscope.notifications.notifiable'));
+
+            $notificationClass = $this->detemineNotificationClass();
+
+            $notifiable->notify(
+                new $notificationClass($resourceLogs)
+            );
+        }
+    }
+
+    private function detemineNotificationClass()
+    {
+        $notifications = config('stethoscope.notifications.notifications');
+
+        return array_keys($notifications)[0];
     }
 }

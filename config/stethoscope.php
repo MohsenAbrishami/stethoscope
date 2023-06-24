@@ -90,9 +90,17 @@ return [
     | If you don't need to send an email notification, set null.
     */
     'notifications' => [
+
+        'notifications' => [
+            \MohsenAbrishami\Stethoscope\Notifications\LogReportNotification::class => ['mail'],
+        ],
+
+        'notifiable' => \MohsenAbrishami\Stethoscope\Notifications\Notifiable::class,
+
         'mail' => [
             'to' => null,
         ],
+
     ],
 
     /*
