@@ -2,7 +2,7 @@
 
 namespace Tests\Units;
 
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use MohsenAbrishami\Stethoscope\LogRecord\Facades\Record;
 use Tests\TestCase;
 
@@ -13,7 +13,7 @@ class RecordTest extends TestCase
 {
     public function test_run_record_method_in_monitor_command()
     {
-        Mail::fake();
+        Notification::fake();
 
         Record::shouldReceive('record')->once();
 
