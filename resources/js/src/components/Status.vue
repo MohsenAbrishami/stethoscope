@@ -1,13 +1,13 @@
 <template>
-    <div class="w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
-        <span class="pl-3 pt-2 font-bold inline-block">Monitoring Overview:</span>
+    <div class="container w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
+        <span class="pl-3 py-4 font-bold inline-block">Monitoring Overview:</span>
         <img
             src="../../public/refresh.png"
             class="w-10 inline-block float-right mr-3 cursor-pointer"
             @click.prevent="getCurrentStatus()"
         >
-        <div class="w-full flex justify-center py-5">
-            <div class="h-28 w-2/12 bg-red-100 p-2  rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="h-28 bg-red-100 p-2 rounded-lg">
                 <span>Cpu Usage</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.cpu }}</span>
@@ -17,7 +17,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-2/12 bg-green-100 ml-4 p-2 rounded-lg">
+            <div class="h-28 bg-green-100 p-2 rounded-lg">
                 <span>Memory Usage</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.memory }}</span>
@@ -27,7 +27,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-2/12 bg-green-100 ml-4 p-2 rounded-lg">
+            <div class="h-28 bg-green-100 p-2 rounded-lg">
                 <span>Hard Disk Space</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.hardDisk }}</span>
@@ -37,7 +37,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-2/12 bg-red-100 ml-4 p-2 rounded-lg">
+            <div class="h-28 bg-red-100 p-2 rounded-lg">
                 <span>Web server status</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.webServer }}</span>
@@ -47,7 +47,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 w-2/12 bg-green-100 ml-4 mr-2 p-2 rounded-lg">
+            <div class="h-28 bg-green-100 p-2 rounded-lg">
                 <span>Network Status</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
