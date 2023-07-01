@@ -129,7 +129,7 @@ If you use the monitoring panel, you must publish the build files:
 php artisan vendor:publish --tag=stethoscope-publish-view
 ```
 
-Remember that the monitoring dashboard is disabled by default. To activate, you must set monitoring_panel_status to true in config file. Also, the log storage driver must be a database, not a file.
+Remember that the monitoring dashboard is disabled by default. To activate, you must set monitoring_panel.status to true in config file. Also, the log storage driver must be a database, not a file.
 
 You can put a key to access the admin panel. If you define a key, you can access the dashboard only when you enter the key in the address.
 
@@ -138,7 +138,7 @@ you can access this panel with address https://yoursite/monitoring-panel?key=sam
 /*
 | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
 */
-'monitoring_panel_status' => false,
+'monitoring_panel.status' => false,
 'monitoring_panel_key' => env('monitoring_panel_key')
 ```
 ## Configuration

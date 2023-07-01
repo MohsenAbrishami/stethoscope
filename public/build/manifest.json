@@ -43,14 +43,14 @@
     ],
     "css": [
       "assets/main-9ece603d.css",
-      "assets/style-774502ee.css"
+      "assets/style-d5d41528.css"
     ],
-    "file": "assets/main-7b11da91.js",
+    "file": "assets/main-bba75074.js",
     "isEntry": true,
     "src": "resources/js/src/main.js"
   },
   "resources/js/src/style.css": {
-    "file": "assets/style-774502ee.css",
+    "file": "assets/style-d5d41528.css",
     "isEntry": true,
     "src": "resources/js/src/style.css"
   }

@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use MohsenAbrishami\Stethoscope\Http\Controllers\MonitoringPanelController;
 
 Route::middleware(['check.access.to.monitoring.panel'])->group(function () {
-    Route::get('/monitoring-panel', function () {
-        return view('mohsenabrishami::MonitoringPanel');
-    })->name('monitoring-panel');
+    Route::get('monitoring-panel', [MonitoringPanelController::class, 'index'])->name('monitoring-panel');
 });

@@ -40,6 +40,6 @@ class MonitorTest extends TestCase
 
     private function enableMonitoring()
     {
-        config()->set('stethoscope.monitoring_panel_status', 'true');
+        config()->set('stethoscope.monitoring_panel.status', 'true');
     }
 }
