@@ -1,9 +1,9 @@
 <script setup>
-import MonitoringPanel from './components/MonitoringPanel.vue';
+import MonitoringPanel from './components/MonitoringPanel.vue'
 </script>
 
 <template class="bg-gray-500">
-  <MonitoringPanel />
+    <MonitoringPanel />
 </template>
 
 <style scoped>

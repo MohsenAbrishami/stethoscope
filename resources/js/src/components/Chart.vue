@@ -2,7 +2,7 @@
     <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg">
         <div class="py-4">
             <span class="inline text-gray-500">Select history range:</span>
-            <div class="w-3/12 inline-block ml-3">
+            <div class="inline-block ml-3">
                 <VueDatePicker
                     v-model="date"
                     range
@@ -13,50 +13,52 @@
                 />
             </div>
         </div>
-        <div class="w-2/12 inline-block float-left pt-16">
-            <div class="block pt-2">
-                <input
-                    v-model="resources.cpu"
-                    type="checkbox"
-                    @click="generateChart('cpu')"
-                >
-                <span class="text-green-500 font-bold mx-4">CPU</span>
+        <div class="grid grid-col-1 md:grid-cols-6">
+            <div class="inline-block md:pt-16 py-2 md:col-span-1">
+                <div class="block pt-2">
+                    <input
+                        v-model="resources.cpu"
+                        type="checkbox"
+                        @click="generateChart('cpu')"
+                    >
+                    <span class="text-green-500 font-bold mx-4">CPU</span>
+                </div>
+                <div class="block pt-2">
+                    <input
+                        v-model="resources.memory"
+                        type="checkbox"
+                        @click="generateChart('memory')"
+                    >
+                    <span class="text-green-500 font-bold mx-4">Memory</span>
+                </div>
+                <div class="block pt-2">
+                    <input
+                        v-model="resources.hardDisk"
+                        type="checkbox"
+                        @click="generateChart('hardDisk')"
+                    >
+                    <span class="text-red-500 font-bold mx-4">HDD</span>
+                </div>
+                <div class="block pt-2">
+                    <input
+                        v-model="resources.network"
+                        type="checkbox"
+                        @click="generateChart('network')"
+                    >
+                    <span class="text-purple-400 font-bold mx-4">Network</span>
+                </div>
+                <div class="block pt-2">
+                    <input
+                        v-model="resources.webServer"
+                        type="checkbox"
+                        @click="generateChart('webServer')"
+                    >
+                    <span class="text-emerald-400 font-bold mx-4">Web Server</span>
+                </div>
             </div>
-            <div class="block pt-2">
-                <input
-                    v-model="resources.memory"
-                    type="checkbox"
-                    @click="generateChart('memory')"
-                >
-                <span class="text-green-500 font-bold mx-4">Memory</span>
+            <div class="inline-block h-96 w-full md:col-span-5">
+                <Line :data="data" :options="options" />
             </div>
-            <div class="block pt-2">
-                <input
-                    v-model="resources.hardDisk"
-                    type="checkbox"
-                    @click="generateChart('hardDisk')"
-                >
-                <span class="text-red-500 font-bold mx-4">HDD</span>
-            </div>
-            <div class="block pt-2">
-                <input
-                    v-model="resources.network"
-                    type="checkbox"
-                    @click="generateChart('network')"
-                >
-                <span class="text-purple-400 font-bold mx-4">Network</span>
-            </div>
-            <div class="block pt-2">
-                <input
-                    v-model="resources.webServer"
-                    type="checkbox"
-                    @click="generateChart('webServer')"
-                >
-                <span class="text-emerald-400 font-bold mx-4">Web Server</span>
-            </div>
-        </div>
-        <div class="w-10/12 inline-block h-96">
-            <Line :data="data" :options="options" />
         </div>
     </div>
 </template>
