@@ -114,6 +114,10 @@ return [
     /*
     | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
     */
-    'monitoring_panel_status' => false,
-    'monitoring_panel_key' => env('monitoring_panel_key')
+    'monitoring_panel' =>
+    [
+        'path' => env('monitoring_panel_path'),
+        'status' => false,
+        'key' => env('monitoring_panel_key'),
+    ]
 ];
