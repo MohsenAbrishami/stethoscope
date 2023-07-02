@@ -44,7 +44,6 @@
         }
     },
     "require-dev": {
-        "laravel/pint": "^1.10",
         "orchestra/testbench": "^7.11",
         "phpunit/phpunit": "^9.5"
     },
