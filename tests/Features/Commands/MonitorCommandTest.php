@@ -5,13 +5,13 @@ namespace Tests\Features\Commands;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\HardDisk;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
 use MohsenAbrishami\Stethoscope\Traits\MessageCreatorTrait;
-use Illuminate\Support\Str;
 use Tests\TestCase;
 
 /**
@@ -22,6 +22,7 @@ class MonitorCommandTest extends TestCase
     use MessageCreatorTrait;
 
     public $log;
+
     public $filePath;
 
     public function setUp(): void
@@ -29,7 +30,7 @@ class MonitorCommandTest extends TestCase
         parent::setUp();
 
         $this->log;
-        $this->filePath = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
+        $this->filePath = config('stethoscope.log_file_storage.path').now()->format('Y-m-d');
 
         Storage::delete($this->filePath);
 
@@ -40,7 +41,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive'
+            Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
         $this->artisan('stethoscope:monitor')->assertOk();
@@ -58,7 +59,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive'
+            Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
         Config::set('stethoscope.drivers.log_record', 'database');
@@ -72,7 +73,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 80, HardDisk::class => 100000000, Memory::class => 70,
-            Network::class => true, WebServer::class => 'active'
+            Network::class => true, WebServer::class => 'active',
         ]);
 
         $this->artisan('stethoscope:monitor')->assertOk();
@@ -90,7 +91,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive'
+            Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
         Config::set('stethoscope.monitorable_resources.cpu', false);

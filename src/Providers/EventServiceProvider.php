@@ -11,7 +11,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         TroubleOccurred::class => [
             SendResourceLogNotification::class,
-        ]
+        ],
     ];
 
     /**

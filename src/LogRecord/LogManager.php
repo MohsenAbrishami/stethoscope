@@ -21,8 +21,6 @@ class LogManager extends Manager
 
     /**
      * Get an instance of the log driver.
-     *
-     * @return LogRecordInterface
      */
     public function createFileDriver(): LogRecordInterface
     {
@@ -31,8 +29,6 @@ class LogManager extends Manager
 
     /**
      * Get an instance of the log driver.
-     *
-     * @return LogRecordInterface
      */
     public function createDatabaseDriver(): LogRecordInterface
     {

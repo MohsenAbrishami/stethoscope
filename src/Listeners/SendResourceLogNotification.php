@@ -6,7 +6,7 @@ class SendResourceLogNotification
 {
     public function handle($resourceLogs)
     {
-        if (!is_null(config('stethoscope.notifications.notifiable'))) {
+        if (! is_null(config('stethoscope.notifications.notifiable'))) {
             $notifiable = app(config('stethoscope.notifications.notifiable'));
 
             $notificationClass = $this->detemineNotificationClass();

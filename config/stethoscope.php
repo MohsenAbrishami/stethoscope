@@ -81,7 +81,7 @@ return [
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file')
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file'),
     ],
 
     /*
@@ -117,10 +117,9 @@ return [
     | Also, you can customize the monitoring panel path.
     |
     */
-    'monitoring_panel' =>
-    [
+    'monitoring_panel' => [
         'status' => false,
         'path' => 'monitoring-panel',
         'key' => env('monitoring_panel_key'),
-    ]
+    ],
 ];

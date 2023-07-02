@@ -8,7 +8,7 @@ class Notifiable
 {
     use NotifiableTrait;
 
-    public function routeNotificationForMail(): string | array
+    public function routeNotificationForMail(): string|array
     {
         return config('stethoscope.notifications.mail.to');
     }

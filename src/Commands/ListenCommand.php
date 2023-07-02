@@ -28,7 +28,6 @@ class ListenCommand extends Command
         $this->storage = Storage::disk(config('stethoscope.storage.driver'));
     }
 
-
     /**
      * The name and signature of the console command.
      *
@@ -64,19 +63,19 @@ class ListenCommand extends Command
             );
         }
 
-        if ($resources->contains('memory')  || $resourcesIsEmpty) {
+        if ($resources->contains('memory') || $resourcesIsEmpty) {
             $this->info(
                 $this->memoryMessage($this->memory->check())
             );
         }
 
-        if ($resources->contains('network')  || $resourcesIsEmpty) {
+        if ($resources->contains('network') || $resourcesIsEmpty) {
             $this->info(
                 $this->networkMessage($this->network->check())
             );
         }
 
-        if ($resources->contains('web-server')  || $resourcesIsEmpty) {
+        if ($resources->contains('web-server') || $resourcesIsEmpty) {
             $this->info(
                 $this->webServerMessage($this->webServer->check())
             );

@@ -6,6 +6,6 @@ class HardDisk implements ServiceInterface
 {
     public function check(): string
     {
-        return diskfreespace('/');
+        return disk_free_space('/');
     }
 }
