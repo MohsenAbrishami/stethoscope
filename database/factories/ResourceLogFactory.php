@@ -15,7 +15,7 @@ class ResourceLogFactory extends Factory
 
         return [
             'resource' => $resources[random_int(0, 4)],
-            'log' => $this->faker->text()
+            'log' => $this->faker->text(),
         ];
     }
 }

@@ -19,23 +19,24 @@ class FileDriver implements LogRecordInterface
 
     public function record($resourceLogs)
     {
-        $file = config('stethoscope.log_file_storage.path') . now()->format('Y-m-d');
+        $file = config('stethoscope.log_file_storage.path').now()->format('Y-m-d');
 
         $log = '';
 
         foreach ($resourceLogs as $resource => $report) {
-            $method = $resource . 'Message';
+            $method = $resource.'Message';
 
             if (method_exists($this, $method)) {
-                $log .= $this->$method($report) . "\n";
+                $log .= $this->$method($report)."\n";
             }
         }
 
         if ($log != '') {
-            $log = $this->timeMessage() . "\n" . $log;
+            $log = $this->timeMessage()."\n".$log;
 
-            if ($this->storage->exists($file))
-                $log = $this->storage->get($file) . "\n \n" . $log;
+            if ($this->storage->exists($file)) {
+                $log = $this->storage->get($file)."\n \n".$log;
+            }
 
             $this->storage->put($file, $log);
         }

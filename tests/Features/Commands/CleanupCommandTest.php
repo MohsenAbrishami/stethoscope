@@ -17,11 +17,11 @@ class CleanupCommandTest extends TestCase
         Config::set('stethoscope.drivers.log_record', 'database');
 
         $oldLogId = ResourceLog::factory()->create([
-            'created_at' => $this->faker->dateTimeBetween('-15 days', '-7 days')
+            'created_at' => $this->faker->dateTimeBetween('-15 days', '-7 days'),
         ])->id;
 
         $newLogId = ResourceLog::factory()->create([
-            'created_at' => $this->faker->dateTimeBetween('-7 days')
+            'created_at' => $this->faker->dateTimeBetween('-7 days'),
         ])->id;
 
         $this->artisan('stethoscope:clean')->assertOk();
@@ -33,12 +33,12 @@ class CleanupCommandTest extends TestCase
     public function test_delete_old_resource_log_files_from_storage()
     {
         Storage::disk(config('stethoscope.log_file_storage.driver'))
-            ->put(config('stethoscope.log_file_storage.path') . date('Y-m-d'), '');
+            ->put(config('stethoscope.log_file_storage.path').date('Y-m-d'), '');
 
-        Storage::assertExists(config('stethoscope.log_file_storage.path') . date('Y-m-d'));
+        Storage::assertExists(config('stethoscope.log_file_storage.path').date('Y-m-d'));
 
         $this->artisan('stethoscope:clean')->assertOk();
 
-        Storage::assertMissing(config('stethoscope.log_file_storage.path') . date('Y-m-d'));
+        Storage::assertMissing(config('stethoscope.log_file_storage.path').date('Y-m-d'));
     }
 }

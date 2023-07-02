@@ -9,8 +9,8 @@ class MonitoringPanelController extends Controller
         return view('mohsenabrishami::MonitoringPanel', [
             'stethoscopeScriptVariables' => [
                 'host' => url('/'),
-                'monitoring_panel_key' => config('stethoscope.monitoring_panel.key')
-            ]
+                'monitoring_panel_key' => config('stethoscope.monitoring_panel.key'),
+            ],
         ]);
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Notifications\Notification;
 
 class LogReportNotification extends Notification
 {
-
     public $resourceLogs;
 
     /**
@@ -28,7 +27,7 @@ class LogReportNotification extends Notification
      */
     public function via($notifiable)
     {
-        $notificationChannels = config('stethoscope.notifications.notifications.' . static::class);
+        $notificationChannels = config('stethoscope.notifications.notifications.'.static::class);
 
         return array_filter($notificationChannels);
     }
@@ -44,7 +43,7 @@ class LogReportNotification extends Notification
         return (new MailMessage)
             ->subject('Stethoscope Alert')
             ->view('mohsenabrishami::emails.ResourceLog', [
-                'resourceLogs' => $this->resourceLogs
+                'resourceLogs' => $this->resourceLogs,
             ]);
     }
 

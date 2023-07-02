@@ -1,9 +1,9 @@
 <?php
 
 namespace MohsenAbrishami\Stethoscope\Commands;
-use MohsenAbrishami\Stethoscope\LogRecord\Facades\Record;
 
 use Illuminate\Console\Command;
+use MohsenAbrishami\Stethoscope\LogRecord\Facades\Record;
 
 class CleanupCommand extends Command
 {

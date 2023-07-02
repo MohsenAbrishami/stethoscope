@@ -81,7 +81,7 @@ return [
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file')
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file'),
     ],
 
     /*
@@ -112,12 +112,14 @@ return [
     'cleanup_resource_logs' => 7,
 
     /*
+    |
     | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
+    | Also, you can customize the monitoring panel path.
+    |
     */
-    'monitoring_panel' =>
-    [
-        'path' => env('monitoring_panel_path'),
+    'monitoring_panel' => [
         'status' => false,
+        'path' => 'monitoring-panel',
         'key' => env('monitoring_panel_key'),
-    ]
+    ],
 ];

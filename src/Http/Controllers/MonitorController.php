@@ -26,8 +26,8 @@ class MonitorController extends Controller
 
     public function history($from, $to)
     {
-        $resourceLogs = ResourceLog::where('created_at', '>=', $from . ' 00:00:00')
-            ->where('created_at', '<=', $to . ' 23:59:59')
+        $resourceLogs = ResourceLog::where('created_at', '>=', $from.' 00:00:00')
+            ->where('created_at', '<=', $to.' 23:59:59')
             ->select(DB::raw('date(created_at) as date'), 'resource')
             ->get();
 
@@ -43,8 +43,8 @@ class MonitorController extends Controller
                 'memory' => $this->resourceLogCount('memory', $labels, $resourceLogs),
                 'hard_disk' => $this->resourceLogCount('hardDisk', $labels, $resourceLogs),
                 'network' => $this->resourceLogCount('network', $labels, $resourceLogs),
-                'web_server' => $this->resourceLogCount('webServer', $labels, $resourceLogs)
-            ]
+                'web_server' => $this->resourceLogCount('webServer', $labels, $resourceLogs),
+            ],
         ]);
     }
 
@@ -57,6 +57,7 @@ class MonitorController extends Controller
             });
             array_push($logCount, count($resourceCount) > 1 ? $resourceCount[1] : 0);
         }
+
         return $logCount;
     }
 }

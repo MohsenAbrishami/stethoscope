@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class MonitorTest extends TestCase
 {
-    function test_get_resource_current_state()
+    public function test_get_resource_current_state()
     {
         $this->enableMonitoring();
 
@@ -26,11 +26,11 @@ class MonitorTest extends TestCase
         ResourceLog::factory(5, [
             'resource' => 'cpu',
             'created_at' => $yesterday,
-            'updated_at' => $yesterday
+            'updated_at' => $yesterday,
         ])->create();
 
         ResourceLog::factory([
-            'resource' => 'cpu'
+            'resource' => 'cpu',
         ])->create();
 
         $this->get("monitor/history/$yesterday/$today")

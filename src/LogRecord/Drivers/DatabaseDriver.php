@@ -12,7 +12,7 @@ class DatabaseDriver implements LogRecordInterface
         foreach ($resourceLogs as $resource => $log) {
             ResourceLog::create([
                 'resource' => $resource,
-                'log' => $log
+                'log' => $log,
             ]);
         }
     }

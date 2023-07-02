@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Mockery\MockInterface;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery\MockInterface;
 use MohsenAbrishami\Stethoscope\StethoscopeServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
