@@ -139,7 +139,7 @@ you can access this panel with address https://yoursite/monitoring-panel?key=sam
 | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
 */
 'monitoring_panel.status' => false,
-'monitoring_panel_key' => env('monitoring_panel_key')
+'monitoring_panel_key' => env('MONITORING_PANEL_KEY')
 ```
 ## Configuration
 
@@ -279,7 +279,7 @@ By default, the configuration looks like this:
     [
         'status' => false,
         'path' => 'monitoring-panel',
-        'key' => env('monitoring_panel_key'),
+        'key' => env('MONITORING_PANEL_KEY'),
     ]
 ```
 
