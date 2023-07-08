@@ -120,6 +120,6 @@ return [
     'monitoring_panel' => [
         'status' => false,
         'path' => 'monitoring-panel',
-        'key' => env('monitoring_panel_key'),
+        'key' => env('MONITORING_PANEL_KEY'),
     ],
 ];
