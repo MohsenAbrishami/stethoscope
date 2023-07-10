@@ -62,27 +62,35 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
+import { onBeforeUnmount, onMounted, reactive } from 'vue'
 import axios from 'axios'
 
 const statuses = reactive({
-    cpu: null,
-    hardDisk: null,
-    memory: null,
-    network: null,
-    webServer: null,
+    cpu: 'Loading..',
+    hardDisk: 'Loading..',
+    memory: 'Loading..',
+    network: 'Loading..',
+    webServer: 'Loading..',
 })
 
 onMounted(() => {
     getCurrentStatus()
 })
 
+onBeforeUnmount(() => {
+    clearInterval(statusChecker)
+})
+
+const statusChecker = setInterval(() => {
+    getCurrentStatus()
+}, 180000)
+
 function getCurrentStatus() {
-    axios.get(`${window.LogViewer.host}/monitor/current?key=${window.LogViewer.monitoring_panel_key}`)
+    axios.get('monitor/current')
         .then((value) => {
-            statuses.cpu = value.data.cpu
-            statuses.hardDisk = value.data.hard_disk
-            statuses.memory = value.data.memory
+            statuses.cpu = `${Number(value.data.cpu).toFixed(2)} %`
+            statuses.hardDisk = `${(Number(value.data.hard_disk) / (1024 ** 3)).toFixed(2)} GB`
+            statuses.memory = `${Number(value.data.memory).toFixed(2)} %`
             statuses.network = value.data.network
             statuses.webServer = value.data.web_server
         })
