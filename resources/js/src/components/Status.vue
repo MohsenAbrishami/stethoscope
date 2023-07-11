@@ -86,7 +86,7 @@ const statusChecker = setInterval(() => {
 }, 180000)
 
 function getCurrentStatus() {
-    axios.get('monitor/current')
+    axios.get(`${window.LogViewer.host}/monitor/current?key=${window.LogViewer.monitoring_panel_key}`)
         .then((value) => {
             statuses.cpu = `${Number(value.data.cpu).toFixed(2)} %`
             statuses.hardDisk = `${(Number(value.data.hard_disk) / (1024 ** 3)).toFixed(2)} GB`
