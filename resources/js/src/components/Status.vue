@@ -2,7 +2,7 @@
     <div class="container w-9/12 mx-auto mt-6 bg-white rounded-lg p-2">
         <span class="pl-3 py-4 font-bold inline-block">Monitoring Overview:</span>
         <img
-            src="../../public/refresh.png"
+            src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/refresh.png"
             class="w-10 inline-block float-right mr-3 cursor-pointer"
             @click.prevent="getCurrentStatus()"
         >
@@ -13,7 +13,7 @@
                     <span class="inline-block">{{ statuses.cpu }}</span>
                     <img
                         class="inline-block float-right w-12"
-                        src="../../public/cpu-icon.png"
+                        src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/cpu-icon.png"
                     >
                 </div>
             </div>
@@ -23,7 +23,7 @@
                     <span class="inline-block">{{ statuses.memory }}</span>
                     <img
                         class="inline-block float-right w-12"
-                        src="../../public/ram-icon.png"
+                        src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/ram-icon.png"
                     >
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <span class="inline-block">{{ statuses.hardDisk }}</span>
                     <img
                         class="inline-block float-right w-12"
-                        src="../../public/harddisk-icon.png"
+                        src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/harddisk-icon.png"
                     >
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     <span class="inline-block">{{ statuses.webServer }}</span>
                     <img
                         class="inline-block float-right w-12"
-                        src="../../public/web-server-icon.png"
+                        src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/web-server-icon.png"
                     >
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
                     <img
                         class="inline-block float-right w-12"
-                        src="../../public/network-icon.png"
+                        src="https://raw.githubusercontent.com/MohsenAbrishami/stethoscope/main/resources/js/public/network-icon.png"
                     >
                 </div>
             </div>

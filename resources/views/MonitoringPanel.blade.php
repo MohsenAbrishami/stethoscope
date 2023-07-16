@@ -8,7 +8,7 @@
   </head>
   <body class="bg-gray-100">
     <div id="app"></div>
-    @vite(['resources/js/src/main.js', 'resources/js/src/style.css'])
+    @vite(['resources/js/src/main.js', 'resources/js/src/style.css'], 'stethoscope/build')
 
     <script>
       window.LogViewer = @json($stethoscopeScriptVariables);
