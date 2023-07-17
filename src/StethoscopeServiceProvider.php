@@ -46,7 +46,7 @@ class StethoscopeServiceProvider extends ServiceProvider
 
             // publishing the build files
             $this->publishes([
-                __DIR__.'/../public/build' => public_path('stethoscope/build'),
+                __DIR__.'/../public/build' => public_path('vendor/stethoscope'),
             ], 'stethoscope-publish-view');
 
             $this->commands([
