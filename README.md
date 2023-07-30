@@ -10,6 +10,7 @@
     <a href="#usage">Usage</a> |
     <a href="#dashboard">Dashboard</a> |
     <a href="#configuration">Configuration</a> |
+    <a href="#notification">Notification</a> |
     <a href="#testing">Testing</a> |
     <a href="#changelog">Changelog</a> |
     <a href="#contributing">Contributing</a> |
@@ -281,6 +282,99 @@ By default, the configuration looks like this:
         'path' => 'monitoring-panel',
         'key' => env('MONITORING_PANEL_KEY'),
     ]
+```
+
+## Notification
+stethoscope can send you server problems through notifications. By default, sending notifications via email is supported.
+To use this feature, you must enter the email address of the admin user in the config file.
+
+```php
+'mail' => [
+    'to' => null,
+],
+```
+
+### Adding extra notification channels
+It's easy to add an extra notification channel such as Telegram or native mobile push notification, etc.
+In the following example we're going to add the Telegram push notifications channel. Other notification drivers can be added in the same way.
+
+### 1. INSTALL THE NOTIFICATION CHANNEL DRIVER
+
+```
+laravel-notification-channels/telegram
+```
+After composer has pulled in the package, just follow the installation instructions of the package to complete the installation.
+
+### 2. CREATING YOUR OWN CUSTOM NOTIFICATION
+
+```php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use MohsenAbrishami\Stethoscope\Notifications\LogReportNotification;
+use NotificationChannels\Telegram\TelegramMessage;
+
+class StethoscopeNotification extends LogReportNotification
+{
+    use Queueable;
+
+    public function toTelegram()
+    {
+        $formattedMessage = "
+        *Message from stethoscope:*
+
+        *Be careful!! 💀*
+        
+        Your server has the following problems:
+        " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
+        " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
+        " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
+        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the hard disk:  ' . $this->resourceLogs['hardDisk'] . ' byte' : '') . "
+        " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
+    ";
+
+        return TelegramMessage::create()->content($formattedMessage);
+    }
+}
+```
+### 3. CREATING YOUR OWN CUSTOM NOTIFIABLE
+
+```php
+namespace App\Notifications;
+
+use MohsenAbrishami\Stethoscope\Notifications\Notifiable;
+
+class StethoscopeNotifiable extends Notifiable
+{
+    public function routeNotificationForTelegram()
+    {
+        return config('stethoscope.notifications.telegram.channel_id');
+    }
+}
+```
+
+### 4. REGISTER YOUR CUSTOM NOTIFICATION IN THE CONFIG FILE
+
+```php
+/*
+|
+| You can get notified when specific events occur. you should set an email to get notifications here.
+| If you don't need to send an email notification, set null.
+*/
+'notifications' => [
+
+    'notifications' => [
+        App\Notifications\StethoscopeNotification::class => ['telegram']
+    ],
+
+    'notifiable' => App\Notifications\StethoscopeNotifiable::class,
+
+    'telegram' => [
+        'channel_id' => env('TELEGRAM_CHAT_ID')
+    ]
+
+],
 ```
 
 ## Testing
