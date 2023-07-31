@@ -284,7 +284,7 @@ To use this feature, you must enter the email address of the admin user in the c
 It's easy to add an extra notification channel such as Telegram or native mobile push notification, etc.
 In the following example we're going to add the Telegram push notifications channel. Other notification drivers can be added in the same way.
 
-### 1. INSTALL THE NOTIFICATION CHANNEL DRIVER
+### 1. Install the notification channel driver
 
 First you need to create your custom driver. For Telegram push notifications, you can use following package:
 
@@ -295,7 +295,7 @@ After composer has pulled in the package, just follow
 <a href="https://github.com/laravel-notification-channels/telegram">the installation instructions of the package</a>
 to complete the installation.
 
-### 2. CREATING YOUR OWN CUSTOM NOTIFICATION
+### 2. Creating your own custom notification
 
 In the following, you'll need to create your own notification class like the one below:
 
@@ -330,7 +330,7 @@ class StethoscopeNotification extends LogReportNotification
     }
 }
 ```
-### 3. CREATING YOUR OWN CUSTOM NOTIFIABLE
+### 3. Creating your own custom notifiable
 
 Also, you should create notifiable class. For this example, as you can see below, the Telegram channel ID should be returned:
 
@@ -348,7 +348,7 @@ class StethoscopeNotifiable extends Notifiable
 }
 ```
 
-### 4. REGISTER YOUR CUSTOM NOTIFICATION IN THE CONFIG FILE
+### 4. Register your custom notification in the config file
 
 Finally, you should register notification and notifiable classes and add the telegram channel id:
 
