@@ -135,12 +135,21 @@ Remember that the monitoring dashboard is disabled by default. To activate, you 
 You can put a key to access the admin panel. If you define a key, you can access the dashboard only when you enter the key in the address.
 
 you can access this panel with address https://yoursite/monitoring-panel?key=sampletoken
+
 ```php
-/*
-| Here, you can specify whether the monitoring panel is enabled and the key required to access it.
-*/
-'monitoring_panel.status' => false,
-'monitoring_panel_key' => env('MONITORING_PANEL_KEY')
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Configuration
+    |--------------------------------------------------------------------------
+    | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
+    | Also, you can customize the monitoring panel path.
+    |
+    */
+    'monitoring_panel' => [
+        'status' => false,
+        'path' => 'monitoring-panel',
+        'key' => env('MONITORING_PANEL_KEY'),
+    ],
 ```
 ## Configuration
 
@@ -215,6 +224,7 @@ By default, the configuration looks like this:
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
     | You may define minimum hard disk space by byte.
+    |
     */
 
     'thresholds' => [
@@ -246,42 +256,18 @@ By default, the configuration looks like this:
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER'  ,'file')
-    ]
-
-    /*
-    |
-    | You can get notified when specific events occur. you should set an email to get notifications here.
-    |
-    */
-
-    'notifications' => [
-        'mail' => [
-            'to' => null,
-        ],
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file'),
     ],
 
     /*
-    |
+    |--------------------------------------------------------------------------
+    | Clean up resource logs
+    |--------------------------------------------------------------------------
     | Here you define the number of days for which resource logs must be kept.
     | Older resource logs will be removed.
     |
     */
-
     'cleanup_resource_logs' => 7,
-
-    /*
-    |
-    | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
-    | Also, you can customize the monitoring panel path.
-    |
-    */
-    'monitoring_panel' =>
-    [
-        'status' => false,
-        'path' => 'monitoring-panel',
-        'key' => env('MONITORING_PANEL_KEY'),
-    ]
 ```
 
 ## Notification
@@ -357,24 +343,27 @@ class StethoscopeNotifiable extends Notifiable
 ### 4. REGISTER YOUR CUSTOM NOTIFICATION IN THE CONFIG FILE
 
 ```php
-/*
-|
-| You can get notified when specific events occur. you should set an email to get notifications here.
-| If you don't need to send an email notification, set null.
-*/
-'notifications' => [
-
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    | You can get notified when specific events occur. you should set an email to get notifications here.
+    | If you don't need to send an email notification, set null.
+    |
+    */
     'notifications' => [
-        App\Notifications\StethoscopeNotification::class => ['telegram']
+
+        'notifications' => [
+            \MohsenAbrishami\Stethoscope\Notifications\LogReportNotification::class => ['mail'],
+        ],
+
+        'notifiable' => \MohsenAbrishami\Stethoscope\Notifications\Notifiable::class,
+
+        'mail' => [
+            'to' => null,
+        ],
+
     ],
-
-    'notifiable' => App\Notifications\StethoscopeNotifiable::class,
-
-    'telegram' => [
-        'channel_id' => env('TELEGRAM_CHAT_ID')
-    ]
-
-],
 ```
 
 ## Testing
