@@ -286,12 +286,18 @@ In the following example we're going to add the Telegram push notifications chan
 
 ### 1. INSTALL THE NOTIFICATION CHANNEL DRIVER
 
+First you need to create your custom driver. For Telegram push notifications, you can use following package:
+
 ```
 laravel-notification-channels/telegram
 ```
-After composer has pulled in the package, just follow the installation instructions of the package to complete the installation.
+After composer has pulled in the package, just follow 
+<a href="https://github.com/laravel-notification-channels/telegram">the installation instructions of the package</a>
+to complete the installation.
 
 ### 2. CREATING YOUR OWN CUSTOM NOTIFICATION
+
+In the following, you'll need to create your own notification class like the one below:
 
 ```php
 
@@ -326,6 +332,8 @@ class StethoscopeNotification extends LogReportNotification
 ```
 ### 3. CREATING YOUR OWN CUSTOM NOTIFIABLE
 
+Also, you should create notifiable class. For this example, as you can see below, the Telegram channel ID should be returned:
+
 ```php
 namespace App\Notifications;
 
@@ -342,6 +350,8 @@ class StethoscopeNotifiable extends Notifiable
 
 ### 4. REGISTER YOUR CUSTOM NOTIFICATION IN THE CONFIG FILE
 
+Finally, you should register notification and notifiable classes and add the telegram channel id:
+
 ```php
     /*
     |--------------------------------------------------------------------------
@@ -354,14 +364,14 @@ class StethoscopeNotifiable extends Notifiable
     'notifications' => [
 
         'notifications' => [
-            \MohsenAbrishami\Stethoscope\Notifications\LogReportNotification::class => ['mail'],
+            App\Notifications\StethoscopeNotification::class => ['telegram'],
         ],
 
-        'notifiable' => \MohsenAbrishami\Stethoscope\Notifications\Notifiable::class,
+        'notifiable' => App\Notifications\StethoscopeNotifiable::class,
 
-        'mail' => [
-            'to' => null,
-        ],
+        'telegram' => [
+            'channel_id' => env('TELEGRAM_CHAT_ID')
+        ]
 
     ],
 ```
