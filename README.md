@@ -10,6 +10,7 @@
     <a href="#usage">Usage</a> |
     <a href="#dashboard">Dashboard</a> |
     <a href="#configuration">Configuration</a> |
+    <a href="#notification">Notification</a> |
     <a href="#testing">Testing</a> |
     <a href="#changelog">Changelog</a> |
     <a href="#contributing">Contributing</a> |
@@ -134,12 +135,21 @@ Remember that the monitoring dashboard is disabled by default. To activate, you 
 You can put a key to access the admin panel. If you define a key, you can access the dashboard only when you enter the key in the address.
 
 you can access this panel with address https://yoursite/monitoring-panel?key=sampletoken
+
 ```php
-/*
-| Here, you can specify whether the monitoring panel is enabled and the key required to access it.
-*/
-'monitoring_panel.status' => false,
-'monitoring_panel_key' => env('MONITORING_PANEL_KEY')
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard Configuration
+    |--------------------------------------------------------------------------
+    | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
+    | Also, you can customize the monitoring panel path.
+    |
+    */
+    'monitoring_panel' => [
+        'status' => false,
+        'path' => 'monitoring-panel',
+        'key' => env('MONITORING_PANEL_KEY'),
+    ],
 ```
 ## Configuration
 
@@ -214,6 +224,7 @@ By default, the configuration looks like this:
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
     | You may define minimum hard disk space by byte.
+    |
     */
 
     'thresholds' => [
@@ -245,42 +256,124 @@ By default, the configuration looks like this:
     */
 
     'drivers' => [
-        'log_record' => env('STETHOSCOPE_LOG_DRIVER'  ,'file')
-    ]
-
-    /*
-    |
-    | You can get notified when specific events occur. you should set an email to get notifications here.
-    |
-    */
-
-    'notifications' => [
-        'mail' => [
-            'to' => null,
-        ],
+        'log_record' => env('STETHOSCOPE_LOG_DRIVER', 'file'),
     ],
 
     /*
-    |
+    |--------------------------------------------------------------------------
+    | Clean up resource logs
+    |--------------------------------------------------------------------------
     | Here you define the number of days for which resource logs must be kept.
     | Older resource logs will be removed.
     |
     */
-
     'cleanup_resource_logs' => 7,
+```
 
+## Notification
+stethoscope can send you server problems through notifications. By default, sending notifications via email is supported.
+To use this feature, you must enter the email address of the admin user in the config file.
+
+```php
+'mail' => [
+    'to' => null,
+],
+```
+
+### Adding extra notification channels
+It's easy to add an extra notification channel such as Telegram or native mobile push notification, etc.
+In the following example we're going to add the Telegram push notifications channel. Other notification drivers can be added in the same way.
+
+### 1. Install the notification channel driver
+
+First you need to create your custom driver. For Telegram push notifications, you can use following package:
+
+```
+laravel-notification-channels/telegram
+```
+After composer has pulled in the package, just follow 
+<a href="https://github.com/laravel-notification-channels/telegram">the installation instructions of the package</a>
+to complete the installation.
+
+### 2. Creating your own custom notification
+
+In the following, you'll need to create your own notification class like the one below:
+
+```php
+
+namespace App\Notifications;
+
+use Illuminate\Bus\Queueable;
+use MohsenAbrishami\Stethoscope\Notifications\LogReportNotification;
+use NotificationChannels\Telegram\TelegramMessage;
+
+class StethoscopeNotification extends LogReportNotification
+{
+    use Queueable;
+
+    public function toTelegram()
+    {
+        $formattedMessage = "
+        *Message from stethoscope:*
+
+        *Be careful!! 💀*
+        
+        Your server has the following problems:
+        " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
+        " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
+        " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
+        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the hard disk:  ' . $this->resourceLogs['hardDisk'] . ' byte' : '') . "
+        " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
+    ";
+
+        return TelegramMessage::create()->content($formattedMessage);
+    }
+}
+```
+### 3. Creating your own custom notifiable
+
+Also, you should create notifiable class. For this example, as you can see below, the Telegram channel ID should be returned:
+
+```php
+namespace App\Notifications;
+
+use MohsenAbrishami\Stethoscope\Notifications\Notifiable;
+
+class StethoscopeNotifiable extends Notifiable
+{
+    public function routeNotificationForTelegram()
+    {
+        return config('stethoscope.notifications.telegram.channel_id');
+    }
+}
+```
+
+### 4. Register your custom notification in the config file
+
+Finally, you should register notification and notifiable classes and add the telegram channel id:
+
+```php
     /*
-    |
-    | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
-    | Also, you can customize the monitoring panel path.
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
+    | You can get notified when specific events occur. you should set an email to get notifications here.
+    | If you don't need to send an email notification, set null.
     |
     */
-    'monitoring_panel' =>
-    [
-        'status' => false,
-        'path' => 'monitoring-panel',
-        'key' => env('MONITORING_PANEL_KEY'),
-    ]
+    'notifications' => [
+
+        'notifications' => [
+            App\Notifications\StethoscopeNotification::class => ['telegram'],
+        ],
+
+        'notifiable' => App\Notifications\StethoscopeNotifiable::class,
+
+        'telegram' => [
+            'channel_id' => env('TELEGRAM_CHAT_ID')
+        ]
+
+    ],
 ```
 
 ## Testing

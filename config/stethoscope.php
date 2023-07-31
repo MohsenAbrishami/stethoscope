@@ -50,6 +50,7 @@ return [
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
     | You may define minimum hard disk space by byte.
+    |
     */
 
     'thresholds' => [
@@ -85,9 +86,22 @@ return [
     ],
 
     /*
+    |--------------------------------------------------------------------------
+    | Clean up resource logs
+    |--------------------------------------------------------------------------
+    | Here you define the number of days for which resource logs must be kept.
+    | Older resource logs will be removed.
     |
+    */
+    'cleanup_resource_logs' => 7,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notifications
+    |--------------------------------------------------------------------------
     | You can get notified when specific events occur. you should set an email to get notifications here.
     | If you don't need to send an email notification, set null.
+    |
     */
     'notifications' => [
 
@@ -104,15 +118,9 @@ return [
     ],
 
     /*
-    |
-    | Here you define the number of days for which resource logs must be kept.
-    | Older resource logs will be removed.
-    |
-    */
-    'cleanup_resource_logs' => 7,
-
-    /*
-    |
+    |--------------------------------------------------------------------------
+    | Dashboard Configuration
+    |--------------------------------------------------------------------------
     | Here, you can specify whether the monitoring panel is enabled and the key required to access it.
     | Also, you can customize the monitoring panel path.
     |
