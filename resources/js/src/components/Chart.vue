@@ -1,5 +1,19 @@
 <template>
     <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg">
+        <div>
+            <span class="py-4 font-bold">Server Failures Histories</span>
+            <div class="tooltip">
+                <img
+                    class="w-12 inline-block"
+                    src="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/guide-icon.png"
+                >
+                <span class="tooltiptext">
+                    In the graph below, you can see the number of times CPU, RAM,
+                    and hard drive usage exceeds the limit, as well as
+                    the number of web server and network outages per day.
+                </span>
+            </div>
+        </div>
         <div class="py-4">
             <span class="inline text-gray-500">Select history range:</span>
             <div class="inline-block ml-3">
@@ -189,3 +203,30 @@ const selectDate = (modelData) => {
     getResourceLogHistories()
 }
 </script>
+
+<style scoped>
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #03a1fc;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 5px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>
