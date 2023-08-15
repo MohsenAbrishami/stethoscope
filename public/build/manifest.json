@@ -6,14 +6,14 @@
   "resources/js/src/main.js": {
     "css": [
       "assets/main-099d8e37.css",
-      "assets/style-ae0e567b.css"
+      "assets/style-a5501cce.css"
     ],
-    "file": "assets/main-1cd40117.js",
+    "file": "assets/main-93f6f357.js",
     "isEntry": true,
     "src": "resources/js/src/main.js"
   },
   "resources/js/src/style.css": {
-    "file": "assets/style-ae0e567b.css",
+    "file": "assets/style-a5501cce.css",
     "isEntry": true,
     "src": "resources/js/src/style.css"
   }
