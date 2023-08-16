@@ -223,7 +223,7 @@ By default, the configuration looks like this:
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
-    | You may define minimum hard disk space by byte.
+    | You may define minimum hard disk space by GB.
     |
     */
 
@@ -233,7 +233,7 @@ By default, the configuration looks like this:
 
         'memory' => env('MEMORY_MONITOR_THRESHOLD', 80),
 
-        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 5368709),
+        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 10),
 
     ],
 
@@ -322,7 +322,7 @@ class StethoscopeNotification extends LogReportNotification
         " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
         " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
         " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
-        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the hard disk:  ' . $this->resourceLogs['hardDisk'] . ' byte' : '') . "
+        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the hard disk:  ' . $this->resourceLogs['hardDisk'] . ' GB' : '') . "
         " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
     ";
 
