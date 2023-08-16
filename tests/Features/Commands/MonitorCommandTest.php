@@ -40,7 +40,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_record_log_when_resources_exceeded_threshold()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
             Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
@@ -49,7 +49,7 @@ class MonitorCommandTest extends TestCase
         $this->readLogFile();
 
         $this->assertTrue($this->assertContent($this->cpuMessage(99)));
-        $this->assertTrue($this->assertContent($this->hardDiskMessage(100)));
+        $this->assertTrue($this->assertContent($this->hardDiskMessage(1)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
         $this->assertTrue($this->assertContent($this->networkMessage('false')));
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
@@ -58,7 +58,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_inserted_log_in_database_to_database_driver()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
             Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
@@ -66,13 +66,15 @@ class MonitorCommandTest extends TestCase
 
         $this->artisan('stethoscope:monitor')->assertOk();
 
-        $this->assertDatabaseHas('resource_logs', ['log' => 99, 'log' => 'false']);
+        $this->assertDatabaseHas('resource_logs', [
+            'log' => 99, 'log' => 100, 'log' => 98, 'log' => 'false', 'log' => 'inactive'
+        ]);
     }
 
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
     {
         $this->mockServices([
-            Cpu::class => 80, HardDisk::class => 100000000, Memory::class => 70,
+            Cpu::class => 80, HardDisk::class => 100, Memory::class => 70,
             Network::class => true, WebServer::class => 'active',
         ]);
 
@@ -90,7 +92,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_not_record_log_when_monitoring_is_disabled()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 100, Memory::class => 98,
+            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
             Network::class => 'false', WebServer::class => 'inactive',
         ]);
 
