@@ -6,6 +6,6 @@ class Memory implements ServiceInterface
 {
     public function check(): string
     {
-        return exec(" free | grep Mem | awk '{print $3/$2 * 100.0}' ");
+        return number_format(exec(" free | grep Mem | awk '{print $3/$2 * 100.0}' "), 2);
     }
 }

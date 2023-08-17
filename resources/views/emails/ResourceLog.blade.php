@@ -11,9 +11,9 @@
         <p>Network connection status: {{ $resourceLogs['network'] }}</p>
     @endisset
     @isset($resourceLogs['hardDisk'])
-        <p>Remaining free space on the hard disk:  {{ $resourceLogs['hardDisk'] }} byte</p>
+        <p>Remaining free space on the hard disk: {{ $resourceLogs['hardDisk'] }} GB</p>
     @endisset
     @isset($resourceLogs['webServer'])
-        <p>Web server status  {{ $resourceLogs['webServer'] }}</p>
+        <p>Web server status: {{ $resourceLogs['webServer'] }}</p>
     @endisset
 </div>
