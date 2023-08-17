@@ -22,7 +22,7 @@ trait MessageCreatorTrait
      */
     public function cpuMessage($cpuUsage)
     {
-        return 'cpu usage ===> '.number_format((float) $cpuUsage, 2, '.', '').'%';
+        return "cpu usage ===> $cpuUsage %";
     }
 
     /**
@@ -33,7 +33,7 @@ trait MessageCreatorTrait
      */
     public function hardDiskMessage($hardDiskUsage)
     {
-        return 'hard disk free space ===> ' . $hardDiskUsage . ' GB';
+        return "hard disk free space ===> $hardDiskUsage GB";
     }
 
     /**
@@ -44,7 +44,7 @@ trait MessageCreatorTrait
      */
     public function memoryMessage($memoryUsage)
     {
-        return 'memory usage ===> '.number_format((float) $memoryUsage, 2, '.', '').'%';
+        return "memory usage ===> $memoryUsage %";
     }
 
     /**
