@@ -6,6 +6,6 @@ class HardDisk implements ServiceInterface
 {
     public function check(): string
     {
-        return (disk_free_space('/') / pow(1024, 3));
+        return number_format((disk_free_space('/') / pow(1024, 3)), 2);
     }
 }

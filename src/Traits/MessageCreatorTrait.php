@@ -33,8 +33,7 @@ trait MessageCreatorTrait
      */
     public function hardDiskMessage($hardDiskUsage)
     {
-        return "hard disk free space ===> $hardDiskUsage Byte (".
-            number_format($hardDiskUsage / 1024 / 1024 / 1024, 2, '.', '').' GB)';
+        return 'hard disk free space ===> ' . $hardDiskUsage . ' GB';
     }
 
     /**
