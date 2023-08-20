@@ -1,5 +1,5 @@
 <template>
-    <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg">
+    <div class="w-9/12 bg-white my-6 mx-auto p-5 rounded-lg mb-24">
         <div>
             <span class="py-4 font-bold">Server Failures Histories</span>
             <div class="tooltip">
