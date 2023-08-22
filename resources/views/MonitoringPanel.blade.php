@@ -11,7 +11,7 @@
     @vite(['resources/js/src/main.js', 'resources/js/src/style.css'], 'vendor/stethoscope')
 
     <script>
-      window.LogViewer = @json($stethoscopeScriptVariables);
+      window.stethoscope = @json($stethoscopeScriptVariables);
     </script>
   </body>
 </html>
