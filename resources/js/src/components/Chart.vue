@@ -128,8 +128,8 @@ const resources = reactive({
 function getResourceLogHistories() {
     const fromDate = date.value[0].toISOString().slice(0, 10)
     const toDate = date.value[1].toISOString().slice(0, 10)
-    axios.get(`${window.LogViewer.host}/monitor/history/${fromDate}/${toDate}
-        ?key=${window.LogViewer.monitoring_panel_key}`)
+    axios.get(`${window.stethoscope.host}/monitor/history/${fromDate}/${toDate}
+        ?key=${window.stethoscope.monitoring_panel_key}`)
         .then((value) => {
             resourceLog.history = value.data
             generateChart()
