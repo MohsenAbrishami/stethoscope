@@ -35,7 +35,7 @@
                         type="checkbox"
                         @click="generateChart('cpu')"
                     >
-                    <span class="text-green-500 font-bold mx-4">CPU</span>
+                    <span class="text-blue-500 font-bold mx-4">CPU</span>
                 </div>
                 <div class="block pt-2">
                     <input
@@ -59,7 +59,7 @@
                         type="checkbox"
                         @click="generateChart('network')"
                     >
-                    <span class="text-purple-400 font-bold mx-4">Network</span>
+                    <span class="text-purple-500 font-bold mx-4">Network</span>
                 </div>
                 <div class="block pt-2">
                     <input
@@ -67,7 +67,7 @@
                         type="checkbox"
                         @click="generateChart('webServer')"
                     >
-                    <span class="text-emerald-400 font-bold mx-4">Web Server</span>
+                    <span class="text-yellow-500 font-bold mx-4">Web Server</span>
                 </div>
             </div>
             <div class="inline-block h-96 w-full md:col-span-5">
@@ -147,7 +147,7 @@ function generateChart(key) {
     if (resources.cpu) {
         data.value.datasets.push({
             label: 'CPU',
-            backgroundColor: '#60a5fa',
+            backgroundColor: '#3b82f6',
             data: resourceLog.history?.resource_log_count.cpu,
         })
     }
@@ -155,7 +155,7 @@ function generateChart(key) {
     if (resources.memory) {
         data.value.datasets.push({
             label: 'Memory',
-            backgroundColor: '#4ade80',
+            backgroundColor: '#22c55e',
             data: resourceLog.history?.resource_log_count.memory,
         })
     }
@@ -163,7 +163,7 @@ function generateChart(key) {
     if (resources.hardDisk) {
         data.value.datasets.push({
             label: 'HDD',
-            backgroundColor: '#f87171',
+            backgroundColor: '#ef4444',
             data: resourceLog.history?.resource_log_count.hard_disk,
         })
     }
@@ -171,7 +171,7 @@ function generateChart(key) {
     if (resources.network) {
         data.value.datasets.push({
             label: 'network',
-            backgroundColor: '#c084fc',
+            backgroundColor: '#a855f7',
             data: resourceLog.history?.resource_log_count.network,
         })
     }
@@ -179,7 +179,7 @@ function generateChart(key) {
     if (resources.webServer) {
         data.value.datasets.push({
             label: 'web server',
-            backgroundColor: '#34d399',
+            backgroundColor: '#eab308',
             data: resourceLog.history?.resource_log_count.web_server,
         })
     }

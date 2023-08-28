@@ -7,7 +7,7 @@
             @click.prevent="getCurrentStatus()"
         >
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-            <div class="h-28 bg-red-100 p-2 rounded-lg">
+            <div class="h-28 bg-blue-100 p-2 rounded-lg">
                 <span>Cpu Usage</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.cpu }}</span>
@@ -27,7 +27,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 bg-green-100 p-2 rounded-lg">
+            <div class="h-28 bg-red-100 p-2 rounded-lg">
                 <span>Hard Disk Space</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.hardDisk }}</span>
@@ -37,7 +37,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 bg-red-100 p-2 rounded-lg">
+            <div class="h-28 bg-purple-100 p-2 rounded-lg">
                 <span>Web server status</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.webServer }}</span>
@@ -47,7 +47,7 @@
                     >
                 </div>
             </div>
-            <div class="h-28 bg-green-100 p-2 rounded-lg">
+            <div class="h-28 bg-yellow-100 p-2 rounded-lg">
                 <span>Network Status</span>
                 <div class="pt-4">
                     <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
