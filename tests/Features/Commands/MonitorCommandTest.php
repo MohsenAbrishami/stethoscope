@@ -41,7 +41,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive',
+            Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
         $this->artisan('stethoscope:monitor')->assertOk();
@@ -51,7 +51,7 @@ class MonitorCommandTest extends TestCase
         $this->assertTrue($this->assertContent($this->cpuMessage(99)));
         $this->assertTrue($this->assertContent($this->hardDiskMessage(1)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
-        $this->assertTrue($this->assertContent($this->networkMessage('false')));
+        $this->assertTrue($this->assertContent($this->networkMessage('disconnected')));
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
     }
 
@@ -59,7 +59,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive',
+            Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
         Config::set('stethoscope.drivers.log_record', 'database');
@@ -67,7 +67,7 @@ class MonitorCommandTest extends TestCase
         $this->artisan('stethoscope:monitor')->assertOk();
 
         $this->assertDatabaseHas('resource_logs', [
-            'log' => 99, 'log' => 100, 'log' => 98, 'log' => 'false', 'log' => 'inactive'
+            'log' => 99, 'log' => 100, 'log' => 98, 'log' => 'disconnected', 'log' => 'inactive'
         ]);
     }
 
@@ -93,7 +93,7 @@ class MonitorCommandTest extends TestCase
     {
         $this->mockServices([
             Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
-            Network::class => 'false', WebServer::class => 'inactive',
+            Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
         Config::set('stethoscope.monitorable_resources.cpu', false);

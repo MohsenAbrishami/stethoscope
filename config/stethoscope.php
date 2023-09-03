@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
+    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://1.1.1.1/'),
 
     /*
     |--------------------------------------------------------------------------

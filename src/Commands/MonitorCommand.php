@@ -61,7 +61,7 @@ class MonitorCommand extends Command
             $resourceReports['memory'] = $memoryUsage;
         }
 
-        if ($networkStatus == 'false' && config('stethoscope.monitorable_resources.network')) {
+        if ($networkStatus == 'disconnected' && config('stethoscope.monitorable_resources.network')) {
             $resourceReports['network'] = $networkStatus;
         }
 
