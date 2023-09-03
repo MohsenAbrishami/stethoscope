@@ -50,7 +50,7 @@
             <div class="h-28 bg-yellow-100 p-2 rounded-lg">
                 <span>Network Status</span>
                 <div class="pt-4">
-                    <span class="inline-block">{{ statuses.network ? 'Connected' : 'Disconnected' }}</span>
+                    <span class="inline-block">{{ statuses.network }}</span>
                     <img
                         class="inline-block float-right w-12"
                         src="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/network-icon.png"
