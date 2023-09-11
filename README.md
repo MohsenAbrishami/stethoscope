@@ -122,7 +122,7 @@ php artisan stethoscope:clean
 ## Dashboard
 Stethoscope provides a dashboard where you can easily see the current status of the server at any time. Also, in this dashboard, you can see a history of the times when resource consumption exceeded the limit or when the network and web server were disabled.
 
-![monitoring-panel](/art/monitoring_panel.png)
+![monitoring-panel](https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/monitoring_panel.png)
 
 If you use the monitoring panel, you must publish the build files:
 
