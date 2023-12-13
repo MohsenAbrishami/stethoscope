@@ -11,7 +11,7 @@
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
             <StatusItem
                 title="Cpu Usage"
-                :result="statuses.memory"
+                :result="statuses.cpu"
                 color="bg-blue-100"
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/cpu-icon.png"
             />
@@ -23,19 +23,19 @@
             />
             <StatusItem
                 title="Hard Disk Space"
-                :result="statuses.memory"
+                :result="statuses.hardDisk"
                 color="bg-red-100"
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/harddisk-icon.png"
             />
             <StatusItem
                 title="Web server status"
-                :result="statuses.memory"
+                :result="statuses.webServer"
                 color="bg-purple-100"
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/web-server-icon.png"
             />
             <StatusItem
                 title="Network Status"
-                :result="statuses.memory"
+                :result="statuses.network"
                 color="bg-yellow-100"
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/network-icon.png"
             />
