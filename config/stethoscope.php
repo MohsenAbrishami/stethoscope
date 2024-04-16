@@ -49,7 +49,7 @@ return [
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
-    | You may define minimum hard disk space by GB.
+    | You may define minimum Storage space by GB.
     |
     */
 

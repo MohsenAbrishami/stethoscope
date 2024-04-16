@@ -22,7 +22,7 @@
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/ram-icon.png"
             />
             <StatusItem
-                title="Hard Disk Space"
+                title="Storage Free Space"
                 :result="statuses.hardDisk"
                 color="bg-red-100"
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/harddisk-icon.png"

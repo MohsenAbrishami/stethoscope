@@ -46,17 +46,17 @@ With this package, You can check your server health at any time.
 
 - Monitoring memory usage percentage
 
-- Monitoring hard disk free space
+- Monitoring Storage free space
 
 - Checking the network connection status
 
 - Checking web Server status (Nginx/Apache)
 
-- Recording log when CPU, memory, and hard disk usage exceeds the specified threshold
+- Recording log when CPU, memory, and Storage usage exceeds the specified threshold
 
 - Recording log when the network connection fails or the web server deactivated
 
-- Sending email when a problem occurs in the CPU, memory, hard disk, web server, and network of server
+- Sending email when a problem occurs in the CPU, memory, Storage, web server, and network of server
 
 
 Do you need more options? you can make an issue or contributes to the package
@@ -104,7 +104,7 @@ The output will be like this:
     <img src="art/listen_command_output.png"><br />
 </div>
 
-But the work of this package didn't stop there. you can set thresholds for CPU, memory and hard disk consumption. if CPU and memory consumption exceeds thresholds or hard disk free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
+But the work of this package didn't stop there. you can set thresholds for CPU, memory and Storage consumption. if CPU and memory consumption exceeds thresholds or Storage free space is less than thresholds, then a log is created from details consumption. also, you can config this package so that if the deactivated web server or disconnected internet log is created. To start monitoring your server, just run this command:
 
 ``` bash
 php artisan stethoscope:monitor
@@ -157,13 +157,13 @@ You can easily customize this package in the config/stethoscope.php.
 
 In this file, You can configure the following:
 
-- Resources that should be monitored. We can monitor the CPU, memory, hard disk, network connection, and web server status.
+- Resources that should be monitored. We can monitor the CPU, memory, Storage, network connection, and web server status.
 
 - Web server that is installed on your server. We support Nginx and apache.
 
 - Storage driver and path to saving log files.
 
-- Resources Thresholds. Include maximum CPU and memory usage and minimum hard disk space.
+- Resources Thresholds. Include maximum CPU and memory usage and minimum Storage space.
 
 - Custom network URL for network connection monitor.
 
@@ -223,7 +223,7 @@ By default, the configuration looks like this:
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
-    | You may define minimum hard disk space by GB.
+    | You may define minimum Storage space by GB.
     |
     */
 
@@ -322,7 +322,7 @@ class StethoscopeNotification extends LogReportNotification
         " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
         " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
         " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
-        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the hard disk:  ' . $this->resourceLogs['hardDisk'] . ' GB' : '') . "
+        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the Storage:  ' . $this->resourceLogs['hardDisk'] . ' GB' : '') . "
         " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
     ";
 

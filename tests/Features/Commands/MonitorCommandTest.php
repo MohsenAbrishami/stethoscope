@@ -84,7 +84,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'Storage free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }
@@ -108,7 +108,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'Storage free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }
