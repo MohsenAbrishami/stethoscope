@@ -6,21 +6,21 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
 use MohsenAbrishami\Stethoscope\Models\ResourceLog;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
-use MohsenAbrishami\Stethoscope\Services\HardDisk;
+use MohsenAbrishami\Stethoscope\Services\storage;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
 
 class MonitorController extends Controller
 {
-    public function current(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, HardDisk $hardDisk)
+    public function current(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, storage $storage)
     {
         return response()->json([
             'cpu' => $cpu->check(),
             'memory' => $memory->check(),
             'network' => $network->check(),
             'web_server' => $webServer->check(),
-            'hard_disk' => $hardDisk->check(),
+            'hard_disk' => $storage->check(),
         ]);
     }
 
@@ -41,7 +41,7 @@ class MonitorController extends Controller
             'resource_log_count' => [
                 'cpu' => $this->resourceLogCount('cpu', $labels, $resourceLogs),
                 'memory' => $this->resourceLogCount('memory', $labels, $resourceLogs),
-                'hard_disk' => $this->resourceLogCount('hardDisk', $labels, $resourceLogs),
+                'hard_disk' => $this->resourceLogCount('storage', $labels, $resourceLogs),
                 'network' => $this->resourceLogCount('network', $labels, $resourceLogs),
                 'web_server' => $this->resourceLogCount('webServer', $labels, $resourceLogs),
             ],

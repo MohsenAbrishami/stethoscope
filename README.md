@@ -188,7 +188,7 @@ By default, the configuration looks like this:
     'monitorable_resources' => [
         'cpu' => true,
         'memory' => true,
-        'hard_disk' => true,
+        'storage' => true,
         'network' => true,
         'web_server' => true,
     ],
@@ -233,7 +233,7 @@ By default, the configuration looks like this:
 
         'memory' => env('MEMORY_MONITOR_THRESHOLD', 80),
 
-        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 10),
+        'storage' => env('storage_MONITOR_THRESHOLD', 10),
 
     ],
 
@@ -322,7 +322,7 @@ class StethoscopeNotification extends LogReportNotification
         " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
         " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
         " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
-        " . (isset($this->resourceLogs['hardDisk']) ? '- Remaining free space on the Storage:  ' . $this->resourceLogs['hardDisk'] . ' GB' : '') . "
+        " . (isset($this->resourceLogs['storage']) ? '- Remaining free space on the Storage:  ' . $this->resourceLogs['storage'] . ' GB' : '') . "
         " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
     ";
 

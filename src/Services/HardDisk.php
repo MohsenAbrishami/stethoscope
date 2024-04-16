@@ -2,7 +2,7 @@
 
 namespace MohsenAbrishami\Stethoscope\Services;
 
-class HardDisk implements ServiceInterface
+class storage implements ServiceInterface
 {
     public function check(): string
     {
