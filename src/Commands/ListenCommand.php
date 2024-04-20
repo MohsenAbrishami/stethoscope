@@ -5,7 +5,7 @@ namespace MohsenAbrishami\Stethoscope\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
-use MohsenAbrishami\Stethoscope\Services\storage;
+use MohsenAbrishami\Stethoscope\Services\Storage as StorageService;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
@@ -15,7 +15,7 @@ class ListenCommand extends Command
 {
     use MessageCreatorTrait;
 
-    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, storage $storage)
+    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, StorageService $storage)
     {
         parent::__construct();
 
