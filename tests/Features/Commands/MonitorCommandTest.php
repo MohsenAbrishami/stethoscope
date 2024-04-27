@@ -98,7 +98,7 @@ class MonitorCommandTest extends TestCase
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
         Config::set('stethoscope.monitorable_resources.memory', false);
-        Config::set('stethoscope.monitorable_resources.hard_disk', false);
+        Config::set('stethoscope.monitorable_resources.storage', false);
         Config::set('stethoscope.monitorable_resources.network', false);
         Config::set('stethoscope.monitorable_resources.web_server', false);
 
