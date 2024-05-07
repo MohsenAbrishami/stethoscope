@@ -20,7 +20,7 @@ class MonitorController extends Controller
             'memory' => $memory->check(),
             'network' => $network->check(),
             'web_server' => $webServer->check(),
-            'hard_disk' => $storage->check(),
+            'storage' => $storage->check(),
         ]);
     }
 
@@ -41,7 +41,7 @@ class MonitorController extends Controller
             'resource_log_count' => [
                 'cpu' => $this->resourceLogCount('cpu', $labels, $resourceLogs),
                 'memory' => $this->resourceLogCount('memory', $labels, $resourceLogs),
-                'hard_disk' => $this->resourceLogCount('storage', $labels, $resourceLogs),
+                'storage' => $this->resourceLogCount('storage', $labels, $resourceLogs),
                 'network' => $this->resourceLogCount('network', $labels, $resourceLogs),
                 'web_server' => $this->resourceLogCount('webServer', $labels, $resourceLogs),
             ],

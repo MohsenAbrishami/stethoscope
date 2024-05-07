@@ -13,7 +13,7 @@ class MonitorTest extends TestCase
 
         $this->get('monitor/current')
             ->assertOk()
-            ->assertJsonStructure(['cpu', 'memory', 'network', 'web_server', 'hard_disk']);
+            ->assertJsonStructure(['cpu', 'memory', 'network', 'web_server', 'storage']);
     }
 
     public function test_get_resources_log_history()

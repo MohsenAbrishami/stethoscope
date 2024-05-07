@@ -65,7 +65,7 @@ class MonitorCommand extends Command
             $resourceReports['network'] = $networkStatus;
         }
 
-        if ($storageFreeSpace < config(('stethoscope.thresholds.hard_disk')) && config('stethoscope.monitorable_resources.hard_disk')) {
+        if ($storageFreeSpace < config(('stethoscope.thresholds.storage')) && config('stethoscope.monitorable_resources.storage')) {
             $resourceReports['storage'] = $storageFreeSpace;
         }
 

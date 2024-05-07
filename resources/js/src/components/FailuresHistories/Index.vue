@@ -164,7 +164,7 @@ function generateChart(key) {
         data.value.datasets.push({
             label: 'HDD',
             backgroundColor: '#ef4444',
-            data: resourceLog.history?.resource_log_count.hard_disk,
+            data: resourceLog.history?.resource_log_count.storage,
         })
     }
 
