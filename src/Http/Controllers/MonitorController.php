@@ -6,14 +6,14 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\DB;
 use MohsenAbrishami\Stethoscope\Models\ResourceLog;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
-use MohsenAbrishami\Stethoscope\Services\storage;
+use MohsenAbrishami\Stethoscope\Services\Storage;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
 
 class MonitorController extends Controller
 {
-    public function current(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, storage $storage)
+    public function current(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, Storage $storage)
     {
         return response()->json([
             'cpu' => $cpu->check(),
