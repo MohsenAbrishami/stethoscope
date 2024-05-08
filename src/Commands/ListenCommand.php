@@ -23,7 +23,7 @@ class ListenCommand extends Command
         $this->memory = $memory;
         $this->network = $network;
         $this->webServer = $webServer;
-        $this->storage = $storage;
+        $this->storageService = $storage;
 
         $this->storage = Storage::disk(config('stethoscope.storage.driver'));
     }
@@ -83,7 +83,7 @@ class ListenCommand extends Command
 
         if ($resources->contains('hdd') || $resourcesIsEmpty) {
             $this->info(
-                $this->storageMessage($this->storage->check())
+                $this->storageMessage($this->storageService->check())
             );
         }
     }

@@ -15,7 +15,7 @@ class ListenCommandTest extends TestCase
             ->assertOk()
             ->expectsOutputToContain('cpu usage')
             ->expectsOutputToContain('memory usage')
-            ->expectsOutputToContain('Storage free space')
+            ->expectsOutputToContain('storage free space')
             ->expectsOutputToContain('network connection status')
             ->expectsOutputToContain('web server status');
     }
@@ -26,7 +26,7 @@ class ListenCommandTest extends TestCase
             ->assertOk()
             ->expectsOutputToContain('cpu usage')
             ->expectsOutputToContain('memory usage')
-            ->expectsOutputToContain('Storage free space')
+            ->expectsOutputToContain('storage free space')
             ->expectsOutputToContain('network connection status')
             ->expectsOutputToContain('web server status');
     }
@@ -37,7 +37,7 @@ class ListenCommandTest extends TestCase
             ->assertOk()
             ->expectsOutputToContain('cpu usage')
             ->expectsOutputToContain('memory usage')
-            ->doesntExpectOutputToContain('Storage free space')
+            ->doesntExpectOutputToContain('storage free space')
             ->doesntExpectOutputToContain('network connection status')
             ->doesntExpectOutputToContain('web server status');
     }

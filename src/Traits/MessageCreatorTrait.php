@@ -33,7 +33,7 @@ trait MessageCreatorTrait
      */
     public function storageMessage($storageUsage)
     {
-        return "Storage free space ===> $storageUsage GB";
+        return "storage free space ===> $storageUsage GB";
     }
 
     /**
