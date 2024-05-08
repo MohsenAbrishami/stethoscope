@@ -26,14 +26,14 @@ trait MessageCreatorTrait
     }
 
     /**
-     * Generate hard disk free space message
+     * Generate Storage free space message
      *
      * @param int
      * @return string
      */
-    public function hardDiskMessage($hardDiskUsage)
+    public function storageMessage($storageUsage)
     {
-        return "hard disk free space ===> $hardDiskUsage GB";
+        return "storage free space ===> $storageUsage GB";
     }
 
     /**

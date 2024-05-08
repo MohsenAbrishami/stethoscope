@@ -48,7 +48,7 @@ All notable changes to `stethoscope` will be documented in this file.
 
 ## 0.1.2
 
-- Adding the ability to monitor the hard disk
+- Adding the ability to monitor the Storage
 
 ## 0.1.1
 

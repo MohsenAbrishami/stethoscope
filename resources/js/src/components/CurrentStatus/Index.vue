@@ -22,10 +22,10 @@
                 icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/ram-icon.png"
             />
             <StatusItem
-                title="Hard Disk Space"
-                :result="statuses.hardDisk"
+                title="Storage Free Space"
+                :result="statuses.storage"
                 color="bg-red-100"
-                icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/harddisk-icon.png"
+                icon="https://raw.githubusercontent.com/MohsenAbrishami/monitoring-panel/main/src/assets/storage-icon.png"
             />
             <StatusItem
                 title="Web server status"
@@ -53,7 +53,7 @@ import Loading from '../Loading.vue'
 
 const statuses = reactive({
     cpu: 'Loading..',
-    hardDisk: 'Loading..',
+    storage: 'Loading..',
     memory: 'Loading..',
     network: 'Loading..',
     webServer: 'Loading..',
@@ -78,7 +78,7 @@ function getCurrentStatus() {
     axios.get(`${window.stethoscope.host}/monitor/current?key=${window.stethoscope.monitoring_panel_key}`)
         .then((value) => {
             statuses.cpu = `${value.data.cpu} %`
-            statuses.hardDisk = `${value.data.hard_disk} GB`
+            statuses.storage = `${value.data.storage} GB`
             statuses.memory = `${value.data.memory} %`
             statuses.network = value.data.network
             statuses.webServer = value.data.web_server

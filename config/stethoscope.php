@@ -14,7 +14,7 @@ return [
     'monitorable_resources' => [
         'cpu' => true,
         'memory' => true,
-        'hard_disk' => true,
+        'storage' => true,
         'network' => true,
         'web_server' => true,
     ],
@@ -49,7 +49,7 @@ return [
     |--------------------------------------------------------------------------
     | If resource consumption exceeds these thresholds, a log will be created.
     | You may define maximum CPU and memory usage by percent.
-    | You may define minimum hard disk space by GB.
+    | You may define minimum Storage space by GB.
     |
     */
 
@@ -59,7 +59,7 @@ return [
 
         'memory' => env('MEMORY_MONITOR_THRESHOLD', 80),
 
-        'hard_disk' => env('HARD_DISK_MONITOR_THRESHOLD', 10),
+        'storage' => env('STORAGE_MONITOR_THRESHOLD', 10),
 
     ],
 

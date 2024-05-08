@@ -5,7 +5,7 @@ namespace MohsenAbrishami\Stethoscope\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
-use MohsenAbrishami\Stethoscope\Services\HardDisk;
+use MohsenAbrishami\Stethoscope\Services\Storage as StorageService;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
@@ -15,7 +15,7 @@ class ListenCommand extends Command
 {
     use MessageCreatorTrait;
 
-    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, HardDisk $hardDisk)
+    public function __construct(Cpu $cpu, Memory $memory, Network $network, WebServer $webServer, StorageService $storage)
     {
         parent::__construct();
 
@@ -23,7 +23,7 @@ class ListenCommand extends Command
         $this->memory = $memory;
         $this->network = $network;
         $this->webServer = $webServer;
-        $this->hardDisk = $hardDisk;
+        $this->storageService = $storage;
 
         $this->storage = Storage::disk(config('stethoscope.storage.driver'));
     }
@@ -83,7 +83,7 @@ class ListenCommand extends Command
 
         if ($resources->contains('hdd') || $resourcesIsEmpty) {
             $this->info(
-                $this->hardDiskMessage($this->hardDisk->check())
+                $this->storageMessage($this->storageService->check())
             );
         }
     }

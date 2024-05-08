@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
-use MohsenAbrishami\Stethoscope\Services\HardDisk;
+use MohsenAbrishami\Stethoscope\Services\storage as StorageService;
 use MohsenAbrishami\Stethoscope\Services\Memory;
 use MohsenAbrishami\Stethoscope\Services\Network;
 use MohsenAbrishami\Stethoscope\Services\WebServer;
@@ -40,7 +40,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_record_log_when_resources_exceeded_threshold()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
+            Cpu::class => 99, StorageService::class => 1, Memory::class => 98,
             Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
@@ -49,7 +49,7 @@ class MonitorCommandTest extends TestCase
         $this->readLogFile();
 
         $this->assertTrue($this->assertContent($this->cpuMessage(99)));
-        $this->assertTrue($this->assertContent($this->hardDiskMessage(1)));
+        $this->assertTrue($this->assertContent($this->storageMessage(1)));
         $this->assertTrue($this->assertContent($this->memoryMessage(98)));
         $this->assertTrue($this->assertContent($this->networkMessage('disconnected')));
         $this->assertTrue($this->assertContent($this->webServerMessage('inactive')));
@@ -58,7 +58,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_inserted_log_in_database_to_database_driver()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
+            Cpu::class => 99, StorageService::class => 1, Memory::class => 98,
             Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
@@ -74,7 +74,7 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_not_record_log_when_resources_not_exceeded_threshold()
     {
         $this->mockServices([
-            Cpu::class => 80, HardDisk::class => 100, Memory::class => 70,
+            Cpu::class => 80, StorageService::class => 100, Memory::class => 70,
             Network::class => true, WebServer::class => 'active',
         ]);
 
@@ -84,7 +84,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'Storage free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }
@@ -92,13 +92,13 @@ class MonitorCommandTest extends TestCase
     public function test_should_be_not_record_log_when_monitoring_is_disabled()
     {
         $this->mockServices([
-            Cpu::class => 99, HardDisk::class => 1, Memory::class => 98,
+            Cpu::class => 99, StorageService::class => 1, Memory::class => 98,
             Network::class => 'disconnected', WebServer::class => 'inactive',
         ]);
 
         Config::set('stethoscope.monitorable_resources.cpu', false);
         Config::set('stethoscope.monitorable_resources.memory', false);
-        Config::set('stethoscope.monitorable_resources.hard_disk', false);
+        Config::set('stethoscope.monitorable_resources.storage', false);
         Config::set('stethoscope.monitorable_resources.network', false);
         Config::set('stethoscope.monitorable_resources.web_server', false);
 
@@ -108,7 +108,7 @@ class MonitorCommandTest extends TestCase
 
         $this->assertFalse(
             $this->assertContent(
-                ['cpu usage', 'hard disk free space', 'memory usage', 'network connection status', 'web server status']
+                ['cpu usage', 'Storage free space', 'memory usage', 'network connection status', 'web server status']
             )
         );
     }

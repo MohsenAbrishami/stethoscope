@@ -11,7 +11,7 @@ class ResourceLogFactory extends Factory
 
     public function definition()
     {
-        $resources = ['cpu', 'memory', 'hardDisk', 'network', 'webServer'];
+        $resources = ['cpu', 'memory', 'storage', 'network', 'webServer'];
 
         return [
             'resource' => $resources[random_int(0, 4)],

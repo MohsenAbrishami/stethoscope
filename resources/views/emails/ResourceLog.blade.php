@@ -10,8 +10,8 @@
     @isset($resourceLogs['network'])
         <p>Network connection status: {{ $resourceLogs['network'] }}</p>
     @endisset
-    @isset($resourceLogs['hardDisk'])
-        <p>Remaining free space on the hard disk: {{ $resourceLogs['hardDisk'] }} GB</p>
+    @isset($resourceLogs['storage'])
+        <p>Remaining free space on the Storage: {{ $resourceLogs['storage'] }} GB</p>
     @endisset
     @isset($resourceLogs['webServer'])
         <p>Web server status: {{ $resourceLogs['webServer'] }}</p>

@@ -47,9 +47,9 @@
                 </div>
                 <div class="block pt-2">
                     <input
-                        v-model="resources.hardDisk"
+                        v-model="resources.storage"
                         type="checkbox"
-                        @click="generateChart('hardDisk')"
+                        @click="generateChart('storage')"
                     >
                     <span class="text-red-500 font-bold mx-4">HDD</span>
                 </div>
@@ -120,7 +120,7 @@ const resourceLog = reactive({
 const resources = reactive({
     cpu: true,
     memory: true,
-    hardDisk: true,
+    storage: true,
     network: true,
     webServer: true,
 })
@@ -160,11 +160,11 @@ function generateChart(key) {
         })
     }
 
-    if (resources.hardDisk) {
+    if (resources.storage) {
         data.value.datasets.push({
             label: 'HDD',
             backgroundColor: '#ef4444',
-            data: resourceLog.history?.resource_log_count.hard_disk,
+            data: resourceLog.history?.resource_log_count.storage,
         })
     }
 
