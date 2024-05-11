@@ -9,11 +9,14 @@ class Network implements ServiceInterface
 {
     public function check(): string
     {
-        try {
-            Http::get(config('stethoscope.network_monitor_url'))->successful();
-            $networkConnction = 'connected';
-        } catch (Exception $e) {
-            $networkConnction = 'disconnected';
+        foreach(config('stethoscope.network_monitor_url') as $networkMonitorURL){
+            try {
+                Http::get($networkMonitorURL)->successful();
+                $networkConnction = 'connected';
+                break;
+            } catch (Exception $e) {
+                $networkConnction = 'disconnected';
+            }
         }
 
         return $networkConnction;
