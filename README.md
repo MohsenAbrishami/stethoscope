@@ -241,11 +241,12 @@ By default, the configuration looks like this:
     |--------------------------------------------------------------------------
     | Network Monitor URL
     |--------------------------------------------------------------------------
-    | Here you can define the desired URL for network monitoring.
+    | Here you can define the multiple desired URL for network monitoring. 
+    | If an address cannot be reached, it checks other addresses to make sure that the problem is with the server network
     |
     */
 
-    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
+    'network_monitor_url' => env('NETWORK_MONITOR_URL', ['https://1.1.1.1', 'https://www.google.com']),
 
     /*
     |--------------------------------------------------------------------------

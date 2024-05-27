@@ -1,9 +1,9 @@
 <div style="font-size: 14px">
     <b style="color: red">Whoops!! &#128128;</b>
-    @if ($logs['stethoscope:health'])
+    @if ($logs['signature'] == 'stethoscope:listen')
         <p>We Are Up!</p>
     @endif
-    @if ($logs['stethoscope:monitor'])
+    @if ($logs['signature'] == 'stethoscope:monitor')
         <p>The server is at risk</p>
     @endif
     @isset($logs['cpu'])
