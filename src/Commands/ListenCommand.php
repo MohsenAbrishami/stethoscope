@@ -4,6 +4,7 @@ namespace MohsenAbrishami\Stethoscope\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use MohsenAbrishami\Stethoscope\Events\TroubleOccurred;
 use MohsenAbrishami\Stethoscope\Services\Cpu;
 use MohsenAbrishami\Stethoscope\Services\Storage as StorageService;
 use MohsenAbrishami\Stethoscope\Services\Memory;
@@ -33,7 +34,7 @@ class ListenCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'stethoscope:listen {resources?*}';
+    protected $signature = 'stethoscope:listen {resources?*} {--notif}';
 
     /**
      * The console command description.
@@ -53,38 +54,50 @@ class ListenCommand extends Command
 
         $resourcesIsEmpty = $resources->isEmpty();
 
+        $logs = [];
+        $logs['signature'] = $this->signature;
+
         $this->line(
             $this->timeMessage()
         );
 
         if ($resources->contains('cpu') || $resourcesIsEmpty) {
+            $logs['cpu'] = $this->cpu->check();
             $this->info(
-                $this->cpuMessage($this->cpu->check())
+                $this->cpuMessage($logs['cpu'])
             );
         }
 
         if ($resources->contains('memory') || $resourcesIsEmpty) {
+            $logs['memory'] = $this->memory->check();
             $this->info(
-                $this->memoryMessage($this->memory->check())
+                $this->memoryMessage($logs['memory'])
             );
         }
 
         if ($resources->contains('network') || $resourcesIsEmpty) {
+            $logs['network'] = $this->network->check();
             $this->info(
-                $this->networkMessage($this->network->check())
+                $this->networkMessage($logs['network'])
             );
         }
 
         if ($resources->contains('web-server') || $resourcesIsEmpty) {
+            $logs['webServer'] = $this->webServer->check();
             $this->info(
-                $this->webServerMessage($this->webServer->check())
+                $this->webServerMessage($logs['webServer'])
             );
         }
 
-        if ($resources->contains('hdd') || $resourcesIsEmpty) {
+        if ($resources->contains('storage') || $resourcesIsEmpty) {
+            $logs['storage'] = $this->storage->check();
             $this->info(
-                $this->storageMessage($this->storageService->check())
+                $this->storageMessage($logs['storage'])
             );
+        }
+        
+        if ($this->option('notif')){
+            TroubleOccurred::dispatch($logs);
         }
     }
 }
