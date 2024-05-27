@@ -44,14 +44,15 @@ class HealthCommand extends Command
      */
     public function handle()
     {
-        $resourceReports = [];
+        $logs = [];
 
-        $resourceReports['cpu'] = $this->cpu->check();
-        $resourceReports['memory'] = $this->memory->check();
-        $resourceReports['network'] = $this->network->check();
-        $resourceReports['storage'] = $this->storage->check();
-        $resourceReports['webServer'] = $this->webServer->check();
+        $logs['signature'] = $this->signature;
+        $logs['cpu'] = $this->cpu->check();
+        $logs['memory'] = $this->memory->check();
+        $logs['network'] = $this->network->check();
+        $logs['storage'] = $this->storage->check();
+        $logs['webServer'] = $this->webServer->check();
 
-        TroubleOccurred::dispatch($resourceReports);
+        TroubleOccurred::dispatch($logs);
     }
 }

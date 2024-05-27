@@ -1,19 +1,24 @@
 <div style="font-size: 14px">
     <b style="color: red">Whoops!! &#128128;</b>
-    <p>Your server has the following problems:</p>
-    @isset($resourceLogs['cpu'])
-        <p>Cpu usage: {{ $resourceLogs['cpu'] }} %</p>
+    @if ($logs['stethoscope:health'])
+        <p>We Are Up!</p>
+    @endif
+    @if ($logs['stethoscope:monitor'])
+        <p>The server is at risk</p>
+    @endif
+    @isset($logs['cpu'])
+        <p>Cpu usage: {{ $logs['cpu'] }} %</p>
     @endisset
-    @isset($resourceLogs['memory'])
-        <p>Memory usage: {{ $resourceLogs['memory'] }} %</p>
+    @isset($logs['memory'])
+        <p>Memory usage: {{ $logs['memory'] }} %</p>
     @endisset
-    @isset($resourceLogs['network'])
-        <p>Network connection status: {{ $resourceLogs['network'] }}</p>
+    @isset($logs['network'])
+        <p>Network connection status: {{ $logs['network'] }}</p>
     @endisset
-    @isset($resourceLogs['storage'])
-        <p>Remaining free space on the Storage: {{ $resourceLogs['storage'] }} GB</p>
+    @isset($logs['storage'])
+        <p>Remaining free space on the Storage: {{ $logs['storage'] }} GB</p>
     @endisset
-    @isset($resourceLogs['webServer'])
-        <p>Web server status: {{ $resourceLogs['webServer'] }}</p>
+    @isset($logs['webServer'])
+        <p>Web server status: {{ $logs['webServer'] }}</p>
     @endisset
 </div>

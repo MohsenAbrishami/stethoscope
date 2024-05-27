@@ -7,16 +7,16 @@ use Illuminate\Notifications\Notification;
 
 class LogReportNotification extends Notification
 {
-    public $resourceLogs;
+    public $logs;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($resourceLogs)
+    public function __construct($logs)
     {
-        $this->resourceLogs = $resourceLogs->resourceLogs;
+        $this->logs = $logs->logs;
     }
 
     /**
@@ -43,7 +43,7 @@ class LogReportNotification extends Notification
         return (new MailMessage)
             ->subject('Stethoscope Alert')
             ->view('mohsenabrishami::emails.ResourceLog', [
-                'resourceLogs' => $this->resourceLogs,
+                'logs' => $this->logs,
             ]);
     }
 

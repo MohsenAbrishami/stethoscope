@@ -4,7 +4,7 @@ namespace MohsenAbrishami\Stethoscope\Listeners;
 
 class SendResourceLogNotification
 {
-    public function handle($resourceLogs)
+    public function handle($logs)
     {
         if (! is_null(config('stethoscope.notifications.notifiable'))) {
             $notifiable = app(config('stethoscope.notifications.notifiable'));
@@ -12,7 +12,7 @@ class SendResourceLogNotification
             $notificationClass = $this->detemineNotificationClass();
 
             $notifiable->notify(
-                new $notificationClass($resourceLogs)
+                new $notificationClass($logs)
             );
         }
     }
