@@ -46,7 +46,7 @@ class MonitorCommand extends Command
     public function handle()
     {
         $logs = [];
-        $logs['signature'] = $signature;
+        $logs['signature'] = $this->signature;
 
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
