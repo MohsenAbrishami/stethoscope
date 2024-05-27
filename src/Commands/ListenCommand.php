@@ -90,7 +90,7 @@ class ListenCommand extends Command
         }
 
         if ($resources->contains('storage') || $resourcesIsEmpty) {
-            $logs['storage'] = $this->storage->check();
+            $logs['storage'] = $this->storageService->check();
             $this->info(
                 $this->storageMessage($logs['storage'])
             );
