@@ -17,13 +17,13 @@ class FileDriver implements LogRecordInterface
         $this->storage = Storage::disk(config('stethoscope.log_file_storage.driver'));
     }
 
-    public function record($resourceLogs)
+    public function record($logs)
     {
         $file = config('stethoscope.log_file_storage.path').now()->format('Y-m-d');
 
         $log = '';
 
-        foreach ($resourceLogs as $resource => $report) {
+        foreach ($logs as $resource => $report) {
             $method = $resource.'Message';
 
             if (method_exists($this, $method)) {

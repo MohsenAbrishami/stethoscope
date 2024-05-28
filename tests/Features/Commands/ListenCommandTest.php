@@ -22,7 +22,7 @@ class ListenCommandTest extends TestCase
 
     public function test_monitor_all_resources_when_run_listen_command_with_all_arguments()
     {
-        $this->artisan('stethoscope:listen cpu memory hdd network web-server')
+        $this->artisan('stethoscope:listen cpu memory storage network web-server')
             ->assertOk()
             ->expectsOutputToContain('cpu usage')
             ->expectsOutputToContain('memory usage')

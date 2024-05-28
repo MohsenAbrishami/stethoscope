@@ -241,11 +241,12 @@ By default, the configuration looks like this:
     |--------------------------------------------------------------------------
     | Network Monitor URL
     |--------------------------------------------------------------------------
-    | Here you can define the desired URL for network monitoring.
+    | Here you can define the multiple desired URL for network monitoring. 
+    | If an address cannot be reached, it checks other addresses to make sure that the problem is with the server network
     |
     */
 
-    'network_monitor_url' => env('NETWORK_MONITOR_URL', 'https://www.google.com'),
+    'network_monitor_url' => env('NETWORK_MONITOR_URL', ['https://1.1.1.1', 'https://www.google.com']),
 
     /*
     |--------------------------------------------------------------------------
@@ -319,11 +320,11 @@ class StethoscopeNotification extends LogReportNotification
         *Be careful!! 💀*
         
         Your server has the following problems:
-        " . (isset($this->resourceLogs['cpu']) ? '- Cpu usage: ' . $this->resourceLogs['cpu'] . ' %' : '') . "
-        " . (isset($this->resourceLogs['memory']) ? '- Memory usage: ' . $this->resourceLogs['memory'] . ' %' : '') . "
-        " . (isset($this->resourceLogs['network']) ? '- Network connection status: ' . $this->resourceLogs['network'] : '') . "
-        " . (isset($this->resourceLogs['storage']) ? '- Remaining free space on the Storage:  ' . $this->resourceLogs['storage'] . ' GB' : '') . "
-        " . (isset($this->resourceLogs['webServer']) ? '- Web server status:  ' . $this->resourceLogs['webServer'] : '') . "
+        " . (isset($this->logs['cpu']) ? '- Cpu usage: ' . $this->logs['cpu'] . ' %' : '') . "
+        " . (isset($this->logs['memory']) ? '- Memory usage: ' . $this->logs['memory'] . ' %' : '') . "
+        " . (isset($this->logs['network']) ? '- Network connection status: ' . $this->logs['network'] : '') . "
+        " . (isset($this->logs['storage']) ? '- Remaining free space on the Storage:  ' . $this->logs['storage'] . ' GB' : '') . "
+        " . (isset($this->logs['webServer']) ? '- Web server status:  ' . $this->logs['webServer'] : '') . "
     ";
 
         return TelegramMessage::create()->content($formattedMessage);

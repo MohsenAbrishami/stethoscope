@@ -45,7 +45,8 @@ class MonitorCommand extends Command
      */
     public function handle()
     {
-        $resourceReports = [];
+        $logs = [];
+        $logs['signature'] = $this->signature;
 
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
@@ -54,29 +55,29 @@ class MonitorCommand extends Command
         $webServerStatuses = $this->webServer->check();
 
         if (config('stethoscope.monitorable_resources.cpu') && $cpuUsage > config(('stethoscope.thresholds.cpu'))) {
-            $resourceReports['cpu'] = $cpuUsage;
+            $logs['cpu'] = $cpuUsage;
         }
 
         if ($memoryUsage > config(('stethoscope.thresholds.memory')) && config('stethoscope.monitorable_resources.memory')) {
-            $resourceReports['memory'] = $memoryUsage;
+            $logs['memory'] = $memoryUsage;
         }
 
         if ($networkStatus == 'disconnected' && config('stethoscope.monitorable_resources.network')) {
-            $resourceReports['network'] = $networkStatus;
+            $logs['network'] = $networkStatus;
         }
 
         if ($storageFreeSpace < config(('stethoscope.thresholds.storage')) && config('stethoscope.monitorable_resources.storage')) {
-            $resourceReports['storage'] = $storageFreeSpace;
+            $logs['storage'] = $storageFreeSpace;
         }
 
         if ($webServerStatuses != 'active' && config('stethoscope.monitorable_resources.web_server')) {
-            $resourceReports['webServer'] = $webServerStatuses;
+            $logs['webServer'] = $webServerStatuses;
         }
 
-        Record::record($resourceReports);
+        Record::record($logs);
 
-        if (! empty($resourceReports)) {
-            TroubleOccurred::dispatch($resourceReports);
+        if (! empty($logs)) {
+            TroubleOccurred::dispatch($logs);
         }
     }
 }

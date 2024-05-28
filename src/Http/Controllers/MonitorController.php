@@ -26,7 +26,7 @@ class MonitorController extends Controller
 
     public function history($from, $to)
     {
-        $resourceLogs = ResourceLog::where('created_at', '>=', $from.' 00:00:00')
+        $logs = ResourceLog::where('created_at', '>=', $from.' 00:00:00')
             ->where('created_at', '<=', $to.' 23:59:59')
             ->select(DB::raw('date(created_at) as date'), 'resource')
             ->get();
@@ -39,21 +39,21 @@ class MonitorController extends Controller
         return response()->json([
             'labels' => $labels,
             'resource_log_count' => [
-                'cpu' => $this->resourceLogCount('cpu', $labels, $resourceLogs),
-                'memory' => $this->resourceLogCount('memory', $labels, $resourceLogs),
-                'storage' => $this->resourceLogCount('storage', $labels, $resourceLogs),
-                'network' => $this->resourceLogCount('network', $labels, $resourceLogs),
-                'web_server' => $this->resourceLogCount('webServer', $labels, $resourceLogs),
+                'cpu' => $this->resourceLogCount('cpu', $labels, $logs),
+                'memory' => $this->resourceLogCount('memory', $labels, $logs),
+                'storage' => $this->resourceLogCount('storage', $labels, $logs),
+                'network' => $this->resourceLogCount('network', $labels, $logs),
+                'web_server' => $this->resourceLogCount('webServer', $labels, $logs),
             ],
         ]);
     }
 
-    protected function resourceLogCount($resource, $labels, $resourceLogs)
+    protected function resourceLogCount($resource, $labels, $logs)
     {
         $logCount = [];
         foreach ($labels as $label) {
-            $resourceCount = $resourceLogs->countBy(function ($resourceLogs) use ($resource, $label) {
-                return $resourceLogs['resource'] == $resource && $resourceLogs['date'] == $label;
+            $resourceCount = $logs->countBy(function ($logs) use ($resource, $label) {
+                return $logs['resource'] == $resource && $logs['date'] == $label;
             });
             array_push($logCount, count($resourceCount) > 1 ? $resourceCount[1] : 0);
         }

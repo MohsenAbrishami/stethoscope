@@ -9,15 +9,15 @@ class TroubleOccurred
 {
     use Dispatchable, SerializesModels;
 
-    public $resourceLogs;
+    public $logs;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($resourceLogs)
+    public function __construct($logs)
     {
-        $this->resourceLogs = $resourceLogs;
+        $this->logs = $logs;
     }
 }
