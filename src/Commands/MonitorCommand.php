@@ -46,7 +46,6 @@ class MonitorCommand extends Command
     public function handle()
     {
         $logs = [];
-        $logs['signature'] = $this->signature;
 
         $cpuUsage = $this->cpu->check();
         $memoryUsage = $this->memory->check();
@@ -77,6 +76,7 @@ class MonitorCommand extends Command
         Record::record($logs);
 
         if (! empty($logs)) {
+            $logs['signature'] = $this->signature;
             TroubleOccurred::dispatch($logs);
         }
     }
